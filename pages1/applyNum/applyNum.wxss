@@ -1,0 +1,76 @@
+.apply_num{
+	font-size: 30rpx;
+}
+.apply_num .search{
+	display: flex;
+	align-items: center;
+	margin: 0 40rpx;
+	height: 65rpx;
+	line-height: 65rpx;
+	justify-content: center;
+	color: #999999;
+	font-size: 28rpx;
+	border-radius: 35rpx;
+	background-color: #f3f6fb;
+ 
+}
+.apply_num .search .search_icon{
+	margin-right: 10rpx;
+}
+.apply_num .part{
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 80rpx;
+	padding: 0 30rpx;
+}
+.apply_num .item{
+	margin: 10rpx 0;
+}
+.apply_num .title{
+	margin-top: 20rpx;
+	background-color: #F9E15C;
+}
+.apply_num .title .tel{
+	padding-left: 15rpx;
+}
+.apply_num .part .name{
+	width: 90rpx;
+}
+.apply_num .part .tel{
+	width: 290rpx;
+	margin: 0 30rpx;
+}
+.apply_num .part .time{
+	width: 275rpx;
+}
+.apply_num .item .tel{
+	width: 260rpx;
+	height: 65rpx;
+	line-height: 65rpx;
+	text-align: center;
+	padding: 0 15rpx;
+	border-radius: 35rpx;
+	background-color: #F9E15C;
+}
+.apply_num .item .tel{
+	display: flex;
+	align-items: center;
+}
+.nphone{
+  width: 260rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  background: #F9E15C;
+  border-radius: 30rpx;
+  display: block;
+  margin: auto;
+  position: relative;top: 15rpx;
+}
+.apply_num .item .tel > text{
+	margin-left: 10rpx;
+}
+.apply_num .item .time{
+	padding-left: 15rpx;
+}
+

@@ -1,0 +1,42 @@
+page{
+	background-color: #F2F2F2;
+}
+.design_price .price{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100rpx;
+	line-height: 100rpx;
+	padding: 0 40rpx;
+	font-size: 30rpx;
+	border-top: 1px solid #F2F2F2;
+	background-color: #FFFFFF;
+}
+.design_price .price:nth-child(2){
+	border-bottom: 1px solid #F2F2F2;
+}
+.design_price .price > view{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.design_price .price > view > input{
+	text-align: right;
+}
+.design_price .price > view .unit{
+	position: relative;
+	font-size: 24rpx;
+	color: #999999;
+	margin-left: 20rpx;
+}
+.design_price .sure_btn >button{
+	width: 90%;
+	height: 90rpx;
+	line-height: 90rpx;
+	margin-top: 55rpx;
+	background-color: #F9E15C;
+	font-size: 32rpx;
+	font-weight: bold;
+}
+
+

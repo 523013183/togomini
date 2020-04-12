@@ -1,0 +1,7 @@
+<view class="personal_desc">
+  <textarea auto-focus placeholder="个人简介,请用100个字介绍自己." value="{{inputValue == 'undefined'?'':inputValue}}" maxlength="100" bindinput="calcLength"></textarea>
+  <view class="num"><text>{{textLength}}</text>/100</view>
+	<view class="sure_btn">
+		<button bindtap="onConfirm">确认</button>
+	</view>
+</view>

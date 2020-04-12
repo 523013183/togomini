@@ -1,0 +1,20 @@
+<view class="my_integral">
+	<view class="left">我的积分：{{data.user.integral?data.user.integral:'0'}}</view>
+	<view class="right">如何获取积分？</view>
+</view>
+<!-- 列表 -->
+<scroll-view scroll-y="{{list.length>0}}" style="height:{{height}}px;">
+	<view class="list" wx:if="{{list.length>0}}">
+		<view class="item" wx:for="{{list}}" wx:key="index">
+			<view class="left">
+				<text>{{item.content=="积分减少"?"抽奖":item.content}}</text>
+				<text class="text">{{item.addtime}}</text>
+			</view>
+			<view class="right">{{item.integral}}</view>
+		</view>
+	</view>
+	<view class="nonedata" wx:else>
+		<image style="width:300rpx;height:200rpx;" src="/images1/nomsg.png"></image>
+		<text>暂无数据...</text>
+	</view>
+</scroll-view>

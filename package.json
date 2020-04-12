@@ -1,0 +1,23 @@
+{
+  "name": "togomini",
+  "version": "1.0.0",
+  "description": "this is a togomini file",
+  "main": "app.js",
+  "dependencies": {
+    "cos-wx-sdk-v5": "^0.7.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/523013183/togomini.git"
+  },
+  "author": "zhaosm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/523013183/togomini/issues"
+  },
+  "homepage": "https://github.com/523013183/togomini#readme"
+}

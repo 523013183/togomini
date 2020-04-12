@@ -1,0 +1,99 @@
+<!--pages1/im/im.wxml-->
+<view class="content" id="j_page" style="{{height}}px">
+  <view class="block" wx:for="{{imlist}}" wx:key ="index">
+    <!-- 文本消息 -->
+    <view wx:if="{{item.type == 'TIMTextElem'}}">
+      <view wx:if="{{item.flow == 'in'}}" class="left">
+        <image mode="aspectFill" style="margin-right:15rpx;" class="avater" src="{{her}}"></image>
+        <text>{{item.payload.text}}</text>
+      </view>
+      <view wx:else class="right">
+        <text>{{item.payload.text}}</text>
+        <image mode="aspectFill" style="margin-left:15rpx;" class="avater" src="{{me}}"></image>
+      </view>
+    </view>
+    <!-- 图片消息 -->
+    <view wx:if="{{item.type == 'TIMImageElem'}}">
+      <!-- 他 -->
+      <view wx:if="{{item.flow == 'in'}}">
+        <image mode="aspectFill" style="margin-left:40rpx;margin-right:15rpx;float:left;" class="avater" src="{{her}}"></image>
+        <view bindtap="img" data-img="{{item.payload.imageInfoArray[1].url}}" style="height:300rpx;border-top-right-radius: 20rpx;border-bottom-left-radius: 20rpx;border-bottom-right-radius: 20rpx;" class="left">
+          <image mode="aspectFill" src="{{item.payload.imageInfoArray[1].url}}"></image>
+        </view>
+      </view>
+      <!-- 我 -->
+      <view wx:else>
+        <image style="margin-right:40rpx;margin-left:15rpx;float:right;" class="avater" src="{{me}}"></image>
+        <view bindtap="img" data-img="{{item.payload.imageInfoArray[1].url}}" style="height:300rpx;border-top-left-radius: 20rpx;border-bottom-left-radius: 20rpx;border-bottom-right-radius: 20rpx;" class="right">
+          <image mode="aspectFill" src="{{item.payload.imageInfoArray[1].url}}"></image>
+        </view>
+      </view>
+    </view>
+    <!-- 自定义 -->
+    <view wx:if="{{item.type == 'TIMCustomElem'}}">
+      <!-- 他 -->
+      <view wx:if="{{item.flow == 'in'}}">
+        <image mode="aspectFill" style="margin-left:40rpx;margin-right:15rpx;float:left;" class="avater" src="{{her}}"></image>
+        <view bindtap="detail" data-type="{{item.payload.description[1]}}" data-id="{{item.payload.data}}" style="background-color:#fff;border-top-right-radius: 20rpx;border-bottom-left-radius: 20rpx;border-bottom-right-radius: 20rpx;display:flex;flex-direction: column;align-items: center;margin-right:200rpx;padding-bottom:20rpx;"
+          class="left">
+          <view class="title">{{item.payload.description[0]}}（{{item.payload.description[1]}}）</view>
+          <view class="detail" wx:if="{{item.payload.description[1] =='案例'}}">{{item.payload.extension[1]}}</view>
+          <image mode="aspectFill" class="shareimg" src="{{item.payload.extension[0]}}"></image>
+          <view class="price" wx:if="{{item.payload.description[1] !='案例'}}">
+            <view>￥{{item.payload.extension[1]}}</view>
+            <view hidden="{{item.payload.description[1] =='普通套餐'}}" style="color:gray;">共{{item.payload.extension[2]}}款产品</view>
+          </view>
+        </view>
+      </view>
+      <!-- 我 -->
+      <view wx:else>
+        <image mode="aspectFill" style="margin-right:40rpx;margin-left:15rpx;float:right;" class="avater" src="{{me}}"></image>
+        <view bindtap="detail" data-type="{{item.payload.description[1]}}" data-id="{{item.payload.data}}" style="background-color:#fff;border-top-left-radius: 20rpx;border-bottom-left-radius: 20rpx;border-bottom-right-radius: 20rpx;display:flex;flex-direction: column;align-items: center;margin-left:200rpx;justify-content: flex-start;padding-bottom:20rpx;"
+          class="right">
+          <view class="title">{{item.payload.description[0]}}（{{item.payload.description[1]}}）</view>
+          <view class="detail" wx:if="{{item.payload.description[1] =='案例'}}">
+            <view>{{item.payload.extension[1]}}</view>
+            <view>{{item.payload.extension[2]}}</view>
+          </view>
+          <image mode="aspectFill" class="shareimg" src="{{item.payload.extension[0]}}"></image>
+          <view class="price" wx:if="{{item.payload.description[1] !='案例'}}">
+            <view>￥{{item.payload.extension[1]}}</view>
+            <view wx:if="{{item.payload.description[1] =='普通套餐'}}" style="color:gray;">共{{item.payload.extension[2]}}款产品</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 提示 -->
+  <view bindtap="remind" class="msg" wx:if="{{typename}}">点击提醒设计师回复</view>
+</view>
+<view class="footer">
+  <view class="btn">
+    <input confirm-type="send" bindconfirm="msg" confirm-hold value="{{val}}" bindinput="input"></input>
+    <button bindtap="sendemoji">
+      <image src="/images/emoji.png"></image>
+    </button>
+    <button bindtap="more">
+      <image src="/images/plus.png"></image>
+    </button>
+  </view>
+  <view class="emoji" hidden="{{emoji}}">
+    <text data-emoji="{{item}}" bindtap="emojiimg" wx:for="{{emojiChar}}" wx:key ="index">{{item}}</text>
+    <button class="emojiimg" bindtap="msg">发送</button>
+  </view>
+  <!-- 更多 -->
+  <view class="more" hidden="{{more}}">
+    <button bindtap="taocan" class="item">
+      <image src="/images/taocan.png"></image>套餐</button>
+    <button bindtap="anli" class="item">
+      <image src="/images/anli.png"></image>案例</button>
+    <button bindtap="chanpin" class="item">
+      <image src="/images/chanpin.png"></image>产品</button>
+    <button bindtap="tupian" class="item">
+      <image src="/images/tupian.png"></image>图片</button>
+    <button bindtap="collect" class="item">
+      <image src="/images/collect.png"></image>收藏</button>
+  </view>
+</view>
+<!-- 遮罩 -->
+<!-- <view hidden="{{shade}}" catchtouchmove="doNotMove" class="shade"></view> -->

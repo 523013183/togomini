@@ -1,0 +1,120 @@
+page{
+	background-color: #FAFAFA;
+}
+.product_list .products_group .part_wrapper{
+	display: flex;
+	align-items: center;
+	padding: 30rpx 40rpx;
+	margin-top: 20rpx;
+	background-color: #FFFFFF;
+}
+
+.product_list .products_group .part_wrapper .pro_pic{
+	width: 165rpx;
+	height: 165rpx;
+	margin-right: 30rpx;
+	border-radius: 10rpx;
+	background-color: #f4f4f4;
+}
+.product_list .products_group .part_wrapper .pro_pic> image{
+	width: 100%;
+	height: 100%;
+}
+.product_list .products_group .part{
+	flex: 1;
+	/* height: 165rpx; */
+	font-size: 26rpx;
+}
+.product_list .products_group .part .text_title{
+	font-size: 30rpx;
+	font-weight: bold;
+	margin-bottom: 20rpx;
+}
+ .product_list .products_group .part .descript{
+	font-size: 20rpx;
+	color: #999999;
+	margin: 10rpx 0 15rpx;
+}
+.product_list .products_group .part .style{
+	margin: 10rpx 0 0;
+}
+.product_list .products_group .part .material{
+	margin: 5rpx 0;
+}
+.product_list .products_group .part .price{
+	font-size: 28rpx;
+	color: #e93323;
+	font-weight: bold;
+	margin-top: 15rpx;
+}
+.product_list .products_group .part .price text{
+  font-size: 24rpx;
+  color: #ccc;
+  text-decoration:line-through;
+  margin-left: 15rpx;
+}
+.product_list .products_group .part .trash_icon{
+	position: absolute;
+	right: 30rpx;
+	bottom: 95rpx;
+}
+.product_list .downloadBtn{
+	width: 90%;
+	height: 90rpx;
+	line-height: 90rpx;
+	margin: 150rpx auto 20rpx;
+	/* text-align: center; */
+	font-size: 32rpx;
+	font-weight: bold;
+	border-radius: 10rpx;
+	background-color: #F9E15C;
+}
+
+
+.part_wrapper {
+  position: relative;
+}
+
+.number {
+  position: absolute;
+  right: 20rpx;
+  bottom: 25rpx;
+  /* color: red; */
+  font-size: 32rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  border: 1rpx solid #ccc;
+}
+.number input{
+  width: 90rpx;
+  text-align: center;
+}
+.number view{
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-weight: bold;
+}
+.close-icon{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;right: 20rpx;top: 0;
+}
+.num{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  height: 100rpx;
+  border-top: 1rpx solid #f2f2f2;
+  padding-left: 40rpx;
+}
+.num view{
+  margin: 20rpx;
+  font-weight: bolder;
+}
+.num view text{
+  color: red;
+}

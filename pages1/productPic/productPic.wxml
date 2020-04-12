@@ -1,0 +1,14 @@
+<view class="products_pic">
+	<view class="title_wrapper">
+		<view>{{info.name}}</view>
+		<view class="style">{{info.remarks}}</view>
+	</view>
+	<view class="pic_wrapper">
+		<view class="pic_item" wx:for="{{picArr}}" wx:item="{{item}}" data-selectIndex="{{index}}" data-sureid="{{selectIndex[index].sureid}}" bindtap="isChoose">
+			<image class="pic" src="{{item.url}}"></image>
+			<image class="pic_circle" wx:if="{{!selectIndex[index].sureid}}" src="/images1/pic_circle.png"></image>
+			<image class="pic_circle" wx:if="{{selectIndex[index].sureid}}" src="http://oss.diywoju.com/web/uploads/image/store_1/a1772886a10546b91c12bd091d6c26a3c2c6a52a.png"></image>
+		</view>
+	</view>
+	<button bindtap='confirm'>确认选择</button>
+</view>

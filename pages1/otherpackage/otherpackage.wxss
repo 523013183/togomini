@@ -1,0 +1,41 @@
+/* pages1/otherpackage/otherpackage.wxss */
+page{
+  background-color: #fff;
+}
+.s-item {
+  width: 90%;
+  display: inline-block;
+  margin: 20rpx 5%;
+}
+
+.s-img {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 20rpx;
+}
+
+.s-bottom {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.sb-img {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+  margin: 10rpx;
+}
+
+.sb-img image {
+  width: 80rpx;
+  height: 80rpx;
+}
+.none{
+  text-align: center;
+  margin: 300rpx auto;
+}

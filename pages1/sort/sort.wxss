@@ -1,0 +1,27 @@
+.tip{
+  color:#aaa;
+  font-size:12px;
+}
+.normal_title{
+  font-size:16px;
+  margin:10rpx 20rpx;
+  font-weight: bold;
+}
+.item{
+ position:absolute;
+ border:1px solid black;
+ font-size:13px;
+ padding:7px 0px;
+ width:90px;
+ text-align:center;
+ border-radius:90px;
+}
+.item_select{
+  color:#fff;
+  background:blue;
+}
+.item_container{
+  height:300rpx;
+  /* border:1px solid black; */
+  position:relative;
+}

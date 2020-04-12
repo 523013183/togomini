@@ -1,0 +1,162 @@
+<scroll-view scroll-y="{{isScroll}}">
+  <view class="activity_detail">
+    <view class="top">
+      <image src="{{activityData.head_pic_url}}"></image>
+      <view class="title">{{activityData.title}}</view>
+      <view class="state">
+        <text wx:if="{{applyState=='0'}}">未开始</text>
+        <text wx:if="{{applyState=='1'}}">进行中</text>
+        <text wx:if="{{applyState=='2'}}">已结束</text>
+        <view>
+          <image class="icon" style="width: 33rpx;height: 25rpx;" src="/images1/eye_icon.png"></image>
+          <text>{{activityData.show_times}}</text>
+        </view>
+      </view>
+      <view class="apply_time">
+        <image class="icon" style="width: 28rpx;height: 28rpx;" src="/images1/clock_icon.png"></image>
+        <text>报名时间：</text>
+        <view class="time">
+          <text>{{startDate1}} {{startDate2}}</text>
+          <text>-</text>
+          <text>{{endDate1}} {{endDate2}}</text>
+        </view>
+      </view>
+      <view class="apply_num">
+        <image class="icon" style="width: 26rpx;height: 25rpx;" src="/images1/num_icon.png"></image>
+        <text>报名人数：</text>
+        <text wx:if="{{activityData.max_number>0}}"><text>{{enrollList.length}}</text>/{{activityData.max_number}}</text>
+        <text wx:else>不限</text>
+      </view>
+      <view wx:if="{{activityData.address != ''}}" class="apply_address">
+        <image class="icon" style="width: 20rpx;height: 26rpx;" src="/images1/address_icon.png"></image>
+        <text>活动地址：</text>
+        <text data-latitude="{{activityData.latitude}}" data-longitude="{{activityData.longitude}}" data-name="{{activityData.address}}" bindtap="toMap">{{activityData.address}}</text>
+      </view>
+      <view class="apply_person">
+        <view bindtap="godetail" class="left">
+          <image class="icon" style="width: 40rpx;height: 40rpx;" src="{{activityData.avatar_url}}"></image>
+          <text>发起人：</text>
+          <text>{{activityData.author_name}}</text>
+        </view>
+        <view class="right">
+          <image style="width: 56rpx;height: 56rpx;" src="/images1/tel_y.png" data-phone="{{activityData.author_phone}}" bindtap="callDesigner"></image>
+          <image style="width: 56rpx;height: 56rpx;" src="/images1/weixin_y.png" data-wechat="{{activityData.author_wechat}}" bindtap="addWechat"></image>
+        </view>
+      </view>
+    </view>
+    <view class="pic_detail">
+      <view class="title">图文详情</view>
+      <image mode="widthFix" bindtap="previewImage" data-index="{{index}}" wx:for="{{otherPicUrl}}" wx:item="{{item}}"  wx:key="index" src="{{item}}"></image>
+      <view class="desc">
+        {{activityData.content}}
+      </view>
+    </view>
+    <view class="apply_detail" wx:if="{{activityData.show_enroll==1}}">
+      <view class="title">
+        <text>已报名</text> 
+        <text>（{{enrollList.length}}）</text>
+      </view>
+      <view class="apply_person" wx:for="{{enrollList}}"  wx:key="index" wx:item="{{item}}" wx:if="{{enrollList.length!=='0'}}">
+        <view class="item">
+          <view class="name">
+            <image style="width: 80rpx;height: 80rpx;" src="{{item.avatar_url}}"></image>
+            <text>{{item.name}}</text>
+          </view>
+          <view class="apply_date" wx:for="{{timeArr!==null?timeArr:''}}"  wx:key="index" wx:item="{{item}}">{{item}}</view>
+        </view>
+
+      </view>
+
+    </view>
+    <view class="mask" hidden="{{hidden1}}" catchtouchmove="ture">
+      <view class="mask-1" catchtap='hideCart'></view>
+      <view class="mask-2 ">
+        <image class="share_box" src="{{sharePic}}">
+
+          <button class="save_pic" bindtap="hiddenAd">保存图片</button>
+        </image>
+      </view>
+    </view>
+
+  </view>
+  <view class="bottom_mune">
+    <view class="mune_item">
+      <view class="item" data-id="{{activityData.user_id}}" bindtap="linkHomepage">
+        <image style="width: 44rpx;height: 39rpx;" src="/images1/home_icon.png"></image>
+        <view>首页</view>
+      </view>
+      <!--  data-id="{{activityData.id}}" bindtap="show_mask" -->
+      <view class="item" bindtap="cartShare">
+        <image style="width: 48rpx;height: 42rpx;" src="/images1/share_icon.png"></image>
+        <view>分享活动</view>
+      </view>
+      <view class="item" wx:if="{{user_Id == myid}}" bindtap="showmask">
+        <image style="width: 42rpx;height: 42rpx;" src="/images1/manage_icon.png"></image>
+        <view>活动管理</view>
+      </view>
+      <view class="item" hidden="{{level_name == '普通用户' || has_copy != 1}}" wx:else bindtap="copy" data-id="{{activityData.id}}">
+        <image style="width: 42rpx;height: 42rpx;" src="/images1/manage_icon.png"></image>
+        <view>复制活动</view>
+      </view>
+    </view>
+    <view class="{{applyState=='0' || applyState=='2'? 'applyNo':'apply_btn'}}" bindtap="apply" wx:if="{{state=='apply_no'}}" data-state="{{applyState}}" data-activityid="{{activityData.id}}" data-form="{{activityData.form}}">
+      我要报名
+    </view>
+    <view class="apply_btn" bindtap="apply" wx:if="{{state=='apply_yes'}}" data-state="{{applyState}}" data-activityid="{{activityData.id}}" data-form="{{activityData.form}}">
+      编辑/取消报名
+    </view>
+  </view>
+  <!-- 递名片弹窗 -->
+  <view class="mask" hidden="{{share_box}}">
+    <view class="mask-1" bindtap="hidden_mask"></view>
+    <view class="share_wrapper">
+      <view class="shareTo">
+        <view class="manage_cont">
+          <view data-id="{{activityData.id}}" data-index="{{activityData.user_id}}" bindtap="modifyctivity">
+            <image style="width: 48rpx;height: 48rpx;" src="/images1/modify_btn.png"></image>
+            <view>编辑活动</view>
+          </view>
+          <!-- <view data-id="{{activityData.id}}" bindtap='copy'>
+							<image style="width: 48rpx;height: 48rpx;" src="/images1/copy_btn.png"></image>
+							<view>复制创建</view>
+						</view> -->
+          <view class="" data-id="{{activityData.id}}" bindtap="cancleActivity">
+            <image style="width: 48rpx;height: 48rpx;" src="/images1/cancle_btn.png"></image>
+            <view>删除活动</view>
+          </view>
+          <view data-id="{{activityData.id}}" data-form="{{activityData.form}}" bindtap="linkApplyNum">
+            <image style="width: 48rpx;height: 60rpx;" src="/images1/personNum_btn.png"></image>
+            <view>报名人数</view>
+          </view>
+        </view>
+        <button class="cancleBtn" bindtap="hideMask">取消</button>
+      </view>
+
+    </view>
+  </view>
+</scroll-view>
+<!--hidden="{{hiddenShare}}" -->
+<view class='masking' hidden="{{hiddenShare}}" bindtap='hiddenMasking1'>
+  <view class="share_wrapper" style='width:100%;height:380rpx;left:0;bottom:0;background:white;'>
+    <view class="shareTo" style='height:380rpx;'>
+      <view class="top_title" style='text-align:center;line-height:180rpx;font-size:40rpx'>分享到</view>
+      <view class="cont" style='display:flex;display:-webkit-flex'>
+        <button id='1' class="create_ad tofriend" data-name="shareBtn" open-type="share" style='line-height:normal'>
+          <image style="width: 110rpx;height: 110rpx;" src="/images1/share_ad_icon.png"></image>
+          <view class="text" style='line-height:normal;color:rgb(51,51,51)'>微信好友</view>
+        </button>
+        <!--  bindtap="cartShare" -->
+        <view class="share_friend" data-id="{{activityData.id}}" bindtap="show_mask" style='flex:1;text-align:center'>
+          <image style="width: 110rpx;height: 110rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/fb5bc2da6e9e40a4d17fb02272e849a58beab216.png"></image>
+          <view class="text" style='color:rgb(51,51,51)'>分享卡片</view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>
+
+<!-- 分享海报 -->
+<view id="canvas2" style="width:316px;height:461px;margin-top:-999999999rpx;">
+  <canvas style="width:100%;height:100%;" canvas-id="canvas"></canvas>
+</view>

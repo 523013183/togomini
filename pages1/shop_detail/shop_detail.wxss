@@ -1,0 +1,82 @@
+.head {
+  width: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+  height: 250rpx;
+  display: flex;
+  margin-bottom: 15rpx;
+  align-items: center;
+  background-color: #fff;
+  justify-content: space-between;
+}
+
+.head image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.right {
+  height: 100%;
+  border-left: 1rpx solid #ccc;
+  position: relative;
+  padding-left: 20rpx;
+  width: 480rpx;
+}
+
+.title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.point {
+  font-size: 24rpx;
+}
+
+.point text {
+  color: red;
+}
+
+.num {
+  position: absolute;
+  bottom: 10rpx;
+  left: 20rpx;
+  font-size: 26rpx;
+  color: #ccc;
+}
+
+.detail {
+  width: 100%;
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+.btn{
+  width: 100%;
+  min-height: 100rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: calc(env(safe-area-inset-bottom));
+}
+.btn view{
+  width: 720rpx;
+  height: 80rpx;
+  background-color: rgb(47,155,254);
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  font-size: 26rpx;
+}
+.title-{
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+.detail-img{
+  width: 100%;
+}

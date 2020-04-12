@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "新增套餐",
+  "usingComponents": {
+    "bottomframe": "/components/bottom_frame/bottom_frame"
+  }
+}

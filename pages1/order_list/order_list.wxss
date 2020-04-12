@@ -1,0 +1,138 @@
+page{
+  overflow: hidden;
+}
+.add_new {
+  display: flex;
+  align-items: center;
+  height: 90rpx;
+  line-height: 110rpx;
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  background-color: #f3f6fb;
+}
+
+.add_new .add {
+  width: 130rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  border-radius: 35rpx;
+}
+
+.add_new .search {
+  display: flex;
+  align-items: center;
+  width: 600rpx;
+  height: 60rpx;
+  line-height: 70rpx;
+  color: #999;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+}
+
+.add_new .search input {
+  width: 100%;
+}
+
+.add_new .search .search_icon {
+  margin: 0 20rpx 0 35rpx;
+}
+
+.tab {
+  display: flex;
+  width: 100%;
+  height: 90rpx;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.tab view {
+  width: 150%;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  position: relative;
+  font-size: 26rpx;
+}
+
+.active {
+  color: red;
+}
+
+.active::after {
+  position: absolute;
+  left: 25%;
+  bottom: 0rpx;
+  content: '';
+  width: 50%;
+  height: 2rpx;
+  background-color: red;
+}
+
+scroll-view {
+  width: 100%;
+}
+
+.item {
+  position: relative;
+  width: 700rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #ccc;
+  margin: 20rpx auto;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left view:nth-child(1) {
+  color: red;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+}
+
+.left view:nth-child(2) {
+  color: #000;
+  font-size: 24rpx;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100rpx;
+}
+
+.right view:nth-child(1) {
+  color: #000;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+}
+
+.right view:nth-child(2) {
+  color: gray;
+  font-size: 24rpx;
+}
+
+.state {
+  position: absolute;
+  bottom: 5rpx;
+  right: 20rpx;
+  font-size: 24rpx;
+  color: #f8b2a6;
+}
+
+.nonedata image{
+  width: 374rpx;height: 280rpx;
+}

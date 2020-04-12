@@ -1,0 +1,121 @@
+<view class="sponsor_activity">
+  <view class="basic_set">
+    <view class="title">基本设置</view>
+    <view class="avatar_pic" data-num='1' data-flag='top' bindtap='uploadImg'>
+      <image mode='aspectFit' src='{{preImgtop}}' class='pre-pic' wx:if='{{preImgtop}}'></image>
+      <image class="add_icon" style="width: 63rpx;height: 54rpx;" src="/images1/img_icon.png"></image>
+      <view class="size">建议尺寸750px*498px</view>
+      <view class="upload_avatar">上传头图</view>
+    </view>
+  </view>
+  <view class="activity_title">
+    <view>活动标题</view>
+    <input placeholder-style="color:#cdcdcd;" placeholder="不超过50个字" maxlength='50' bindinput='titlelimit' value="{{titleText}}" />
+  </view>
+  <view class='time-picker bg-white pd-box30'>
+    <view class='label'>活动开始时间</view>
+    <view class='picker-box'>
+      <picker mode='date' value='' data-time='startDateEntry' bindchange='selectTime'>
+        <view class='date begin-date {{dateRes.startDateEntry ? "" : "placeholder-class"}}'>{{dateRes.startDateEntry ? dateRes.startDateEntry : '开始日期'}}</view>
+      </picker>
+      <picker mode='time' value='' data-time='startTimeEntry' bindchange='selectTime'>
+        <view class='time begin-time {{dateRes.startTimeEntry ? "" : "placeholder-class"}}'>{{dateRes.startTimeEntry ? dateRes.startTimeEntry : '开始时间'}}</view>
+      </picker>
+      <input hidden='true' type='text' name='active_reg_start' value='{{dateRes.startDateEntry}} {{dateRes.startTimeEntry}}'></input>
+    </view>
+    <image class='icon-go' style="width: 12rpx;height: 22rpx;" src="/images1/arrow_right.png" mode='aspectFit'></image>
+  </view>
+  <view class='time-picker bg-white pd-box30 space-mb20'>
+    <view class='label'>活动结束时间</view>
+    <view class='picker-box'>
+      <picker mode='date' value='' data-time='endDateEntry' bindchange='selectTime'>
+        <view class='date end-date {{dateRes.endDateEntry ? "" : "placeholder-class"}}'>{{dateRes.endDateEntry ? dateRes.endDateEntry : '结束日期'}}</view>
+      </picker>
+      <picker mode='time' value='' data-time='endTimeEntry' bindchange='selectTime'>
+        <view class='time end-time {{dateRes.endTimeEntry ? "" : "placeholder-class"}}'>{{dateRes.endTimeEntry ? dateRes.endTimeEntry : '结束时间'}}</view>
+      </picker>
+      <input hidden='true' type='text' name='active_reg_end' value='{{dateRes.endDateEntry}} {{dateRes.endTimeEntry}}'></input>
+    </view>
+    <image class='icon-go' style="width: 12rpx;height: 22rpx;" src="/images1/arrow_right.png" mode='aspectFit'></image>
+  </view>
+  <view class="sponsor_necessary">
+    <view class="title">报名必填</view>
+    <view class="item">
+      <text wx:for="{{applyItem}}" wx:item="{{item}}" data-item="{{item.type}}" data-selectIndex="{{index}}" data-sureid="{{selectIndex[index].sureid}}" class="{{selectIndex[index].sureid?'necessary':''}}" bindtap="isChoose1">{{item.type}}</text>
+    </view>
+    <view class="make_self">
+      <text class="add_btn" bindtap="linkAddSelf">添加自定义</text>
+      <text>（ 没有合适信息，可以自定义创建 ）</text>
+    </view>
+  </view>
+  <view wx:if="{{is_merchant==1}}" class="activity_title">
+    <view>是否可复制</view>
+    <switch bindchange="switchtab"></switch>
+  </view>
+  <view class="activity_title">
+    <view>活动人数</view>
+    <input placeholder-style="color:#cdcdcd;" placeholder="请输入报名人数" value="{{groupNumber}}" bindinput="setNumber" />
+  </view>
+  <view class="activity_title activity_end activity_addr">
+    <view>活动地址</view>
+    <view class='picker-box' bindtap='getActiveAddress'>
+      <view wx:if='{{active_address}}' class='active-address'>{{active_address}}</view>
+      <view wx:else>添加活动地址</view>
+      <input type='text' name='address' value='{{active_address}}' hidden></input>
+      <input type='text' name='lat' value='{{active_lat}}' hidden></input>
+      <input type='text' name='lon' value='{{active_lon}}' hidden></input>
+    </view>
+    <image style="width: 20rpx;height: 26rpx;" src="/images1/address_icon_y.png"></image>
+  </view>
+  <view class="activity_desc">
+    <view>活动描述</view>
+    <textarea placeholder-style="color:#cdcdcd;" placeholder="请输入活动描述内容，最多500字" maxlength='500' bindinput='desclimit' value="{{descText}}"></textarea>
+  </view>
+  <view class='img-upload-box flex-col bg-white pd-box30 space-mb20'>
+    <view class='label imgs-label'>相关图片（最多5张）</view>
+    <view class='upload-imgs-box flex-row-start'>
+      <block wx:for='{{preImgsAbout}}' wx:key='{{index}}'>
+        <view class='upload-pic-2'>
+          <image mode='aspectFill' src='{{host}}{{item}}' class='pre-img'></image>
+          <image mode='aspectFit' src='/images1/del_icon.png' class='del-img' data-index='{{index}}' bindtap='delImg'></image>
+        </view>
+      </block>
+      <view class='upload-pic-2 up-image' wx:if='{{preImgsAbout.length < 5}}' data-num='5' data-flag='about' bindtap='uploadImg'>
+        <image mode='aspectFit' src='/images1/add_icon.png' class='upload-icon-tip'></image>
+      </view>
+    </view>
+    <input type='text' name='active_imgs' value='{{preImgsAbout}}' hidden='true'></input>
+  </view>
+  <!-- <view class="activity_title">
+		<view>报名列表显示</view>
+		<switch bindchange="switch1Change"/>
+	</view> -->
+  <!-- <view class="activity_title activity_end" bindtap='showMoreOption'>
+		<view>更多高级选项</view>
+		<image src="/images1/arrow_up.png" style='width: 32rpx;height: 20rpx;transform: {{showMoreOption ? "rotate(180deg)" : ""}}'></image>
+	</view> -->
+
+  <view class='more-select-box' wx:if='{{showMoreOption}}'>
+    <view class='info-row flex-row-sbt bg-white pd-box30 activity_title'>
+      <view class='label'>发起人署名</view>
+      <input class='ipt' type='text' name='author_name' value='{{dataObj.author_name}}' placeholder='请输入署名' placeholder-class='placeholder-class' bindinput="inputBlur" data-name="dataObj.author_name"></input>
+    </view>
+    <view class='info-row flex-row-sbt bg-white pd-box30 activity_title'>
+      <view class='label'>发起人微信号</view>
+      <input class='ipt' type='text' name='author_wechat' value='{{dataObj.author_wechat}}' placeholder='请输入微信号' placeholder-class='placeholder-class' bindinput="inputBlur" data-name="dataObj.author_wechat"></input>
+    </view>
+    <view class='info-row flex-row-sbt bg-white pd-box30 activity_title'>
+      <view class='label'>发起人手机号</view>
+      <input class='ipt' type='number' maxlength='11' name='mobile' value='{{dataObj.mobile}}' placeholder='请输入手机号' placeholder-class='placeholder-class' bindinput='setPhone'></input>
+    </view>
+    <!-- <view class='info-row flex-row-sbt bg-white pd-box30 space-mb20 activity_title'>
+			<view class='label'>手机验证码</view>
+			<input class='mobile-code-ipt' type='number' maxlength='6' name='mobile_code' value='' placeholder='验证码' placeholder-class='placeholder-class' ></input>
+			<view bindtap='getCode' class='get-code-btn' wx:if="{{!hasCode}}">获取验证码</view>
+			<view class='has-code' wx:else> <text>{{second}}</text>秒后可重发</view>
+		</view> -->
+
+  </view>
+
+  <button bindtap="create_activity">保 存</button>
+</view>

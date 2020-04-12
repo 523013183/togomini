@@ -1,0 +1,234 @@
+page{
+	background-color: #fafafa;
+}
+.add_temporary .msg{
+	display: flex;
+	align-items: center;
+	height: 100rpx;
+	line-height: 100rpx;
+	padding: 0 40rpx;
+	font-size: 30rpx;
+	border-top: 1px solid #fafafa;
+	background-color: #FFFFFF;
+}
+.add_temporary .msg2{
+	border-bottom: 1px solid #fafafa;
+}
+.add_temporary .msg2 > text{
+	width: 185rpx;
+}
+.add_temporary .msg2 > view{
+	display: flex;
+	align-items: center;
+}
+.add_temporary .msg2 > view .money_icon{
+	margin-right: 10rpx;
+}
+.add_temporary .left_msg{
+	display: flex;
+	padding: 30rpx 40rpx 0;
+	font-size: 30rpx;
+	border-bottom: 1px solid #fafafa;
+	background-color: #FFFFFF;
+}
+.add_temporary > view >text{
+	width: 160rpx;
+	font-size: 30rpx;
+}
+.add_temporary > view >input{
+	width: calc(100% - 160rpx);
+	margin-left: 35rpx;
+}
+.add_temporary > view >textarea{
+	width: calc(100% - 160rpx);
+	height: 260rpx;
+	margin-left: 35rpx;
+}
+.add_temporary .msg_pic{
+	display: flex;
+	padding: 30rpx 40rpx;
+	font-size: 30rpx;
+	margin-bottom: 20rpx;
+	border-top: 1px solid #fafafa;
+	background-color: #FFFFFF;
+}
+.add_temporary .msg_pic .title{
+	margin-right: 40rpx;
+}
+.add_temporary .msg_pic .box_wrapper > image{
+	margin-top: 30rpx;
+}
+
+.add_temporary > button{
+	width: 90%;
+	height: 90rpx;
+	line-height: 90rpx;
+	margin-top: 55rpx;
+	font-size: 32rpx;
+	font-weight: bold;
+	background-color: #f9e15c;
+}
+/* 图片上传区域 */
+.img-upload-box {
+	padding-top: 30rpx;
+	padding-bottom: 30rpx;
+	min-height: 200rpx;
+}
+.upload-tip {
+	flex: 1;
+}
+.upload-pic {
+	width: 230rpx;
+	height: 140rpx;
+	border: 2rpx solid #bfbfbf;
+	background: #f8f8f8;
+}
+.up-image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.pre-pic {
+	width: 100%;
+	height: 100%;
+}
+.upload-icon-tip {
+	width: 46rpx;
+	height: 46rpx;
+}
+.top-pic {
+	font-size: 32rpx;
+	color: #000;
+	line-height: 76rpx;
+}
+.retip {
+	font-size: 24rpx;
+	color: #7f7f7f;
+}
+.imgs-label {
+	font-size: 32rpx;
+	color: #000;
+	line-height: 76rpx;
+}
+.upload-imgs-box {
+	width: 100%;
+	padding-top: 20rpx;
+	padding-bottom: 20rpx;
+}
+.add_temporary .pic_wrapper{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.add_temporary .pic_effect{
+	width: calc((100% - 90rpx)/3);
+	height: 150rpx;
+	text-align: center;
+	color: #999999;
+	border-radius: 10rpx;
+	background-color: #f4f4f4;
+}
+.add_temporary .pic_effect .add_icon{
+	margin-top: 28rpx;
+}
+.upload-pic-2 {
+	width: calc((100% - 90rpx)/3);
+	height: 150rpx;
+	margin-right: 30rpx;
+	margin-bottom: 20rpx;
+	background: #f8f8f8;
+	position: relative;
+	border: 2rpx solid #eee;
+}
+.upload-pic-2 .pre-img {
+	width: 100%;
+	height: 100%;
+}
+.upload-pic-2:last-child {
+	margin: 0;
+}
+.del-img {
+	width: 26rpx;
+	height: 26rpx;
+	border-radius: 50%;
+	position: absolute;
+	top: -8rpx;
+	left: -8rpx;
+	z-index: 8;
+	background: #fff;
+}
+.unknow-more {
+	color: #12b7f5;
+}
+.unknow {
+	display: inline-block;
+	width: 30rpx;
+	height: 30rpx;
+	text-align: center;
+	line-height: 30rpx;
+	background: #12b7f5;
+	color: #fff;
+	border-radius: 50%;
+	font-size: 22rpx;
+	margin-left: 8rpx;
+}
+
+.more-select {
+	width: 100%;
+	height: 93rpx;
+	font-size: 30rpx;
+	background: #fefefe;
+	border: 2rpx solid #f1f1f1;
+}
+.icon-slider {
+	width: 32rpx;
+	height: 32rpx;
+	transition: all 0.2s;
+}
+
+.upload-qrcode {
+	width: 140rpx;
+	height: 140rpx;
+	background: #f8f8f8;
+}
+
+.btn-group {
+	padding: 43rpx 0 66rpx;
+}
+.sub-btn {
+	width: 692rpx;
+	height: 88rpx;
+	line-height: 88rpx;
+	background-color: #2ea9df;
+	border-radius: 6rpx;
+	color: #fff;
+	font-size: 32rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 2rpx;
+	margin: 0 auto;
+}
+.del-btn {
+	background: #fff;
+	color: #ff6d6d;
+	margin-top: 20rpx;
+}
+
+switch {
+	transform: scale(0.8);
+}
+.mobile-code-ipt {
+	width: 230rpx;
+	text-align: left;
+}
+.get-code-btn {
+	width: 176rpx;
+	text-align: center;
+	letter-spacing: 2rpx;
+	color: #00a8f3;
+}
+.has-code {
+	color: #797979;
+}
+
+

@@ -1,0 +1,47 @@
+<wxs module="fn">
+	module.exports = {
+		decrease: function(a, b) {
+			return parseInt(a - b);
+		}
+	}
+</wxs>
+<view class="section">
+	<view class="section_title">
+		<view class="search">
+			<image class="search_icon" style="width:22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+			<input placeholder="输入活动关键字查找" confirm-type="search" bindinput='getKeyword' bindconfirm="getList" />
+		</view>
+	</view>
+	<scroll-view scroll-y style="height:{{height}}px;">
+		<view class="nonedata" wx:if="{{activityList.length==0}}">
+			<image style="width: 374rpx;height: 280rpx;" src="/images1/nomsg.png"></image>
+			暂无活动
+		</view>
+		<view class="active_part" wx:for="{{activityList}}" wx:item="{{item}}" wx:if="{{activityList.length!==0}}" wx:key="index">
+			<view class="part">
+				<view class="pic_wrapper" bindtap="linkActiviteDetail" data-id="{{item.id}}">
+					<image src="{{item.head_pic}}"></image>
+					<view class="msg_cont">
+						<view>
+							<image style="width: 33rpx;height: 25rpx;" src="/images1/eye_icon_w.png"></image>
+							<text>{{item.show_times}}</text>
+						</view>
+						<view>
+							<image style="width: 28rpx;height: 27rpx;" src="/images1/num_icon_w.png"></image>
+							<text>{{item.enroll}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="active_title">{{item.title}}</view>
+				<view class="person">
+					<view class="name">
+						<image style="width: 40rpx;height: 40rpx;" src="{{item.avatar_url}}"></image>
+						<text>{{item.author_name}}</text>
+					</view>
+					<view class="rest" wx:if="{{item.max_number!=='0'}}">剩余{{fn.decrease(item.max_number,item.enroll)}}份</view>
+					<view class="rest" wx:if="{{item.max_number=='0'}}">无数量限制</view>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+</view>

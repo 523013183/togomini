@@ -1,0 +1,390 @@
+Page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* overflow-y: hidden; */
+}
+
+scroll-view {
+  height: 100vh;
+  position: relative;
+}
+
+.project_detail .top {
+  position: relative;
+  width: 100%;
+  height: 500rpx;
+  margin-bottom: 45rpx;
+}
+
+.project_detail .top .bg_pic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+}
+
+.project_detail .top .bg_mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background-color: #000;
+}
+
+.project_detail .top .redact {
+  position: absolute;
+  top: 30rpx;
+  right: 40rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.project_detail .top .redact>image {
+  vertical-align: top;
+  margin: 4rpx 8rpx 0 0;
+}
+
+.project_detail .top .text {
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  height: 135rpx;
+  padding: 0 40rpx;
+  color: #fff;
+  font-size: 40rpx;
+  z-index: 50;
+}
+
+.project_detail .top .text .project_desc {
+  width: 100%;
+  margin-top: 25rpx;
+  font-size: 28rpx;
+  color: #f6f6f6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.project_detail .search {
+  padding: 0 30rpx;
+}
+
+.project_detail .search .title {
+  display: flex;
+  align-items: center;
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+  justify-content: space-between;
+}
+
+.project_detail .search .title .num {
+  display: inline-block;
+  width: 75rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 22rpx;
+  text-align: center;
+  margin-left: 10rpx;
+  border-bottom-left-radius: 18rpx;
+  border-top-right-radius: 18rpx;
+  background-color: #ffe252;
+}
+
+.project_detail .search .pic_group>image {
+  width: 100%;
+  /* height: 200px; */
+  margin-bottom: 40rpx;
+}
+
+.project_detail .share {
+  position: fixed;
+  top: 740rpx;
+  right: 30rpx;
+  z-index: 9;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+  display: block;
+}
+
+.mask-1 {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.8;
+}
+
+.mask-2 {
+  z-index: 99;
+  position: absolute;
+  top: 90rpx;
+  left: calc((100% - 600rpx)/2);
+  /* width: 8.4rem; */
+  animation-name: mask1;
+  -webkit-animation-name: mask1;
+  -moz-animation-name: mask1;
+  -ms-animation-name: mask1;
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  -webkit-animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-duration: 0.2s;
+  -moz-animation-fill-mode: both;
+  -moz-animation-iteration-count: 1;
+  -ms-animation-duration: 0.2s;
+  -ms-animation-fill-mode: both;
+  -ms-animation-iteration-count: 1;
+}
+
+.share_wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 380rpx;
+}
+
+.share_wrapper .shareTo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 380rpx;
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+  background-color: #fff;
+  z-index: 10000;
+}
+
+.share_wrapper .top_title {
+  font-size: 36rpx;
+  text-align: center;
+  padding: 55rpx 0 60rpx;
+}
+
+.share_wrapper .cont {
+  display: flex;
+  justify-content: center;
+}
+
+.share_wrapper .cont>view {
+  flex: 1;
+  text-align: center;
+}
+
+.share_wrapper .cont>view .text {
+  padding: 25rpx 0 70rpx;
+  font-size: 30rpx;
+}
+
+.share_box {
+  width: 600rpx;
+  height: 890rpx;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  background-color: #fff;
+}
+
+.share_box .top_title {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  margin-bottom: 20rpx;
+}
+
+.share_box .top_title .name {
+  color: #0eb629;
+  margin: 0 10rpx 0 15rpx;
+}
+
+.share_box .pic {
+  height: 330rpx;
+  margin-bottom: 40rpx;
+}
+
+.share_box .pic>image {
+  width: 100%;
+  height: 100%;
+}
+
+.share_box .title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.share_box .project_desc {
+  font-size: 24rpx;
+  margin-top: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.share_box .erwei_code {
+  margin: 25rpx auto 20rpx;
+  text-align: center;
+}
+
+.share_box .know_more {
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.share_box .save_pic {
+  position: absolute;
+  bottom: -140rpx;
+  left: calc((100% - 250rpx)/2);
+  width: 250rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  border-radius: 35rpx;
+  background-color: #f9e15c;
+}
+
+.masking {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+.share_wrapper .cont>button {
+  flex: 1;
+  text-align: center;
+  border: 0;
+}
+
+.share_wrapper .cont .tofriend {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200rpx;
+  font-size: 30rpx;
+  background-color: #fff;
+  border: 1px solid white;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.share_wrapper .cont .tofriend::after {
+  border: none;
+}
+
+.nav {
+  position: fixed;
+  top: 780rpx;
+  right: 40rpx;
+  width: 70rpx;
+  height: 70rpx;
+  background-color: #ffe252;
+  box-shadow: 0rpx 0rpx 7rpx 1rpx rgba(210, 210, 210, 0.39);
+  border-radius: 10rpx;
+}
+
+.foot {
+  z-index: 9;
+  width: 100%;
+  height: 150rpx;
+  padding-bottom: calc(env(safe-area-inset-bottom));
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item view {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+
+.btn1 {
+  width: 220rpx;
+  height: 80rpx;
+  background: #D9B300;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  border-radius: 10rpx;
+}
+
+.btn2 {
+  width: 220rpx;
+  height: 80rpx;
+  background: #FF3366;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  border-radius: 10rpx;
+}
+
+button::after {
+  border: none;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border-radius: 10rpx;
+}
+
+.redact {
+  position: fixed;
+  top: 880rpx;
+  right: 36rpx;
+  font-size: 24rpx;
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #f9e15c;
+  line-height: 80rpx;
+  font-weight: bold;
+}
+
+.image {
+  transition: all .3s ease;
+  opacity: 0;
+}
+
+.active {
+  opacity: 1;
+}

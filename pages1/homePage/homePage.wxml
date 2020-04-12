@@ -1,0 +1,306 @@
+<scroll-view class="scroll-view" scroll-y="{{isScroll}}" style='display:inline'>
+	<view class='tc_content'>
+		<!-- 名片部分开始 -->
+		<!-- 名片1 -->
+		<view wx:if="{{datastyle==0}}" class="back"></view>
+		<view wx:if="{{datastyle==0}}" class="content">
+			<image class="avater2" mode="aspectFill" src="{{avatarSrc == ''?tx_img:avatarSrc}}"></image>
+			<view class="changecar" data-id="{{info.id}}" data-username="{{info.user_name}}" data-job="{{info.job}}" data-years="{{info.job_year}}" data-designprice="{{info.design_fees}}" data-style="{{info.style}}" data-descript="{{info.introduction}}" data-mobile="{{info.mobile}}" data-wechat="{{info.wechat}}" data-avatarSrc="{{avatarSrc}}" bindtap="linkMCard">
+				<image style="width: 22rpx;height: 25rpx;margin-right: 10rpx;" src="/images1/pencil_w.png"></image>编辑名片
+			</view>
+			<view bindtap="style_tab" class="style_tab">
+				<text>风格切换</text>
+				<image src="/images/tab.png"></image>
+			</view>
+			<view class="city">
+				<image style="width: 35rpx;height: 35rpx;margin-right: 10rpx;" src="/images/city.png"></image>{{city}}
+			</view>
+			<!--  -->
+			<view class="nickName">{{user_name}}</view>
+			<view class="v">
+				<image style="width:40rpx;height:40rpx;" src="{{info.level_name=='普通用户'|| info.level_name==undefined?'/images/renzheng1.png':'/images/renzheng2.png'}}"></image>
+				<text class="{{info.level_name=='普通用户'|| info.level_name==undefined?'colorgray':''}}">{{info.level_name=='普通用户'|| info.level_name==undefined?'未认证':'平台认证'}}</text>
+			</view>
+			<view class="job">{{job}}-{{years}}年</view>
+			<view class="price">设计费用-<text>{{designPrice}}</text>\㎡</view>
+			<view class="data">
+				<view><text>{{click}}</text><text>人气</text></view>
+				<view><text>{{fans_count}}</text><text>粉丝</text></view>
+				<view><text>{{like_count}}</text><text>点赞</text></view>
+			</view>
+			<view class="style">擅长风格</view>
+			<view class="style_detail overflow2">{{style.length==0?'未选择':style}}</view>
+			<view class="style">设计理念</view>
+			<view class="style_detail overflow2">{{descript == ""?"无":descript}}</view>
+			<!-- 递名片 -->
+			<view class="share" bindtap="send_card1">{{access_token?'递名片':'登录'}}</view>
+			<!-- 底部 -->
+			<view class="buttom" style="{{heightauto?'height:auto;':''}}">
+				<view bindtap="toproduct">
+					<image class="icon2" src="/images1/pro_icon.png"></image>产品库
+				</view>
+				<view bindtap="mpj">
+					<image class="icon2" src="/images1/card_case.png"></image>名片夹
+				</view>
+				<view bindtap="regulate" wx:if="{{is_merchant == 1}}">
+					<image class="icon2" src="/images/guanli.png"></image>管理
+				</view>
+				<button wx:else open-type="contact" hover-class="none">
+					<image mode="aspectFill" class="icon2" src="/images1/service.png"></image>
+					<text>联系客服</text>
+				</button>
+				<view bindtap="link_cardActivity">
+					<image class="icon2" src="/images1/active_icon.png"></image>浏览记录
+				</view>
+				<view bindtap="link_Activity">
+					<image class="icon2" src="/images1/tab2_pic_nocheck.png"></image>活动
+				</view>
+				<view bindtap="link_sever">
+					<image class="icon2" src="/images1/serve1.png"></image>服务
+				</view>
+			</view>
+			<image bindtap="autoheight" src="/images/gengduo.png" class="more"></image>
+		</view>
+		<!-- 名片2 -->
+		<image wx:if="{{datastyle==1}}" mode="aspectFill" class="bg-img" src="http://oss.diywoju.com/web/uploads/image/store_1/6bd99b9b42a66aa05041342c9e6d02c6c2984ceb.png"></image>
+		<view wx:if="{{datastyle==1}}" class="box">
+			<view class="date">
+				<view class="information">
+					<!-- 跳转设置资料 -->
+					<view wx:if="{{phone}}" class="button2" hover-class="none" data-id="{{info.id}}" data-username="{{info.user_name}}" data-job="{{info.job}}" data-years="{{info.job_year}}" data-designprice="{{info.design_fees}}" data-style="{{info.style}}" data-descript="{{info.introduction}}" data-mobile="{{info.mobile}}" data-wechat="{{info.wechat}}" data-avatarSrc="{{avatarSrc}}" bindtap="linkMCard">
+						<view class="information-name">
+							<text class="overflow-1">{{info.user_name?info.user_name:'编辑名片'}}</text>
+							<image src="/images1/modify_btn.png"></image>
+						</view>
+					</view>
+					<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:else class="button2" hover-class="none">
+						<view class="information-name">
+							<text class="overflow-1">{{info.user_name?info.user_name:'编辑名片'}}</text>
+							<image src="/images1/modify_btn.png"></image>
+						</view>
+					</button>
+					<view class="flex-">
+						<view class="information-price">{{job}}-{{years}}年</view>
+						<view class="information-v" bindtap="v" wx:if="{{info.level_name == '普通用户' || info.level_name == undefined}}">
+							<image style="width:35rpx;height:35rpx;" src="{{info.level_name=='普通用户'|| info.level_name==undefined?'/images/renzheng1.png':'/images/renzheng1.png'}}"></image>
+							未认证
+						</view>
+						<view class="information-v" style="color:#f9e15c;" wx:else>
+							<image style="width:35rpx;height:35rpx;" src="{{info.level_name=='普通用户'|| info.level_name==undefined?'/images/renzheng1.png':'/images/renzheng2.png'}}"></image>
+							平台认证
+						</view>
+						<!-- <view bindtap="style_tab" class="style2">
+							<view>风格切换</view>
+							<image src="/images/tab.png"></image>
+						</view> -->
+					</view>
+					<view class="information-price">设计费用-<text>{{designPrice}}元/㎡</text></view>
+				</view>
+				<!--  -->
+				<image class="avater" mode="aspectFill" src="{{avatarSrc == ''?tx_img:avatarSrc}}"></image>
+			</view>
+			<view class="data-">
+				<view class="flex">
+					<view class="data-item" bindtap="link_cardActivity">
+						<text>{{click}}</text>
+						<text>访客</text>
+					</view>
+					<view class="data-item">
+						<text>{{fans_count}}</text>
+						<text>粉丝</text>
+					</view>
+					<view class="data-item">
+						<text>{{like_count}}</text>
+						<text>点赞</text>
+					</view>
+				</view>
+				<view class="data-btn" bindtap="send_card1">
+					{{access_token?'递名片':'登录'}}
+				</view>
+			</view>
+			<view class="flex-">
+				<view class="detail-">
+					<text>个人标签</text>
+					<text class="overflow">{{style.length==0?'未选择':style}}</text>
+				</view>
+				<view class="detail-">
+					<text>设计理念</text>
+					<text class="overflow">{{descript == ""?"无":descript}}</text>
+				</view>
+			</view>
+			<!-- 功能 -->
+			<image bindtap="heightauto" class="gengduo" src="/images/gengduo.png" bindtap="clickPup"></image>
+			<view class="other_btn" wx:if="{{animation_box}}" animation='{{animationData}}'>
+				<form class="form" bindsubmit="submitForm" report-submit="true">
+					<button hover-class="none" bindtap="toproduct" form-type="submit" class="other_item {{show=='0'? 'show':'hidden'}}">
+						<image mode="aspectFill" style="width: 54rpx;height: 54rpx;margin-bottom:10rpx;" src="/images1/pro_icon.png"></image>
+						<view style="margin-bottom:10rpx;">产品库</view>
+					</button>
+				</form>
+				<form class="form" bindsubmit="submitForm" report-submit="true">
+					<button bindtap="mpj" class="other_item {{show=='0'? 'show':'hidden'}}" hover-class="none" form-type="submit">
+						<image mode="aspectFill" style="width: 56rpx;height: 43rpx;margin-bottom:10rpx;" src="/images1/card_case.png"></image>
+						<view>名片夹</view>
+					</button>
+				</form>
+				<form class="form" wx:if="{{is_merchant == 1}}" bindsubmit="submitForm" report-submit="true">
+					<button bindtap="regulate" style="margin-top:-5rpx;" class="other_item {{show=='0'? 'show':'hidden'}} button" form-type="submit">
+						<image mode="aspectFill" style="width: 65rpx;height: 60rpx;" src="/images/guanli.png"></image>
+						<view>管理</view>
+					</button>
+				</form>
+				<form class="form" wx:else bindsubmit="submitForm" report-submit="true">
+					<button style="margin-top:5rpx;" open-type="contact" class="other_item {{show=='0'? 'show':'hidden'}} button" form-type="submit">
+						<image mode="aspectFill" style="width: 39rpx;height: 43rpx;" src="/images1/service.png"></image>
+						<view>联系客服</view>
+					</button>
+				</form>
+				<form class="form" bindsubmit="submitForm" report-submit="true" style="margin-top:10rpx;">
+					<button hover-class="none" form-type="submit" class="other_item {{show=='0'? 'show':'hidden'}}" bindtap="link_cardActivity">
+						<image mode="aspectFill" style="width: 54rpx;height: 54rpx;" src="/images1/active_icon.png"></image>
+						<view style="margin-bottom:10rpx;">浏览记录</view>
+					</button>
+				</form>
+				<form class="form" bindsubmit="submitForm" report-submit="true" style="margin-top:10rpx;">
+					<button hover-class="none" form-type="submit" class="other_item {{show=='0'? 'show':'hidden'}}" bindtap="link_Activity">
+						<image mode="aspectFill" style="width: 54rpx;height: 54rpx;" src="/images1/tab2_pic_nocheck.png"></image>
+						<view style="margin-bottom:10rpx;">活动</view>
+					</button>
+				</form>
+				<form class="form" bindsubmit="submitForm" report-submit="true" style="margin-top:10rpx;">
+					<button hover-class="none" form-type="submit" class="other_item {{show=='0'? 'show':'hidden'}}" bindtap="link_sever">
+						<image mode="aspectFill" style="width: 54rpx;height: 54rpx;" src="/images1/serve1.png"></image>
+						<view style="margin-bottom:10rpx;">服务</view>
+					</button>
+				</form>
+			</view>
+		</view>
+		<!-- 名片部分结束 -->
+		<view class="card_part" id="cardPart">
+			<!-- 作品部分开始 -->
+			<view class="products_part" id="productsPart">
+				<view class="title">
+					<view class="title_text">我的案例
+						<text class="products_num">{{productList.length}}套</text>
+					</view>
+					<form bindsubmit="submitForm" report-submit="true">
+						<button hover-class="none" form-type="submit" class="manage_products" bindtap="linkManagePro">
+							<image mode="aspectFill" class="{{show=='0'?'show':'hidden'}}" style="width: 32rpx;height: 26rpx;" src="/images1/manage_pro.png"></image>
+							<text class="{{show=='0'?'show':'hidden'}} {{hasProduct=='1'?'hasMsg':''}}">管理案例</text>
+						</button>
+					</form>
+				</view>
+				<view class="products_group" wx:if="{{productList.length=='0'}}">
+					<view class="noMsg_icon">
+						<image mode="aspectFill" style="width: 374rpx;height: 280rpx;" src="/images1/nomsg.png"></image>
+					</view>
+					<view class="text">您还没有案例，快去上传吧~</view>
+					<view bindtap="upload" class="upload">上传案例</view>
+				</view>
+				<form bindsubmit="submitForm" report-submit="true">
+					<button hover-class="none" form-type="submit" class="products_group" wx:if="{{productList.length>'0'}}" wx:for='{{productNewList!==null?productNewList:productList}}' bindtap="link_project" data-id="{{item.id}}" wx:if="{{item.is_show==1}}" wx:item="{{item}}" wx:key="index">
+						<view class="item">
+							<image mode="aspectFill" src="{{item.pic}}"></image>
+							<text class="text_desc">{{item.name}}</text>
+						</view>
+					</button>
+				</form>
+			</view>
+			<!-- 作品部分结束 -->
+			<!-- 套餐部分开始 -->
+			<view class="set_part" id="setPart" wx:if="{{packagelist.length!=='0'}}">
+				<view class="title">
+					<view class="title_text">我的套餐
+						<text class="group_num">{{packagelist.length}}套</text>
+					</view>
+					<!-- 参加套餐 -->
+					<form bindsubmit="submitForm" report-submit="true">
+						<button hover-class="none" form-type="submit" class="manage_group" bindtap="linkManageGro1">
+							<image mode="aspectFill" class=" {{show=='0'?'show':'hidden'}}" style="width: 32rpx;height: 26rpx;" src="/images1/manage_pro.png"></image>
+							<text class=" {{show=='0'?'show':'hidden'}} {{is_merchant2=='1'?'hasMsg':''}}">参考套餐</text>
+						</button>
+					</form>
+					<!-- 管理套餐 -->
+					<form bindsubmit="submitForm" report-submit="true">
+						<button form-type="submit" hover-class="none" class="manage_group" bindtap="linkManageGro">
+							<image mode="aspectFill" class=" {{show=='0'?'show':'hidden'}}" style="width: 32rpx;height: 26rpx;" src="/images1/manage_pro.png"></image>
+							<text class=" {{show=='0'?'show':'hidden'}} {{hasGroup=='1'?'hasMsg':''}}">管理套餐</text>
+						</button>
+					</form>
+				</view>
+				<view class="set_group group1" wx:if="{{packagelist.length=='0'}}">
+					<view class="noMsg_icon">
+						<image mode="aspectFill" style="width: 374rpx;height: 280rpx;" src="/images1/nomsg.png"></image>
+					</view>
+					<view class="text">您还没有套餐，快去上传吧~</view>
+					<view class="text" style="font-size:20rpx;">(可在参考套餐里复制)</view>
+					<view bindtap="upload2" class="upload">上传套餐</view>
+				</view>
+				<view class="set_group goup2" wx:if="{{packagelist.length>'0'}}">
+					<scroll-view bindscroll="scroll2" scroll-x class="scroll-header clearfix">
+						<!-- 选择模板 -->
+						<import src="/template/choose/choose.wxml" />
+						<template is="packagelist" data="{{packagelist}}" />
+					</scroll-view>
+				</view>
+				<image mode="aspectFill" class="toasta" hidden="{{packagelist.length < 2 || left > 250}}" src="/images1/jiantou.png"></image>
+			</view>
+			<!-- 套餐部分结束 -->
+		</view>
+		<!-- 递名片弹窗 -->
+		<view class="mask" hidden="{{share_box}}">
+			<view class="mask-1" bindtap="hidden_mask"></view>
+			<view class="share_wrapper">
+				<view class="shareTo">
+					<view class="top_title">分享到</view>
+					<view class="cont">
+						<button class="create_ad tofriend" data-name="shareBtn" open-type="share" bindtap="hidden_mask">
+							<view>
+								<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="/images1/share_ad_icon.png"></image>
+							</view>
+							<text class="text">微信好友</text>
+						</button>
+						<view class="share_friend" bindtap="hidden_mask">
+							<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/fb5bc2da6e9e40a4d17fb02272e849a58beab216.png"></image>
+							<view class="text">分享卡片</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+		<!-- 名片码 -->
+		<view class="mask" hidden="{{hidden}}">
+			<view class="mask-1" catchtap='hideBox'></view>
+			<image class="image" src='{{mpimg}}'></image>
+			<button class="save_pic" bindtap="hidden_mask">保存图片</button>
+		</view>
+
+		<view class='masking' hidden="{{hiddenShare}}" bindtap='hiddenMasking1'>
+			<view class="share_wrapper">
+				<view class="shareTo">
+					<view class="top_title">分享到</view>
+					<view class="cont">
+						<button id='1' class="create_ad tofriend" data-name="shareBtn" open-type="share">
+							<view>
+								<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="/images1/share_ad_icon.png"></image>
+							</view>
+							<text class="text">微信好友</text>
+						</button>
+						<view class="share_friend" bindtap="hiddenMasking">
+							<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/fb5bc2da6e9e40a4d17fb02272e849a58beab216.png"></image>
+							<view class="text">分享卡片</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+	</view>
+</scroll-view>
+<view bindtap="getAvaterInfo" id="canvas_" style="width:500px;height:400px;margin-top:-99999999rpx;">
+	<canvas canvas-id="canvas" style="width:500px;height:400px;"></canvas>
+</view>
+<view id="canvas2" style="width:637px;height:950px;margin-top:-99999999rpx;">
+	<canvas style='height:100%;width:100%;' canvas-id="canvas_"></canvas>
+</view>

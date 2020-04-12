@@ -1,0 +1,73 @@
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+}
+.hint {
+    color: #bbb;
+    font-size: 32rpx;
+}
+
+.input-layout {
+    position: relative;
+    padding-left: 40rpx;
+    background-color: white;
+    height: 104rpx;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 32rpx;
+    color: #333;
+}
+
+.phone-layout {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    align-content: space-between;
+    background-color: white;
+    width: 100%;
+    height: 104rpx;
+}
+
+.login-button {
+    position: relative;
+    border-radius: 8rpx;
+    background-color: #3F87FF;
+    margin-top: 48rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    width: 670rpx;
+    margin-left: -335rpx;
+    left: 50%;
+    font-size: 32rpx;
+    color: white;
+}
+
+.code-button {
+    height: 62rpx;
+    line-height: 62rpx;
+    margin-right: 40rpx;
+    min-width: 160rpx;
+    font-size: 24rpx;
+    color: white;
+    text-align: center;
+    background: #3F87FF;
+    border-radius: 6rpx;
+    top: 20rpx;
+    right: 40rpx;
+    z-index: 100;
+}
+
+.request-vcode-disable {
+    background-color: #ddd;
+}
+
+.reg-hint {
+    font-size: 24rpx;
+    color: #666;
+    margin-top: 32rpx;
+    margin-left: 40rpx;
+}

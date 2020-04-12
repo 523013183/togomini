@@ -1,0 +1,56 @@
+<view class="add_new">
+  <view class="search">
+    <image mode="aspectFill" class="search_icon" style="width:22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+    <input placeholder="请输入关键词搜索" confirm-type="search" bindinput='getKeyword' bindconfirm='search' value="{{val}}" />
+  </view>
+</view>
+<!-- 轮播 -->
+<view class="swiper">
+  <swiper circular autoplay interval="3500" duration="1000" bindchange="swiperChange">
+    <block wx:for="{{imgUrls}}" wx:key="index">
+      <swiper-item wx:if="{{item.page_url!=''}}">
+        <image mode="aspectFill" bindtap="link_group" data-id="{{item.page_url}}" src="{{item.pic_url}}" class="slide-image" width="355" height="150" />
+      </swiper-item>
+      <swiper-item wx:else>
+        <image mode="aspectFill" data-id="{{item.page_url}}" src="{{item.pic_url}}" class="slide-image" width="355" height="150" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="dots">
+    <block wx:for="{{imgUrls}}" wx:key="unique">
+      <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+    </block>
+  </view>
+</view>
+<!-- 分类 -->
+<view class="title">空间</view>
+<view class="item1">
+  <view bindtap="gomore" data-id="{{item.id}}" data-name="{{item.name}}" wx:if="{{index<7}}" wx:for="{{roomlist}}" wx:key="index"><image mode="aspectFill" class="img" src="{{item.icon}}"></image><text class="name">{{item.name}}</text></view>
+  <view bindtap="morea"><image mode="aspectFill" class="img" src="http://oss.diywoju.com/web/uploads/image/store_1/591901710319701fd14f7fda5ed8f475323c3b1e.png"></image><text class="name">更多</text></view>
+</view>
+<view class="title" style="margin-bottom:-30rpx;">风格</view>
+<view class="item1 margin">
+  <view bindtap="stylea" wx:if="{{index<4}}" wx:for="{{stylelist}}" wx:key="index" data-name="{{item.name}}"><image mode="aspectFill" src="{{item.icon}}"></image><text class="color{{index+1}}">{{item.name}}</text></view>
+  <view bindtap="morea"><image mode="aspectFill" src="http://oss.diywoju.com/web/uploads/image/store_1/6bd99b9b42a66aa05041342c9e6d02c6c2984ceb.png"></image><text class="color5">更多</text></view>
+</view>
+<!-- 推荐 -->
+<view class="title">优品推荐</view>
+<view class="content">
+  <view class="product_item" wx:for="{{list}}" wx:key="index">
+    <view bindtap="linkGoods" data-item="{{item}}" data-id="{{item.id}}">
+      <image mode="aspectFill" class="product_img" src="{{item.pic_url}}"></image>
+    </view>
+    <view class="pro_desc">
+      <view class="product_name">{{item.name}}</view>
+      <view class="product_price">
+        <text class="price">{{item.original_price}}</text>
+        <view data-item="{{item}}" data-name="{{item.rooms}}" data-id="{{item.room_ids}}" bindtap="collect">收藏</view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom ios">{{wenzi}}</view>
+</view>
+<image mode="aspectFill" wx:if="{{user_id}}" bindtap="backme" class="backme" src="/images1/product_item_transac.png"></image>
+
+<!-- 收藏列表 -->
+<view bindtap="collectlist" class="collect">收藏夹</view>

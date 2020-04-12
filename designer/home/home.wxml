@@ -1,0 +1,83 @@
+<!--card/home/home.wxml-->
+<form reportSubmit bindsubmit="onFormId">
+    <view class="container" style="background: #fff; height: 100%';" wx:if='{{!hasCard}}'>
+        <button bind:tap="createTapped" class="form-button" formType="submit">
+            <image class="create-card" src="{{viewMode?'/images/card_load.png':'/images/create_card_new.png'}}"></image>
+        </button>
+    </view>
+    <view wx:else>
+      <view class='card top'>
+        <image class='bg' src=''></image>
+        <view class='card-info'>
+          <view class='card-head'>
+            <view>
+              <view class='name'>名称</view>
+              <view>从事职位</view>
+            </view>
+            <image class='avatar' src='/images/avatar_default_new.png'></image>
+          </view>
+          <view class='other-info'>
+            <view> <text>微信：</text> <text>微信号</text> </view>
+            <view> <text>手机：</text> <text>手机号号</text> </view>
+            <view> <text>公司名称</text> </view>
+          </view>
+          <button bind:tap="" class="edit-btn" formType="submit">
+            <image mode='aspectFill' src='/images/default_edit_bg.png'></image>
+            <view class='btn-text'>修改名片</view>
+          </button>
+        </view>
+      </view>
+
+      <view class='card-data'>
+        <view> <text>人气</text> <text> 0 </text> </view>
+        <view class='share-btn' bindtap='shareCard'>
+          <image class='btn-icon' mode='aspectFull' src='/images/icon_share_white.png'></image>
+          <text>递名片</text>
+        </view>
+      </view>
+      <view class='card-more'>
+        <text class='intro'>这个人很懒 什么也没留下</text>
+        <view class='num-label'>手机号</view>
+        <view class='accout'>
+          <text>18636652655</text>
+          <view class='a-btn'>
+            <image src='/images/phone.png'></image>
+            <text>拨号</text>
+          </view>
+        </view>
+        <view class='num-label'>微信号</view>
+        <view class='accout'>
+          <text>18636652655</text>
+          <view class='a-btn'>
+            <image src='/images/copy.png'></image>
+            <text>复制</text>
+          </view>
+        </view>
+        <view class='line'></view>
+        <view class='num-label'>擅长风格</view>
+        <view class='accout'>
+          <text>18636652655</text>
+        </view>
+        <view class='num-label'>公司名称</view>
+        <view class='accout'>
+          <text>18636652655</text>
+        </view>
+        <view class='num-label'>公司地址</view>
+        <view class='accout'>
+          <text>18636652655</text>
+        </view>
+      </view>
+      <view class='designer-product'>
+        <view class='wrap-tit'>
+          <text class='tit-name'>设计作品</text>
+          <button form-type='submit' class='manage-btn'>管理作品</button>
+        </view>
+        <view class='designer-empty'>
+          <image src='/images/empty_pic.jpg'></image>
+          <view>您还没有作品，快去添加吧~</view>        
+        </view>
+        <button bind:tap="" class="add-btn btn-done-bg" formType="submit" hoverStayTime="80">添加作品</button>
+      </view>
+
+    </view>
+</form>

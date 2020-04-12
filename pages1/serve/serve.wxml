@@ -1,0 +1,38 @@
+<view class="head">
+  <view class="choose">
+    <view bindtap="show">{{classname}}</view>
+    <image style="width: 8px;height: 5px;" src="/images1/arrow_down_b.png"></image>
+    <view class="classify" hidden="{{hide}}">
+      <view bindtap="choose" wx:for="{{classify}}"  wx:key="index" data-name="{{item.name}}" data-id="{{item.id}}">{{item.name}}</view>
+    </view>
+  </view>
+  <!-- search -->
+  <view class="bg-gray">
+    <view class="search">
+    <image style="width:20rpx;height:20rpx;" src="/images1/search_icon.png"></image>
+    <input bindconfirm="search" confirm-type="search" bindinput="input" placeholder-style="color:#ccc;" type="text" placeholder="请输入关键字检索" value="{{keyword}}"></input>
+  </view>
+  </view>
+</view>
+<view style="height:100rpx;"></view>
+<!-- 内容区域 -->
+<view class="content">
+  <view wx:if="{{list.length > 0}}" data-id="{{item.id}}" class="item" wx:for="{{list}}"  wx:key="index">
+  <image class="left" src="{{item.pic}}"></image>
+  <view class="right">
+    <view class="title">{{item.company_name}}</view>
+    <!--  overflow -->
+    <!-- <view class="detail"> -->
+      <rich-text class="detail" nodes="<div class='overflow'>{{item.description}}</div>"></rich-text>
+    <!-- </view> -->
+  </view>
+  <!-- 联系人 -->
+  <view class="name">联系人：{{item.contact_name}}</view>
+  <view class="phone" bindtap="phone" data-phone="{{item.contact_phone}}"><image style="width:25rpx;height:25rpx;" src="/images1/phone_icon.png"></image>电话：{{item.contact_phone}}</view>
+  </view>
+	<view class="nonedata" hidden="{{list.length>0}}">
+	<image src="/images1/nomsg.png" style="width: 374rpx;height: 280rpx;"></image>
+	暂无数据</view>
+</view>
+<!--  -->
+<!-- <view class="bottom">{{name}}</view> -->

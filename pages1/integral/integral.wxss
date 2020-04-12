@@ -1,0 +1,424 @@
+.swiper {
+  height: 350rpx;
+}
+
+.back {
+  width: 700rpx;
+  height: 350rpx;
+  border-radius: 10rpx;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+page {
+  background-color: #fff;
+}
+
+.three {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50rpx;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.item text {
+  font-size: 26rpx;
+}
+
+.chouj {
+  width: 700rpx;
+  height: 110rpx;
+  border-radius: 100rpx;
+  /* background-color: #ccc; */
+  margin: 0 25rpx 40rpx;
+}
+
+.integral-title {
+  text-align: center;
+  margin-bottom: 30rpx;
+  font-size: 30rpx;
+  position: relative;
+}
+
+.integral-title::after{
+  position: absolute;
+  content: "";
+  width: 50rpx;
+  height: 7rpx;
+  background-color: #f9e15c;
+  bottom: -10rpx;
+  left: 350rpx;
+  border-radius: 15rpx;
+}
+
+.shop {
+  width: 700rpx;
+  margin: 0 25rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shop-item {
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 16.6rpx 20rpx;
+}
+
+.shop-item image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 10rpx;
+}
+
+.shop-item text {
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  max-width: 200rpx;
+}
+
+.view {
+  border: 1rpx solid rgb(130, 193, 252);
+  border-radius: 50rpx;
+  color: rgb(130, 193, 252);
+  font-size: 24rpx;
+  padding: 1rpx 25rpx;
+}
+/* 弹窗 */
+.masking {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+.image {
+  height: 800rpx;
+  width: 550rpx;
+  margin: 60rpx 100rpx 20rpx;
+}
+
+.tc_content .card_code_box .erwei_code {
+  margin: 25rpx auto 20rpx;
+  text-align: center;
+}
+
+.tc_content .card_code_box .know_more {
+  font-size: 26rpx;
+  text-align: center;
+  padding-bottom: 40rpx;
+}
+
+.save_pic {
+  width: 250rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  border-radius: 35rpx;
+  background-color: #f9e15c;
+  margin: 0 auto;
+}
+
+.tc_content .mobile_text {
+  width: 300rpx;
+  height: 120rpx;
+  background-color: #fff;
+  margin: 200rpx auto;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.mask-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.8;
+}
+
+.mask-2 {
+  position: absolute;
+  top: 90rpx;
+  left: calc((100% - 600rpx)/2);
+  animation-name: mask1;
+  -webkit-animation-name: mask1;
+  -moz-animation-name: mask1;
+  -ms-animation-name: mask1;
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  -webkit-animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-duration: 0.2s;
+  -moz-animation-fill-mode: both;
+  -moz-animation-iteration-count: 1;
+  -ms-animation-duration: 0.2s;
+  -ms-animation-fill-mode: both;
+  -ms-animation-iteration-count: 1;
+}
+
+.share_wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 380rpx;
+}
+
+.share_wrapper .shareTo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 380rpx;
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+  background-color: #fff;
+  z-index: 10000;
+}
+
+.share_wrapper .top_title {
+  font-size: 36rpx;
+  text-align: center;
+  padding: 55rpx 0 60rpx;
+}
+
+.share_wrapper .cont {
+  display: flex;
+  justify-content: center;
+}
+
+.share_wrapper .cont>view {
+  flex: 1;
+  text-align: center;
+}
+
+.share_wrapper .cont>button {
+  flex: 1;
+  text-align: center;
+}
+
+.share_wrapper .cont .tofriend::after {
+  border: none;
+}
+
+.share_wrapper .cont .tofriend {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200rpx;
+  font-size: 30rpx;
+  background-color: #fff;
+}
+
+.share_wrapper .cont>button .tofriend .text {
+  display: block;
+}
+
+.share_wrapper .cont>view .text {
+  padding: 35rpx 0 70rpx;
+  color: #000;
+  font-size: 30rpx;
+}
+
+.share_box {
+  width: 600rpx;
+  height: 890rpx;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  background-color: #fff;
+}
+
+.share_box .top_title {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  margin-bottom: 20rpx;
+}
+
+.share_box .top_title .name {
+  color: #0eb629;
+  margin: 0 10rpx 0 15rpx;
+}
+
+.share_box .pic {
+  height: 330rpx;
+  margin-bottom: 40rpx;
+}
+
+.share_box .pic>image {
+  width: 100%;
+  height: 100%;
+}
+
+.share_box .title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.share_box .project_desc {
+  font-size: 24rpx;
+  margin-top: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.share_box .erwei_code {
+  margin: 25rpx auto 20rpx;
+  text-align: center;
+}
+
+.share_box .know_more {
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.share_wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 380rpx;
+}
+
+.share_wrapper .shareTo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 380rpx;
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+  background-color: #fff;
+  z-index: 10000;
+}
+
+.share_wrapper .top_title {
+  font-size: 36rpx;
+  text-align: center;
+  padding: 55rpx 0 60rpx;
+}
+
+.share_wrapper .cont {
+  display: flex;
+  justify-content: center;
+}
+
+.share_wrapper .cont>view {
+  flex: 1;
+  text-align: center;
+}
+
+.share_wrapper .cont>button {
+  flex: 1;
+  text-align: center;
+}
+
+.share_wrapper .cont .tofriend::after {
+  border: none;
+}
+
+.share_wrapper .cont .tofriend {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200rpx;
+  font-size: 30rpx;
+  background-color: #fff;
+}
+
+.share_wrapper .cont>button .tofriend .text {
+  display: block;
+}
+
+.share_wrapper .cont>view .text {
+  padding: 35rpx 0 70rpx;
+  color: #000;
+  font-size: 30rpx;
+}
+/* 图片的弹窗 */
+.bg2 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.code {
+  width: 600rpx;
+  height: 800rpx;
+  margin: 100rpx auto 50rpx auto;
+}
+
+.code image {
+  width: 100%;
+  height: 100%;
+}
+
+.view2 {
+  width: 550rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.view2 view {
+  background-color: #f9e15c;
+  border-radius: 20rpx;
+  color: #000;
+}
+button:after {
+  border: none;
+}
+
+button {
+  background-color: #f9e15c;
+  padding: 0 50rpx;
+}

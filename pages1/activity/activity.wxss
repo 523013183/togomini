@@ -1,0 +1,137 @@
+page{
+	background-color: #FFFFFF;
+}
+.section_title{
+	display: flex;
+	align-items: center;
+	height: 110rpx;
+	line-height: 110rpx;
+	padding: 0 40rpx;
+	font-size: 28rpx;
+	background-color: #FFFFFF;
+	z-index: 20;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+.section_title .active_type{
+	width: 190rpx;
+	height: 70rpx;
+	line-height: 70rpx;
+	text-align: center;
+	margin-right: 20rpx;
+	background-color: #f9e15c;
+	border-radius: 35rpx;
+	z-index: 10;
+}
+.section_title .other_type{
+	background-color: #FFFFFF;
+}
+.section_title .active_type .main_type > image{
+	vertical-align: top;
+	margin: 32rpx 0 0 10rpx;
+}
+.section_title .search{
+	display: flex;
+	align-items: center;
+	width: 520rpx;
+	height: 70rpx;
+	line-height: 70rpx;
+	color: #999999;
+	font-size: 28rpx;
+	border-radius: 35rpx;
+	background-color: #f3f6fb;
+}
+.section_title .search input{
+  width: 100%;
+}
+.section_title .search .search_icon{
+	margin: 0 6rpx 0 35rpx;
+}
+.noActivity{
+	margin: 300rpx auto;
+  text-align: center;
+}
+
+.active_part{
+	padding: 0 40rpx;
+}
+.active_part .part{
+	position: relative;
+	font-size: 0;
+	margin-top: 40rpx;
+}
+.active_part .part .pic_wrapper{
+	position: relative;
+}
+.active_part .part .pic_wrapper > image{
+	width: 100%;
+	height: 450rpx;
+	border-radius: 10rpx;
+}
+.active_part .part .pic_wrapper .msg_cont{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 240rpx;
+	height: 50rpx;
+	line-height: 50rpx;
+	font-size: 24rpx;
+	color: #ffffff;
+	border-top-left-radius: 10rpx;
+	border-bottom-right-radius: 10rpx;
+	background-color: #040307;
+}
+.active_part .part .pic_wrapper .msg_cont > view{
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.active_part .part .pic_wrapper .msg_cont > view >image{
+	margin-right: 10rpx;
+}
+.active_part .part .active_title{
+	font-size: 32rpx;
+	padding: 30rpx 0;
+	font-weight: bold;
+}
+.active_part .part .person{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 28rpx;
+	color: #666666;
+}
+.active_part .part .person .rest{
+	width: 110rpx;
+	height: 50rpx;
+	line-height: 50rpx;
+	text-align: center;
+	font-size: 22rpx;
+	border-radius: 6rpx;
+	background-color: #f9e15c;
+}
+.active_part .part .person .name image{
+	vertical-align: middle;
+	margin: -5rpx 10rpx 0 0;
+	border-radius: 1000rpx;
+}
+
+.start_active{
+	position: fixed;
+	bottom: 175rpx;
+	right: 30rpx;
+}
+
+
+
+
+
+
+
+

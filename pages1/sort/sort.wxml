@@ -1,0 +1,9 @@
+<view >
+   <text class='normal_title'>已添加分类</text>
+   <text class='tip'>(长按后可以拖拽排序/删除)</text>
+    <view class='item_container'>
+    <view wx:for='{{all_list}}' class="item {{index==current?'moving':'normal'}}" hover-class='item_select' bindlongtap="longTab" style="left:{{item.left}}px;top:{{item.top}}px" bindtouchmove="move" bindtouchstart="movestart" bindtouchend="moveend" data-index="{{index}}">
+      {{item.text}}
+    </view>
+   </view> 
+</view>

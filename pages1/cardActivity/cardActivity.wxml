@@ -1,0 +1,123 @@
+<!--pages/user/user.wxml-->
+<view class="head" hidden="{{userid}}">
+	<view bindtap="active" data-index="1" class="item {{active==1?'color':''}}">他人浏览</view>
+	<view bindtap="active" data-index="2" class="item {{active==2?'color':''}}">我的浏览</view>
+</view>
+<view style="height:80rpx;" hidden="{{userid}}"></view>
+<!-- 他人浏览 -->
+<view class="active_list" wx:if='{{active==1}}'>
+	<view class="active">
+		<view class="active_item" wx:if="{{item.nickname!=null || item.nickname!=avatar_url}}" wx:for="{{activityArr}}" wx:key="index">
+			<image class="active_img" src="{{item.avatar_url}}"></image>
+			<view class="active_text">
+				<view class="name">{{item.nickname}}</view>
+				<view class="cont" wx:if="{{item.type==105}}">留下了联系方式：
+					<text class="cont_text" bindtap="cancleSettop" data-id="{{item.id}}" data-phone="{{item.mobile}}">{{item.mobile}}</text>
+				</view>
+				<view class="cont" wx:if="{{item.type==101}}">查看了你的名片
+					<text class="cont_text"></text>
+				</view>
+				<view class="cont" wx:if="{{item.type==102}}">收下你的名片
+					<text class="cont_text"></text>
+				</view>
+				<view class="cont" wx:if="{{item.type==106}}">查看了你的案例
+					<text bindtap="linkzp" data-id="{{item.relation_id}}" class="cont_text">《{{item.info.name}}》</text>
+				</view>
+				<view class="cont" wx:if="{{item.type==103}}">赞了你的名片
+					<text class="cont_text"></text>
+				</view>
+				<view class="cont" wx:if="{{item.type==107}}">查看了你的套餐
+					<text bindtap="linkgroup" data-type="{{item.info.type}}" data-id="{{item.relation_id}}" class="cont_text">《{{item.info.name}}》</text>
+				</view>
+				<view class="cont" wx:if="{{item.type==112}}">{{item.nickname}}通过您的
+					<text bindtap="linkgroup" data-type="{{item.info.type}}" data-id="{{item.relation_id}}" class="cont_text">《{{item.info.name}}》</text>套餐预约了你：
+					<text class="cont_text" bindtap="cancleSettop" data-phone="{{item.mobile}}">{{item.mobile}}</text>
+				</view>
+				<view class="cont" wx:if="{{item.type==113}}">{{item.nickname}}通过您的
+					<text bindtap="linkzp" data-id="{{item.relation_id}}" class="cont_text">《{{item.info.name}}》</text>作品预约了你：
+					<text class="cont_text" bindtap="cancleSettop" data-phone="{{item.mobile}}">{{item.mobile}}</text>
+				</view>
+				<view class="cont" wx:if="{{item.type==111}}">{{item.nickname}}参加了您的
+					<text bindtap="linkactive" data-id="{{item.relation_id}}" class="cont_text">《{{item.info.name}}》</text>活动</view>
+				<view class="cont" wx:if="{{item.type==110}}">{{item.nickname}}喜欢了您的
+					<text bindtap="linkzp" data-id="{{item.relation_id}}" class="cont_text">《{{item.info.name}}》</text>作品</view>
+				<view class="cont" wx:if="{{item.type==109}}">{{item.nickname}}喜欢了您的
+					<text bindtap="linkgroup" data-type="{{item.info.type}}" data-id="{{item.relation_id}}" class="cont_text">《{{item.info.name}}》</text>套餐</view>
+			</view>
+			<view class="right">
+				<view class="time">{{item.time}}</view>
+				<image style="width: 34rpx;height: 32rpx;" wx:if="{{item.type==105}}" src="/images1/smile_star.png"></image>
+			</view>
+		</view>
+	<!-- 他人浏览记录（无数据） -->
+	<view class="nonedata" hidden="{{activityArr.length>0}}">
+	<image src="/images1/nomsg.png" style="width: 374rpx;height: 280rpx;"></image>
+	暂无数据</view>
+	</view>
+</view>
+<!-- 我的记录 -->
+<view wx:if='{{active==2}}'>
+	<!-- 我的浏览 -->
+	<view class="active_list">
+		<view class="actitle" wx:if="{{browsecar.length>0}}">名片浏览记录</view>
+		<view class="active">
+			<view bindtap="goDetail" data-id="{{item.car_id}}" data-userid="{{item.user_id}}" class="active_item" wx:for="{{browsecar}}" wx:key="index" wx:item="{{item}}">
+				<image class="active_img" src="{{item.avatarSrc}}"></image>
+				<view class="active_text">
+					<view class="name">{{item.username}}</view>
+					<view class="cont">你查看了TA的名片
+						<text class="cont_text"></text>
+					</view>
+				</view>
+				<view class="right">
+					<view class="time">{{item.deta}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 套餐浏览 -->
+	<view class="active_list">
+		<view class="actitle" wx:if="{{browsepage.length>0}}">套餐浏览记录</view>
+		<view class="active">
+			<view wx-if="{{item.name}}" class="active_item" wx:for="{{browsepage}}" wx:key="index" wx:item="{{item}}">
+				<image class="active_img" src="{{avatarimg}}"></image>
+				<view class="active_text">
+					<view class="name">{{username}}</view>
+					<view class="cont">你查看了TA套餐
+						<text bindtap="linkgroup" data-type="{{item.type}}" data-id="{{item.pageid}}" class="cont_text">《{{item.name}}》</text>
+					</view>
+				</view>
+				<view class="right">
+					<view class="time">{{item.deta}}</view>
+					<image style="width: 34rpx;height: 32rpx;" wx:if="{{item.type==105}}" src="/images1/smile_star.png"></image>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 案例浏览 -->
+	<view class="active_list">
+		<view class="actitle" wx:if="{{browseoups.length>0}}">案例浏览记录</view>
+		<view class="active">
+			<view wx-if="{{item.name}}" class="active_item" wx:for="{{browseoups}}" wx:key="index" wx:item="{{item}}">
+				<image class="active_img" src="{{avatarimg}}"></image>
+				<view class="active_text">
+					<view class="name">{{username}}</view>
+					<view class="cont">你查看了TA案例
+						<text bindtap="linkzp" data-id="{{item.oupsid}}" class="cont_text">《{{item.name}}》</text>
+					</view>
+				</view>
+				<view class="right">
+					<view class="time">{{item.deta}}</view>
+					<image style="width: 34rpx;height: 32rpx;" wx:if="{{item.type==105}}" src="/images1/smile_star.png"></image>
+				</view>
+			</view>
+			<!-- <view style="text-align:center;margin-top:300rpx;" hidden="{{activityArr.length>0}}">暂无数据</view> -->
+		</view>
+	</view>
+	<!-- 我的记录（无数据） -->
+	<view class="nonedata" hidden="{{browseoups.length>0||browsepage.length>0||browsecar.length>0}}">
+	<image src="/images1/nomsg.png" style="width: 374rpx;height: 280rpx;"></image>
+	暂无数据</view>
+</view>
+<!--  -->
+<view class="toast">只保存15天浏览记录</view>

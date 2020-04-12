@@ -1,0 +1,21 @@
+<view class="manage_products">
+	<view class="add_new">
+		<view class="search">
+			<image class="search_icon" style="width:22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+			<input placeholder="请输入关键词搜索" />
+		</view>
+	</view>
+	<view class="products_group" wx:for="{{productList}}" wx:key="index" wx:item="item" wx:index="index">
+		<view class="part_wrapper" data-id="{{item.id}}" bindtap="linkProductpic">
+			<image src="{{item.pic}}"></image>
+			<view class="part">
+				<view class="cont">
+					<text class="text_title">{{item.name}}</text>
+					<view class="style">{{item.remarks}}</view>
+				</view>	
+				<image style="width: 12rpx;height: 22rpx;" src="/images1/arrow_right.png"></image>
+			</view>
+		</view>
+		
+	</view>
+</view>

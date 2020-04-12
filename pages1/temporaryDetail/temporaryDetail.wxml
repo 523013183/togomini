@@ -1,0 +1,23 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class="g_product_detail">
+	<view>
+		<image style="width: 750rpx;height: 750rpx;" src="{{goodsDetail.cover_pic}}"></image>
+	</view>
+	<view class="product_data">
+		<view class="product_name">{{goodsDetail.name}}</view>
+		<view class="product_center">
+			<text>¥ {{goodsDetail.price}}</text>
+		</view>
+	</view>
+	<view class="bg_gray"></view>
+	<view class="product_detail">
+		<view class="title">商品详情</view>
+		<view class="desc">
+			<view>{{goodsDetail.detail}}</view>
+		</view>
+	</view>
+	<view class="from">
+		来源：<text>{{goodsDetail.from_url}}</text>
+	</view>
+	<view class="bg_gray2"></view>
+</view>

@@ -1,0 +1,110 @@
+/* pages/user/user.wxss */
+.actitle {
+  color: #ccc;
+  margin: 20rpx 0 20rpx 40rpx;
+  font-size: 22rpx;
+}
+
+page {
+  background-color: #f2f2f2;
+}
+
+.active_list .active {
+  margin: 0 40rpx;
+}
+
+.toast {
+  text-align: center;
+  margin-top: 20rpx;
+  color: #ccc;
+  font-size: 24rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+
+
+.active_list .active .active_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  margin-top: 20rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+  position: relative;
+}
+
+.active_list .active .active_item .active_img {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 1000rpx;
+}
+
+.active_list .active .active_item .active_text {
+  flex: 7;
+  margin-left: 20rpx;
+}
+
+.active_list .active .active_item .active_text .name {
+  margin-bottom: 22rpx;
+}
+
+.active_list .active .active_item .active_text .cont {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.active_list .active .active_item .active_text .cont .cont_text {
+  /* display: inline-block; */
+  text-decoration: underline;
+  color: #008edd;
+}
+
+.active_list .active .active_item .right {
+  text-align: center;
+  position: absolute;
+  right: 20rpx;
+  top: 10rpx;
+}
+
+.active_list .active .active_item .right .time {
+  margin-bottom: 22rpx;
+  font-size: 18rpx;
+  color: #999;
+}
+
+.head {
+  position: fixed;
+  top: 0;
+  height: 80rpx;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item {
+  height: 80rpx;
+  width: 50%;
+  line-height: 80rpx;
+  text-align: center;
+  position: relative;
+}
+
+.item:nth-child(2)::after {
+  content: "";
+  height: 30rpx;
+  width: 2rpx;
+  background-color: #ccc;
+  position: absolute;
+  left: 0;
+  top: 25rpx;
+}
+
+.color {
+  font-size: 30rpx;
+  font-weight: bolder;
+}

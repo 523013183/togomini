@@ -1,0 +1,71 @@
+<view class="add_group">
+
+	<view class="group_item title">
+		<text>套餐名称</text>
+		<input placeholder="请输入套餐标题(限30字以内)" value="{{groupTitle}}" bindinput="input1"/>
+	</view>
+	<view class="group_item price">
+		<text>套餐总价</text>
+		<!-- <text>￥5999</text> -->
+		<view class="price_wrapper">
+			<text class="money_icon">￥</text><input class="whole_price" placeholder="请输入套餐总价" placeholder-style="color:#000000;font-weight:100;" value="{{totalPrice}}" bindinput="input2"/>
+		</view>	
+	</view>
+	<view class="style_wrapper">
+		<text>所属风格</text>
+		<view class="style">
+			<text wx:for="{{styleArr}}" class="{{item.checked?'style_choose':''}}" wx:key="index" data-index="{{index}}" bindtap="isChoose1">{{item.name}}</text>
+		</view>
+	</view>
+	<view class="room_wrapper">
+		<text>居室空间</text>
+		<view class="room_style">
+			<text wx:for="{{roomArr}}" class="curText {{item.check?'room_choose':''}}" wx:key="index" data-index="{{index}}" bindtap="isChoose3">{{item.name}}</text>
+
+			<!-- <navigator class="make_self" url="/pages1/makeSelfText2/makeSelfText2">
+				<image style="width: 22rpx;height: 22rpx;" src="/images1/add2.png"></image>
+				<text>自定义</text>
+			</navigator> -->
+		</view>
+	</view>
+	<view class="room_pic">
+		<view class="room_title">套餐图片</view>
+		<!-- <view class="desc">长按图片可对图片进行排序</view> -->
+		<view class="pic_area">
+			<view class="left_mune" >
+				<view class="mune_item {{num=='1' ? 'active': ''}}" data-id="1" bindtap="chooseFirst">
+					<view class="pic_title">封面图</view>
+				</view>
+				<view class="mune_item {{num=='2' ? 'active': ''}}" data-id="2" bindtap="chooseFirst">
+					<view class="pic_title">详情图</view>
+				</view>
+				   
+			</view>
+			<view class="right_content">
+				<view class="part" wx:if="{{num==1}}">
+					<view class="right_title">封面图</view>
+					<view class="avatar_pic load_area" data-num='1' data-type="1" data-flag='cover' bindtap='uploadImg'>
+						<image mode='aspectFit' src='{{coverImg}}' class='pre-pic' wx:if='{{coverImg}}'></image>
+						<image class="add_icon" style="width: 42rpx;height: 42rpx;" src="/images1/add_icon.png"></image>
+						<view>封面图</view>
+					</view>
+				</view>
+				<view class="part" wx:if="{{num==2}}">
+					<view class="right_title">详情图</view>
+					<view class="avatar_pic load_area" data-num='1' data-type="2" data-flag='cover' bindtap='uploadImg'>
+						<image mode='aspectFit' src='{{coverImg2}}' class='pre-pic' wx:if='{{coverImg2}}'></image>
+						<image class="add_icon" style="width: 42rpx;height: 42rpx;" src="/images1/add_icon.png"></image>
+						<view>详情图</view>
+					</view>
+				</view>
+        
+			</view>
+		</view>	
+		<view class="btn_area">
+			<button class="sure_btn" bindtap="saveGroupMsg">确认发布</button>
+		</view>
+	</view>
+	
+	
+	
+</view>

@@ -1,0 +1,359 @@
+Page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  background-color: #FFFFFF;
+}
+ scroll-view {
+  height: 100%;
+} 
+.activity_detail{
+	font-size: 26rpx;
+	padding: 0 40rpx;
+}
+.activity_detail .top{
+	color: #666666;
+}
+.activity_detail .top >  image{
+	width: 100%;
+	height: 450rpx;
+	background-color: #FFFFFF;
+}
+.activity_detail .top .title{
+	font-size: 32rpx;
+	margin: 30rpx 0;
+	font-weight: bold;
+}
+.activity_detail .top .state{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 24rpx;
+}
+.activity_detail .top .state > text{
+	display: inline-block;
+	padding: 0 20rpx;
+	height: 40rpx;
+	line-height: 40rpx;
+	border-radius: 20rpx;
+	background-color: #F9E15C;
+}
+.activity_detail .top .state > view {
+	display: flex;
+	align-items: center;
+}
+.activity_detail .top .apply_time{
+	display: flex;
+	align-items: center;
+	margin: 20rpx 0;
+}
+/* .activity_detail .top .apply_time .time{
+	width: calc(100% - 160rpx);
+} */
+.activity_detail .top .apply_num{
+	display: flex;
+	align-items: center;
+}
+.activity_detail .top .apply_address{
+	display: flex;
+	align-items: center;
+	font-size: 24rpx;
+	margin: 20rpx 0 0;
+}
+.activity_detail .top .icon{
+	margin-right: 10rpx;
+}
+.activity_detail .top .apply_person{
+	/* display: flex;
+	justify-content: space-between;
+	align-items: center; */
+	font-size: 28rpx;
+	margin: 40rpx 0 60rpx;
+}
+.activity_detail .top .apply_person .left{
+	display: flex;
+	align-items: center;
+}
+.activity_detail .top .apply_person .right > image{
+	margin: 30rpx 20rpx 20rpx 0rpx;
+}
+.activity_detail .pic_detail .title{
+	font-size: 40rpx;	
+	color: #333333;
+}
+.activity_detail .pic_detail >image{
+	width: 100%;
+	margin: 45rpx 0 20rpx;
+}
+.activity_detail .pic_detail .desc{
+	line-height: 40rpx;
+	padding-bottom: 70rpx;
+	color: #333333;
+	border-bottom: 1px solid #ccc;
+}
+.activity_detail .apply_detail{
+	padding-bottom: 120rpx;
+}
+.activity_detail .apply_detail .title{
+	font-size: 40rpx;
+	font-weight: bold;
+	margin: 60rpx 0 40rpx;
+}
+.activity_detail .apply_detail .apply_person .item{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #333333;
+	padding: 20rpx 0 25rpx;
+	border-bottom: 1px solid #F2F2F2;
+}
+.activity_detail .apply_detail .apply_person .item:last-child{
+	border-bottom: none;
+}
+.activity_detail .apply_detail .apply_person .item .name{
+	display: flex;
+	align-items: center;
+}
+.activity_detail .apply_detail .apply_person .item .name > text{
+	margin-left: 20rpx;
+}
+/* 弹窗 */
+.mask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5000;
+	display: block;
+}
+.mask-1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.8;
+}
+.mask-2{
+	position: absolute;
+	top: 90rpx;
+	left: calc((100% - 600rpx)/2);
+	/* width: 8.4rem; */
+	animation-name:mask1;
+	-webkit-animation-name:mask1;
+	-moz-animation-name:mask1;
+	-ms-animation-name:mask1;
+	animation-duration: 0.2s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	-webkit-animation-iteration-count: 1;
+	-moz-animation-duration: 0.2s;
+	-moz-animation-fill-mode: both;
+	-moz-animation-iteration-count: 1;
+	-ms-animation-duration: 0.2s;
+	-ms-animation-fill-mode: both;
+	-ms-animation-iteration-count: 1;
+}
+.share_box{
+	width: 600rpx;
+	height: 890rpx;
+	padding: 30rpx;
+	border-radius: 12rpx;
+	background-color: #FFFFFF;
+}
+.share_box .top_title{
+	display: flex;
+	align-items: center;
+	font-size: 26rpx;
+	margin-bottom: 20rpx;
+}
+.share_box .top_title .name{
+	color: #0eb629;
+	margin: 0 10rpx 0 15rpx;
+}
+.share_box .pic{
+	height: 330rpx;
+	margin-bottom: 40rpx;
+}
+.share_box .pic > image{
+	width: 100%;
+	height: 100%;
+}
+.share_box .title{
+	font-size: 30rpx;
+	font-weight: bold;
+	margin-bottom: 20rpx;
+}
+.share_box .project_desc{
+	font-size: 24rpx;
+	margin-top: 30rpx;
+	overflow : hidden; 
+	text-overflow: ellipsis;
+	display:-webkit-box; 
+	-webkit-line-clamp: 2; 
+	-webkit-box-orient: vertical;
+}
+.share_box .erwei_code{
+	margin: 25rpx auto 20rpx;
+	text-align: center;
+}
+.share_box .know_more{
+	font-size: 26rpx;
+	text-align: center;
+	padding-bottom: 20rpx;
+}
+.share_box .save_pic{
+	position: absolute;
+	bottom: -140rpx;
+	left: calc((100% - 250rpx)/2);
+	width: 250rpx;
+	height: 70rpx;
+	line-height: 70rpx;
+	font-size: 30rpx;
+	border-radius: 35rpx;
+	background-color: #F9E15C;
+}
+
+
+ .bottom_mune{
+	 position: fixed;
+	 left: 0;
+	 bottom: 0;
+	display: flex;
+	/* justify-content: space-between; */
+	align-items: center;
+	width: 100%;
+	/* height: 120rpx; */
+	border-top: 1px solid #F2F2F2;
+	background-color: #FFFFFF;
+	padding-bottom:calc(env(safe-area-inset-bottom));
+}
+ .bottom_mune .mune_item{
+	flex: 4.5;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 120rpx;
+	font-size: 24rpx;
+}
+ .bottom_mune .mune_item .item{
+	flex: 1;
+	text-align: center;
+}
+
+text{
+  font-size: 24rpx;
+}
+
+ .bottom_mune .apply_btn{
+	flex: 5.5;
+	height: 120rpx;
+	line-height: 120rpx;
+	text-align: center;
+	font-size: 32rpx;
+	background-color: #F9E15C;
+}
+.bottom_mune .applyNo{
+	flex: 5.5;
+	height: 120rpx;
+	line-height: 120rpx;
+	text-align: center;
+	font-size: 32rpx;
+	background-color: #C5C5C5;
+}
+
+.manage_cont{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	margin-bottom: -80rpx;
+	color: #000000;
+	font-size: 28rpx;
+}
+.manage_cont > view{
+	flex: 1;
+}
+.mask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5000;
+	display: block;
+}
+.mask-1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background:rgba(0,0,0,0.5);
+}
+.share_wrapper{
+	position: absolute;
+	bottom: 0;
+	/* left: 5%; */
+	width: 100%;
+	height: 280rpx;
+	border: 1px solid #F9F9F9;
+	background-color: #F3F3F3;
+}
+.share_wrapper .shareTo{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 280rpx;
+	z-index: 10000;
+}
+.share_wrapper .shareTo .manage_cont{
+	display: flex;
+	justify-content: space-between;
+	justify-content: center;
+	margin-top: 50rpx;
+}
+.share_wrapper .shareTo .cancleBtn{
+	position: absolute;
+	bottom: 30rpx;
+	left: 5%;
+	width: 90%;
+	
+}
+
+.masking{
+  width:100%;
+  height:100%;
+  position: fixed;
+  background:rgba(0, 0, 0, 0.5);
+  top:0;
+  left:0;
+  z-index: 10000;
+}
+.share_wrapper .cont > button{
+	flex: 1;
+	text-align: center;
+  border:0;
+}
+.share_wrapper .cont .tofriend{
+	position:relative;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height: 200rpx; 
+	font-size: 30rpx;
+	background-color: #FFFFFF;
+  border: 1px solid white;
+  margin: 0;padding: 0;
+    border-radius: 0;
+
+}
+.share_wrapper .cont .tofriend::after {
+  border: none;
+}

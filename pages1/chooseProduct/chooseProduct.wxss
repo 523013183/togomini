@@ -1,0 +1,74 @@
+page{
+	background-color: #f6f6f6;
+}
+.manage_products .add_new{
+	padding-bottom: 25rpx;
+	background-color: #FFFFFF;
+}
+.manage_products .add_new .search{
+	display: flex;
+	align-items: center;
+	margin: 0 40rpx;
+	height: 65rpx;
+	line-height: 65rpx;
+	justify-content: center;
+	color: #999999;
+	font-size: 28rpx;
+	border-radius: 35rpx;
+	background-color: #f3f6fb;
+}
+.manage_products .add_new .search .search_icon{
+	margin-right: 10rpx;
+}
+.manage_products .products_group .part_wrapper{
+	display: flex;
+	/* justify-content: space-between; */
+	align-items: center;
+	padding: 20rpx 40rpx;
+	margin-top: 10rpx;
+	background-color: #FFFFFF;
+}
+.manage_products .products_group .part_wrapper > image{
+	width: 255rpx;
+	height: 155rpx;
+	border-radius: 10rpx;
+	margin-right: 50rpx;
+}
+.manage_products .products_group .part{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: calc(100% - 255rpx);
+	font-size: 0;
+}
+.manage_products .products_group .part .text_title{
+	font-size: 32rpx;
+	font-weight: bold;
+	margin-bottom: 15rpx;
+}
+.manage_products .products_group .part .style{
+	font-size: 28rpx;
+	color: #999999;
+	margin-bottom: 25rpx;
+}
+.manage_products .products_group .part .btn{
+	font-size: 26rpx;
+}
+.manage_products .products_group .part .btn .showing{
+	background-color: #f9e15c;
+	border: 1px solid #F9E15C;
+}
+.manage_products .products_group .part .btn > text{
+	display: inline-block;
+	width: 115rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+	text-align: center;
+	border: 1px solid #d2d2d2;
+	border-radius: 6rpx;
+	margin-right: 10rpx;
+}
+.manage_products .products_group .part .price_desc.choose{
+	background-color: #008EDD;
+	color: #FFFFFF;
+}

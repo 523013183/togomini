@@ -1,0 +1,90 @@
+<view class="add_new">
+	<view class="style" style='position:relative' catchtap='showStyle'>
+		<!--风格-->
+		<view>
+			<text style="margin-left:20rpx;">{{style == ''?'风格':style}}</text>
+			<image mode="aspectFill" style="width: 16rpx;height: 11rpx;margin:20rpx 0 0 10rpx;" src="/images1/arrow_down_b.png"></image>
+		</view>
+	</view>
+	<!-- 居室 -->
+	<view class="style" style='position:relative' catchtap='showStyle2'>
+		<!--风格-->
+		<view>
+			<text style="margin-left:20rpx;">{{style2 == ''?'居室':style2}}</text>
+			<image mode="aspectFill" style="width: 16rpx;height: 11rpx;margin:20rpx 0 0 10rpx;" src="/images1/arrow_down_b.png"></image>
+		</view>
+	</view>
+	<!-- 筛选 -->
+	<view class="add" bindtap="screen">筛选</view>
+	<view class="search">
+		<image mode="aspectFill" class="search_icon" style="width:22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+		<input placeholder="请输入关键词搜索" bindinput='getkeyword' bindconfirm='search' confirm-type='search' value="{{keyword}}" />
+	</view>
+</view>
+<view style="height:190rpx;"></view>
+<!-- 海报套餐or普通套餐 -->
+<view class="chosea">
+	<view bindtap="avtive" data-id="1" class="c-one {{active == 1 ? 'active' : ''}}">普通套餐</view>
+	<view bindtap="avtive" data-id="2" class="c-two {{active == 2 ? 'active' : ''}}">海报套餐</view>
+</view>
+<!-- 列表 -->
+<view wx:if="{{list != ''}}">
+	<view class="item" wx:for="{{list}}" wx:key="index" data-type="{{item.type}}" bindtap="link_group" data-id="{{item.id}}">
+		<view class="left">
+			<image mode="aspectFill" class="img" src="{{item.cover_img}}"></image>
+		</view>
+		<view class="right">
+			<view>{{item.name}}</view>
+			<view style="margin:{{active == 1?'15rpx 0':'0'}};">￥{{item.amount}}</view>
+			<view hidden="{{active == 1}}">居室：{{item.room_count}}居</view>
+			<view>风格：{{item.style}}</view>
+		</view>
+	</view>
+</view>
+<view wx:else class="nonedata">
+	<image mode="aspectFill" style="width: 374rpx;height: 280rpx;" src="/images1/nomsg.png"></image>
+	暂无商家套餐
+</view>
+
+<!-- 筛选的弹窗 -->
+<view class="screen {{!screen?'':'mask'}}" hidden="{{!screen}}">
+	<scroll-view scroll-y="true" class="scroll-view">
+		<view class="title">价格区间</view>
+		<view class="price">
+			<input type="number" placeholder="最低价" bindinput='min' value="{{amount_min}}"></input>
+			<view class="wire">——</view>
+			<input type="number" placeholder="最高价" bindinput='max' value="{{amount_max}}"></input>
+		</view>
+		<!--  -->
+		<!-- 灰色间隔 -->
+		<view class="gray"></view>
+		<!-- 风格 -->
+		<view class="title" style="margin-top:110rpx;">风格</view>
+		<view class="style">
+			<view bindtap="style" class="style-item {{index_style==item.id?'bg-yello':''}}" wx:for="{{styleList}}" wx:key="index" data-index="{{index}}" data-name="{{item.name}}" data-id="{{item.id}}">{{item.name}}</view>
+		</view>
+		<!-- 居室 -->
+		<view class="title" style="margin-top:50rpx;">居室</view>
+		<view class="style">
+			<view bindtap="jvshi" class="style-item {{index_jvshi==item.id?'bg-yello':''}}" wx:for="{{styleLista}}" wx:key="index" data-index="{{index}}" data-name="{{item.name}}" data-id="{{item.id}}">{{item.name}}</view>
+		</view>
+		<!-- tijiao -->
+		<view class="btn">
+			<view class="btn1" bindtap="reset">重置</view>
+			<view class="btn2" bindtap="save">确定</view>
+		</view>
+	</scroll-view>
+	<view class="close" bindtap="close">关闭</view>
+</view>
+
+<view class='chosoe-all' wx:if="{{showStyle2}}">
+	<view data-name="全部" data-index="-1" data-id="-1" catchtap='chooseStyle2'>全部</view>
+	<view wx:for="{{styleLista}}" wx:key="" data-name="{{item.name}}" data-id="{{item.id}}" data-index="{{index}}" catchtap='chooseStyle2'>{{item.name}}</view>
+</view>
+
+<view class='chosoe-all' wx:if="{{showStyle}}">
+	<view data-name="全部" data-index="-1" data-id="-1" catchtap='chooseStyle'>全部</view>
+	<view wx:for="{{styleList}}" wx:key="" data-name="{{item.name}}" data-id="{{item.id}}" data-index="{{index}}" catchtap='chooseStyle'>{{item.name}}</view>
+</view>
+<view bindtap="hide" wx:if="{{showStyle}}" style="background-color:rgba(0,0,0,.6);position:fixed;top:0;z-index:5;width:100%;height:100%;"></view>
+<view bindtap="hide2" wx:if="{{showStyle2}}" style="background-color:rgba(0,0,0,.6);position:fixed;top:0;z-index:5;width:100%;height:100%;"></view>

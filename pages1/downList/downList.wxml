@@ -1,0 +1,21 @@
+<view class="product_list">
+	<view class="products_group">
+		<view class="part_wrapper" wx:for="{{cartList}}" wx:item="{{item}}">
+			<view class="pro_pic">
+				<image src="{{item.pic_url}}"></image>
+			</view>
+			<view class="part">
+				<text class="text_title">{{item.name}}</text>
+				<view class="style">风格：{{item.styles}}</view>
+				<view class="size">尺寸：{{item.size}}</view>
+				<view class="material">材质：{{item.material}}</view>
+				<view class="price">¥{{item.price}}</view>
+				<view bindtap="canclePro" data-id="{{item.id}}">
+					<image style="width: 48rpx;height: 48rpx;" class="trash_icon" src="/images1/trash_icon.png"></image>
+				</view>
+			</view>
+		</view>
+		
+	</view>
+	<button class="downloadBtn">保存</button>
+</view>

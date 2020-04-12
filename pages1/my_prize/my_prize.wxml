@@ -1,0 +1,24 @@
+<view class="head"></view>
+<view class="title">
+	<text>我的奖品</text>
+	<text>我的积分：{{data.user.integral?data.user.integral:'0'}}</text>
+</view>
+<!-- 列表 -->
+<scroll-view scroll-y="{{list.length>0}}" style="height:{{height}}px;">
+	<view class="list" wx:if="{{list.length>0}}">
+		<view class="item" wx:for="{{list}}" wx:key="index">
+			<view class="left">
+				<image mode="aspectFill" src="{{item.detail.pic}}"></image>
+				<text>{{item.detail.goods_name}}</text>
+			</view>
+			<view class="right">
+				<text>兑换成功</text>
+				<text>{{item.addtime}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="nonedata" wx:else>
+		<image style="width:300rpx;height:200rpx;" src="/images1/nomsg.png"></image>
+		<text>暂无数据...</text>
+	</view>
+</scroll-view>

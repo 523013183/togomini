@@ -1,0 +1,20 @@
+<view class="head">
+  <view class="saerch">
+    <image mode="aspectFill" src="/images1/search_icon.png"></image>
+  <input bindinput="keyword" bindconfirm="saerchbtn" placeholder="楼盘、户型名称"></input>
+  </view>
+  <view class="saerchbtn" bindtap="saerchbtn">搜索</view>
+</view>
+<scroll-view scroll-y style="height:{{height}}px;">
+  <view class="c-list" wx:if="{{sharproomlist.length!=0}}">
+    <view bindtap="gotodetail" data-id="{{item.id}}" wx:for="{{sharproomlist}}" wx:key="index" class="c-item">
+      <image mode="aspectFill" class="a-img" src="{{item.pic[0]}}"></image>
+      <view class="bottom2">
+        <view style="color:red;">￥{{item.price}}</view>
+        <view>{{item.style_name}}</view>
+        <view class="overflow-1 wdith">{{item.room_no}}</view>
+      </view>
+    </view>
+  </view>
+  <view wx:else class="none">暂无数据</view>
+</scroll-view>

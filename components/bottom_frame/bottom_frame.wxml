@@ -1,0 +1,16 @@
+<div class="modals modals-bottom-dialog {{hideModal?'hidden':''}}">
+    <div class="modals-cancel" bindtap="hideModal"></div>
+    <div class="bottom-dialog-body bottom-pos" animation="{{animationData}}">
+      <view class="alert">
+        <view class="item1" bindtap='workspic'>作品库选择</view>
+        <!-- <view class="item1 item2" bindtap='shopspic'>商品图选择</view> -->
+        <view class="item1 item2" bindtap='albumpic' data-num='{{num}}' data-flag="{{flag}}">相册选取</view>
+      </view>
+    </div>
+</div>
+
+<view bindtap="showModal" class="load_area_1">
+  <image mode='aspectFit' src='{{preImgtop}}' class='pre-pic' wx:if='{{preImgtop}}'></image>
+  <image class="add_icon" style="width: 42rpx;height: 42rpx;" src="/images1/add_icon.png"></image>
+  <view>效果图</view>
+</view>

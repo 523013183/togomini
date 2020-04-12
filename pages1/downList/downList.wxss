@@ -1,0 +1,67 @@
+page{
+	background-color: #FAFAFA;
+}
+.product_list .products_group .part_wrapper{
+	display: flex;
+	align-items: center;
+	padding: 30rpx 40rpx;
+	margin-top: 20rpx;
+	background-color: #FFFFFF;
+}
+.product_list .products_group .part_wrapper .pro_pic{
+	width: 165rpx;
+	height: 165rpx;
+	margin-right: 30rpx;
+	border-radius: 10rpx;
+	background-color: #f4f4f4;
+}
+.product_list .products_group .part_wrapper .pro_pic> image{
+	width: 100%;
+	height: 100%;
+}
+.product_list .products_group .part{
+	position: relative;
+	flex: 1;
+	/* height: 165rpx; */
+	font-size: 0;
+}
+.product_list .products_group .part .text_title{
+	font-size: 30rpx;
+	font-weight: bold;
+	margin-bottom: 20rpx;
+}
+.product_list .products_group .part .style{
+	font-size: 20rpx;
+	color: #999999;
+}
+.product_list .products_group .part .size{
+	font-size: 20rpx;
+	color: #999999;
+}
+.product_list .products_group .part .material{
+	font-size: 20rpx;
+	color: #999999;
+	margin-bottom: 15rpx;
+}
+.product_list .products_group .part .price{
+	font-size: 24rpx;
+	color: #e93323;
+	font-weight: bold;
+}
+.product_list .products_group .part .trash_icon{
+	position: absolute;
+	right: 30rpx;
+	bottom: 0rpx;
+}
+.product_list .downloadBtn{
+	width: 90%;
+	height: 90rpx;
+	line-height: 90rpx;
+	margin: 150rpx auto 50rpx;
+	/* text-align: center; */
+	font-size: 32rpx;
+	font-weight: bold;
+	border-radius: 10rpx;
+	background-color: #F9E15C;
+}
+

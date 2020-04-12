@@ -1,0 +1,101 @@
+/* pages/user/user.wxss */
+page {
+	background-color: #F2F2F2;
+}
+
+.active_list .active {
+	margin: 0 40rpx;
+}
+
+.active_list .active .active_item {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20rpx;
+	font-size: 24rpx;
+	background-color: #FFFFFF;
+}
+
+
+.active_list .active .active_item .content {
+	position: relative;
+	flex: 1;
+	display: flex;
+	padding: 20rpx 20rpx 30rpx;
+	/* justify-content: space-between; */
+	background-color: #FFFFFF;
+}
+
+.active_list .active .active_item .cancleBtn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	right: 0;
+	top: 0;
+	max-width: 150rpx;
+	height: 100%;
+	text-align: center;
+	font-size: 28rpx;
+	color: #FFFFFF;
+	background-color: #E93323;
+}
+
+.active_list .active .active_item .active_img {
+	/* flex: 2; */
+	width: 130rpx;
+	height: 130rpx;
+	border-radius: 1000rpx;
+}
+
+.active_list .active .active_item .right_part {
+	flex: 8;
+	margin-left: 20rpx;
+}
+
+.active_list .active .active_item .right_part .detail {
+	line-height: 35rpx;
+	color: #999999;
+}
+
+.active_list .active .active_item .right_part .detail>view:nth-child(1) {
+	font-size: 32rpx;
+	color: #000000;
+	font-weight: bold;
+	margin-bottom: 10rpx;
+}
+
+.active_list .active .active_item .right {
+	display: flex;
+}
+
+.active_list .active .active_item .right>view {
+	width: 56rpx;
+	height: 56rpx;
+	margin-left: 20rpx;
+}
+
+.inner {
+	position: absolute;
+	top: 0;
+}
+
+.inner.txt {
+	background-color: #fff;
+	width: 100%;
+	z-index: 5;
+	padding: 0 10rpx;
+	transition: left 0.2s ease-in-out;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.inner.del {
+	background-color: #e64340;
+	width: 180rpx;
+	text-align: center;
+	z-index: 4;
+	right: 0;
+	color: #fff
+}

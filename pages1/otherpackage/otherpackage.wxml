@@ -1,0 +1,9 @@
+<view class="s-item" wx:for="{{datalist}}" wx:key="index" wx:if="{{item.addtime}}">
+  <image bindtap="packagedetail" data-id="{{item.package_id}}" class="s-img" src="{{item.cover_img}}"></image>
+  <view class="s-bottom">
+    <view class="sb-img" wx:if="{{index2<4}}" wx:for="{{item.goods}}" wx:for-item="item2" wx:for-index="index2" wx:key="index">
+      <image src="{{item2.cover_pic}}"></image>
+    </view>
+  </view>
+</view>
+<view class="none" wx:if="{{datalist.length == 0}}">暂无数据</view>

@@ -1,0 +1,216 @@
+page{
+	height: 100%;
+	background-color: #F2F2F2;
+}
+
+.create_card{
+	
+}
+.create_card .title{
+	height: 90rpx;
+	line-height: 90rpx;
+	font-size: 24rpx;
+	padding: 0 40rpx;
+	color: #CCCCCC;
+}
+.create_card .content2 .right_part > view{
+	color: #999999;
+	z-index: 500;
+}
+.create_card .content .item{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20rpx 40rpx;
+	font-size: 28rpx;
+	border-bottom: 1px solid #F2F2F2;
+	background-color: #FFFFFF;
+}
+.create_card .content .item .right_part{
+	display: flex;
+	/* justify-content: space-between; */
+	align-items: center;
+	text-align: right;
+	font-size: 30rpx;
+	cursor: pointer;
+}
+.create_card .content .item .right_part > image:nth-child(2){
+	margin-left: 28rpx;
+}
+.create_card .content .item_pen .right_part > image:nth-child(2){
+	margin-left: 10rpx;
+}
+.create_card .content .personal .right_part .text{
+	width: 300rpx;
+	height: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+.create_card .bg_gray{
+	width: 100%;
+	height: 50rpx;
+	background-color: #F2F2F2;
+}
+.create_card .bottom{
+	width: 100%;
+	height: 80rpx;
+}
+.create_card .bottom button{
+	width: 90%;
+	height: 80rpx;
+	margin-top: 20rpx;
+	font-size: 30rpx;
+	border: none;
+	background-color: #F9E15C;
+}
+
+.mask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5000;
+	display: block;
+}
+.mask-1{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.8;
+}
+.mask-2{
+	position: absolute;
+	top: 90rpx;
+	left: calc((100% - 600rpx)/2);
+	/* width: 8.4rem; */
+	animation-name:mask1;
+	-webkit-animation-name:mask1;
+	-moz-animation-name:mask1;
+	-ms-animation-name:mask1;
+	animation-duration: 0.2s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-fill-mode: both;
+	-webkit-animation-iteration-count: 1;
+	-moz-animation-duration: 0.2s;
+	-moz-animation-fill-mode: both;
+	-moz-animation-iteration-count: 1;
+	-ms-animation-duration: 0.2s;
+	-ms-animation-fill-mode: both;
+	-ms-animation-iteration-count: 1;
+}
+
+.share_wrapper{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 460rpx;
+}
+.share_wrapper .shareTo{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 460rpx;
+	border-top-left-radius: 12rpx;
+	border-top-right-radius: 12rpx;
+	background-color: #FFFFFF;
+	z-index: 10000;
+}
+.share_wrapper .top_title{
+	display: flex;
+	justify-content: space-between;
+	font-size: 36rpx;
+	text-align: center;
+	padding: 40rpx 30rpx 60rpx;
+}
+.share_wrapper .top_title .sure{
+	color: #E93323;
+}
+
+.share_wrapper .cont{
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20rpx 10rpx 20rpx 40rpx;
+}
+.share_wrapper .cont > text{
+	display: inline-block;
+	width: calc((100% - 100rpx)/4);
+	height: 55rpx;
+	line-height: 55rpx;
+	text-align: center;
+	margin: 0 20rpx 20rpx 0;
+	border-radius: 8rpx;
+	font-size: 26rpx;
+	background-color: #f3f6fb;
+}
+.share_wrapper .cont .style_choose{
+	background-color: #F9E15C;
+}
+.share_box{
+	width: 600rpx;
+	height: 890rpx;
+	padding: 30rpx;
+	border-radius: 12rpx;
+	background-color: #FFFFFF;
+}
+.share_box .top_title{
+	display: flex;
+	align-items: center;
+	font-size: 26rpx;
+	margin-bottom: 20rpx;
+}
+.share_box .top_title .name{
+	color: #0eb629;
+	margin: 0 10rpx 0 15rpx;
+}
+.share_box .pic{
+	height: 330rpx;
+	margin-bottom: 40rpx;
+}
+.share_box .pic > image{
+	width: 100%;
+	height: 100%;
+}
+.share_box .title{
+	font-size: 30rpx;
+	font-weight: bold;
+	margin-bottom: 20rpx;
+}
+.share_box .project_desc{
+	font-size: 24rpx;
+	margin-top: 30rpx;
+	overflow : hidden; 
+	text-overflow: ellipsis;
+	display:-webkit-box; 
+	-webkit-line-clamp: 2; 
+	-webkit-box-orient: vertical;
+}
+.share_box .erwei_code{
+	margin: 25rpx auto 20rpx;
+	text-align: center;
+}
+.share_box .know_more{
+	font-size: 26rpx;
+	text-align: center;
+}
+.share_box .save_pic{
+	position: absolute;
+	bottom: -140rpx;
+	left: calc((100% - 250rpx)/2);
+	width: 250rpx;
+	height: 70rpx;
+	line-height: 70rpx;
+	font-size: 30rpx;
+	border-radius: 35rpx;
+	background-color: #F9E15C;
+}

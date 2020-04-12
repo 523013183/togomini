@@ -1,0 +1,120 @@
+page {
+  background-color: #f6f6f6;
+  overflow: hidden;
+}
+
+.manage_products .add_new {
+  display: flex;
+  align-items: center;
+  height: 110rpx;
+  line-height: 110rpx;
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+}
+
+.manage_products .add_new .add {
+  width: 130rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  background-color: #f9e15c;
+  border-radius: 35rpx;
+}
+
+.manage_products .add_new .search {
+  display: flex;
+  align-items: center;
+  width: 520rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #999;
+  font-size: 28rpx;
+  border-radius: 35rpx;
+  background-color: #f3f6fb;
+}
+
+.manage_products .add_new .search input {
+  width: 100%;
+}
+
+.manage_products .add_new .search .search_icon {
+  margin-left: 35rpx;
+}
+
+.manage_products .products_group .part_wrapper {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 40rpx;
+  margin-top: 10rpx;
+  background-color: #fff;
+}
+
+.manage_products .products_group .part_wrapper .pro_img {
+  width: 260rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+  margin-right: 50rpx;
+}
+
+.manage_products .products_group .part_wrapper .pro_img > image {
+  width: 260rpx;
+  height: 160rpx;
+}
+
+.manage_products .products_group .part {
+  /* height: 160rpx; */
+  font-size: 0;
+}
+
+.manage_products .products_group .part .text_title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.manage_products .products_group .part .style {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 25rpx;
+}
+
+.manage_products .products_group .part .btn {
+  /* display: flex; */
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.manage_products .products_group .part .btn .show {
+  background-color: #f9e15c;
+  border: 1px solid #f9e15c;
+}
+
+.manage_products .products_group .part .btn .top {
+  background-color: #f9e15c;
+  border: 1px solid #f9e15c;
+}
+
+.manage_products .products_group .part .btn > text {
+  display: inline-block;
+  width: 115rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border: 1px solid #d2d2d2;
+  border-radius: 6rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.manage_products .products_group .part .price_desc.choose {
+  background-color: #008edd;
+  color: #fff;
+}
+
+.none {
+  margin-top: 300rpx;
+  text-align: center;
+  width: 100%;
+}

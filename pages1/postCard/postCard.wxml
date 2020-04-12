@@ -1,0 +1,331 @@
+<view class="head">
+	<view class="title" style="margin-top:{{statusBarHeight}}px;">
+		<view bindtap="linkBack" class="backindex" style="width:{{btnwidth}}px;height:{{btnheight}}px;top:{{btntop}}px;left:{{btnleft}}px;">
+			<image style="height:{{btnheight-5}}px;width:{{btnheight-5}}px;" mode="aspectFill" src="{{headavater?headavater:'http://oss.diywoju.com/web/uploads/image/store_1/26da69061d3f1e5ea0bdd72e02ea7ef0d2711e4e.png'}}"></image>
+			<view>个人中心</view>
+		</view>
+		<view class="flex-" style="align-items:center;justify-content: center;height:44px;">
+			<view bindtap="browse" class="overflow-1" style="max-width:200rpx;">{{userName}}</view>
+			<image style="width:25rpx;height:25rpx;" src="/images/down.png"></image>
+		</view>
+	</view>
+</view>
+<scroll-view style="height:{{titleheight}}px;" scroll-into-view="{{tabid}}" bindscroll="scroll" scroll-y scroll-with-animation="true">
+	<view class='tc_content' id="cardPart">
+		<!-- 名片部分开始 -->
+		<view class="card_part">
+			<view wx:if="{{!fa}}" class='bg_pic' style='width:100%;height:100%;background-image:url(http://oss.diywoju.com/web/uploads/image/store_1/b6011efd148e3f4ea571e781b0279dd0d3e6cd36.png);background-size:100% 100%;filter: blur(5rpx);margin-top:-50rpx;'></view>
+			<!-- 名片1 -->
+			<view wx:if="{{!fa}}">
+				<image mode="aspectFill" class="avatar" src="{{avatarSrc}}"></image>
+				<view class="card_top" id="mp">
+					<view class="about_card">
+						<view class="addess">
+							<image mode="aspectFill" src="/images/city.png"></image>
+							<text>{{city}}</text>
+						</view>
+					</view>
+					<view class="designer_msg">
+						<view class="design_name overflow-1">{{userName}}</view>
+						<view wx:if="{{level_name == '普通用户' || level_name == undefined}}" class="icon">
+							<image mode="aspectFill" class="logo" src="/images/renzheng1.png"></image>
+							<text>未认证</text>
+						</view>
+						<view wx:else class="icon" style="margin-left:262rpx;">
+							<image mode="aspectFill" class="logo" src="/images/renzheng2.png"></image>
+							<text style="color:#f9e15c;">平台认证</text>
+						</view>
+						<view class="year">{{job}}-{{years}}年</view>
+						<view wx:if="{{!showprice}}" class="design_price">设计费用-
+							<text>{{designPrice}}元/㎡</text>
+						</view>
+					</view>
+					<view class="msg_center">
+						<view>
+							<view>{{click}}</view>
+							<view class="c_ccc">访客</view>
+						</view>
+						<view>
+							<view>{{fans_count}}</view>
+							<view class="c_ccc">粉丝</view>
+						</view>
+						<view>
+							<view>{{like_count}}</view>
+							<view class="c_ccc">点赞</view>
+						</view>
+					</view>
+					<view class="design_style">
+						<view class="c_ccc">个人标签</view>
+						<view class='bg_pic' style='width:55rpx;height:6rpx;background-image:url(../../images1/bg_line.png);background-size: 55rpx 6rpx;'></view>
+						<text class="style">{{style.length==0?'未选择':style}}</text>
+					</view>
+					<view class="designer_desc">
+						<view class="c_ccc">设计理念</view>
+						<view class='bg_pic' style='width:55rpx;height:6rpx;background-image:url(../../images1/bg_line.png);background-size: 55rpx 6rpx;'></view>
+						<view class="text" bindtap='detail' data-detail="{{descript}}">{{descript}}</view>
+					</view>
+					<view class="receive_card_btn ">
+						<view wx:if="{{info.in_card ==0}}" bindtap="receive_card">收下名片</view>
+						<view wx:else class='hasRecive'>已收下</view>
+						<view wx:if="{{myphone != ''}}" bindtap='sureBtn'>预约设计</view>
+						<button wx:if="{{access_token && myphone==''}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">预约设计</button>
+						<view wx:if="{{!access_token}}" bindtap='login'>预约设计</view>
+					</view>
+					<view class="other_btn">
+						<view class="other_item {{show=='0'?'hidden':'show'}}" bindtap="call_designer">
+							<image mode="aspectFill" style="width: 70rpx;height: 70rpx;" src="/images1/tel_y.png"></image>
+							<view>联系TA</view>
+						</view>
+						<view class="other_item {{show=='0'?'hidden':'show'}}" bindtap="add_praise">
+							<image mode="aspectFill" style="width: 65rpx;height: 65rpx;" src="{{zan==0?'http://oss.diywoju.com/web/uploads/image/store_1/def449015297baf07b7ea35c0ba9894f274a8b89.png':'http://oss.diywoju.com/web/uploads/image/store_1/0b0247e723445cb0c3650016e1aa264a257be233.png'}}"></image>
+							<view>{{zan==0?'给TA赞':'取消点赞'}}</view>
+						</view>
+						<view class="other_item {{show=='0'?'hidden':'show'}}" bindtap="add_wechat">
+							<image mode="aspectFill" style="width: 70rpx;height: 70rpx;" src="/images1/weixin_y.png"></image>
+							<view>添加微信</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!-- 名片2 -->
+			<image wx:if="{{fa}}" mode="aspectFill" class="bg-img" src="http://oss.diywoju.com/web/uploads/image/store_1/6bd99b9b42a66aa05041342c9e6d02c6c2984ceb.png"></image>
+			<view wx:if="{{fa}}" class="box">
+				<view class="date">
+					<view class="information">
+						<!-- 跳转设置资料 -->
+						<view class="button2" hover-class="none">
+							<view class="information-name">
+								<text class="overflow-1">{{info.user_name?info.user_name:'加载中..'}}</text>
+							</view>
+						</view>
+						<view class="flex-">
+							<view class="information-price">{{job}}-{{years}}年</view>
+							<view class="information-v" bindtap="v" wx:if="{{info.level_name == '普通用户' || info.level_name == undefined}}">
+								<image style="width:35rpx;height:35rpx;" src="{{info.level_name=='普通用户'|| info.level_name==undefined?'/images/renzheng1.png':'/images/renzheng1.png'}}"></image>
+								未认证
+							</view>
+							<view class="information-v" style="color:#f9e15c;" wx:else>
+								<image style="width:35rpx;height:35rpx;" src="{{info.level_name=='普通用户'|| info.level_name==undefined?'/images/renzheng1.png':'/images/renzheng2.png'}}"></image>
+								平台认证
+							</view>
+						</view>
+						<view class="information-price">设计费用-<text>{{designPrice}}元/㎡</text></view>
+					</view>
+					<!--  -->
+					<image class="avater" mode="aspectFill" src="{{avatarSrc == ''?tx_img:avatarSrc}}"></image>
+				</view>
+				<view class="data-" style="margin-top:-90rpx;">
+					<view class="flex">
+						<view class="data-item">
+							<text>{{click}}</text>
+							<text>访客</text>
+						</view>
+						<view class="data-item">
+							<text>{{fans_count}}</text>
+							<text>粉丝</text>
+						</view>
+						<view class="data-item">
+							<text>{{like_count}}</text>
+							<text>点赞</text>
+						</view>
+					</view>
+				</view>
+				<view class="flex-">
+					<view class="detail-">
+						<text>个人标签</text>
+						<text class="overflow">{{style.length==0?'未选择':style}}</text>
+					</view>
+					<view class="detail-">
+						<text>设计理念</text>
+						<text class="overflow" bindtap="look_more" style="{{lookmore?'-webkit-line-clamp: 10;':''}}">{{descript == ""?"无":descript}}</text>
+						<view class="loo-more" bindtap="look_more" wx:if="{{lookmore}}">
+							收起
+							<image style="width:20rpx;height:20rpx;" src="/images/down2.png"></image>
+						</view>
+					</view>
+				</view>
+				<!-- 功能 -->
+				<view class="receive_card_btn2">
+					<view wx:if="{{info.in_card ==0}}" bindtap="receive_card">收下名片</view>
+					<button open-type="share" wx:else class='hasRecive'>分享</button>
+					<view wx:if="{{myphone != ''}}" bindtap='sureBtn'>预约设计</view>
+					<button wx:if="{{access_token && myphone==''}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">预约设计</button>
+					<view wx:if="{{!access_token}}" bindtap='login'>预约设计</view>
+				</view>
+			</view>
+			<!-- 底部功能 -->
+			<view class="scrollx">
+				<view class="xitem box" bindtap="connect_service">
+					<view class="xtitle">
+						<image src="/images1/tel_y.png"></image>
+						拨打电话
+					</view>
+					<view>{{mobile}}</view>
+				</view>
+				<view class="xitem box" bindtap="add_wechat">
+					<view class="xtitle">
+						<image src="/images1/weixin_y.png"></image>
+						添加微信
+					</view>
+					<view>{{info.wechat}}</view>
+				</view>
+				<!-- <view class="xitem" bindtap="sureBtn" wx:if="{{access_token || myphone==''}}">
+					<view class="xtitle">
+						<image src="/images1/personNum_btn.png"></image>
+						预约设计
+					</view>
+					<view>预约设计师</view>
+				</view>
+				<view class="xitem" wx:if="{{myphone==''&&access_token}}">
+					<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+						<view class="xtitle">
+							<image src="/images1/personNum_btn.png"></image>
+							预约设计
+						</view>
+						<view>预约设计师</view>
+					</button>
+				</view> -->
+				<view class="xitem box" bindtap="msg" wx:if="{{level_name != '普通用户'}}">
+					<view class="xtitle">
+						<image src="/images1/shop_.png"></image>
+						咨询TA
+					</view>
+					<view>在线咨询</view>
+				</view>
+				<!-- <view class="xitem" bindtap="add_praise">
+					<view class="xtitle">
+						<image src="http://oss.diywoju.com/web/uploads/image/store_1/0b0247e723445cb0c3650016e1aa264a257be233.png"></image>
+						为TA点赞
+					</view>
+					<view>{{zan==0?'给TA赞':'取消点赞'}}</view>
+				</view> -->
+				<!-- <view class="xitem" bindtap="receive_card" wx:if="{{info.in_card == 0}}">
+					<view class="xtitle">
+						<image src="/images1/personNum_btn.png"></image>
+						收藏名片
+					</view>
+					<view>收藏TA的名片</view>
+				</view> -->
+			</view>
+			<!-- 名片部分结束 -->
+			<!-- 作品部分开始 -->
+			<view class="products_part" id="productsPart">
+				<view class="title">
+					<view class="title_text">案例
+						<text class="products_num">{{productList.length}}套</text>
+					</view>
+					<view class="manage_products" bindtap="linkManagePro">
+						<image mode="aspectFill" class="{{show=='0'?'show':'hidden'}}" style="width: 32rpx;height: 26rpx;" src="/images1/manage_pro.png"></image>
+						<text style="color:#00BFFF;font-size:26rpx;">全部案例</text>
+					</view>
+				</view>
+				<view class="nonedata" style="margin-top:50rpx;" wx:if="{{productList.length=='0'}}">
+					<view class="noMsg_icon">
+						<image mode="aspectFill" style="width: 374rpx;height: 280rpx;" src="/images1/nomsg.png"></image>
+					</view>
+					<view class="text">设计师还没有案例，快去通知TA上传吧~</view>
+				</view>
+				<view class="products_group" wx:if="{{productList.length>'0'}}" wx:for='{{productNewList!==null?productNewList:productList}}' wx:item="{{item}}" wx:key="index">
+					<view class="item" bindtap="link_project" data-idid="{{idid}}" data-id="{{item.id}}" wx:if="{{item.is_show==1}}">
+						<image mode="aspectFill" src="{{item.pic}}"></image>
+						<text class="text_desc">{{item.name}}</text>
+					</view>
+				</view>
+			</view>
+			<!-- 作品部分结束 -->
+			<!-- 套餐部分开始 -->
+
+			<view class="set_part" id="setPart" wx:if="{{packagelist.length!=='0'}}">
+				<view class="title">
+					<view class="title_text">套餐
+						<text class="group_num">{{packagelist.length}}套</text>
+					</view>
+					<view class="manage_group" bindtap="linkManageGro">
+						<image mode="aspectFill" class=" {{show=='0'?'show':'hidden'}}" style="width: 32rpx;height: 26rpx;" src="/images1/manage_pro.png"></image>
+						<text style="color:#00BFFF;font-size:26rpx;">全部套餐</text>
+					</view>
+				</view>
+				<view class="nonedata" style="margin-top:50rpx;" wx:if="{{packagelist.length=='0'}}">
+					<view class="noMsg_icon">
+						<image mode="aspectFill" style="width: 374rpx;height: 280rpx;" src="/images1/nomsg.png"></image>
+					</view>
+					<view class="text">设计师还没有套餐，快去通知TA上传吧~</view>
+				</view>
+				<view class="set_group goup2" wx:if="{{packagelist.length>'0'}}">
+					<scroll-view bindscroll="scroll2" scroll-x class="scroll-header">
+						<!-- 选择模板 -->
+						<import src="/template/choose/choose.wxml" />
+						<template is="packagelist" data="{{packagelist}}" />
+					</scroll-view>
+					<image mode="aspectFill" class="toasta" hidden="{{packagelist.length < 2 || left > 250}}" src="/images1/jiantou.png"></image>
+				</view>
+
+			</view>
+			<!-- 套餐部分结束（活动） -->
+			<view class="my_activity" wx:if="{{activityList.length!='0'}}" id="activity">
+				<view class="title">
+					<view class="title_text">活动
+						<text class="products_num">{{activityList.length}}套</text>
+					</view>
+					<view bindtap="active" style="font-size:26rpx;color:#00BFFF;">全部活动</view>
+				</view>
+				<view class="nonedata" style="margin-top:50rpx;" wx:if="{{activityList.length=='0'}}">
+					<view class="noMsg_icon">
+						<image mode="aspectFill" style="width: 374rpx;height: 280rpx;" src="/images1/nomsg.png"></image>
+					</view>
+					<view class="text">设计师还没有活动~</view>
+				</view>
+				<view class="active_part" wx:if="{{index<3}}" wx:for="{{activityList}}" wx:key="index" wx:item="{{item}}">
+					<view class="part">
+						<view bindtap="linkActiviteDetail" data-id="{{item.id}}">
+							<image mode="aspectFill" src="{{item.head_pic}}"></image>
+						</view>
+						<view class="active_title">{{item.title}}</view>
+						<view class="person">
+							<view class="name">
+								<image mode="aspectFill" style="width: 40rpx;height: 40rpx;" src="{{avatarSrc}}"></image>
+								<text>室内设计{{item.author_name}}</text>
+							</view>
+							<view class="rest" wx:if="{{item.max_number!=0}}">剩余{{item.max_number - item.enroll}}份</view>
+							<view class="rest" wx:else="{{item.max_number==0}}">不限量</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 名片码 -->
+		<view class="mask" hidden="{{hidden}}">
+			<view class="mask-1"></view>
+			<view class="mask-2 card_code">
+				<view class="card_code_box">
+					<image mode="aspectFill" class=' card_pic' src='{{mingpianImg}}'>
+					</image>
+					<button class="save_pic" bindtap="hidden_mask">保存图片</button>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- <view class="box2">
+		<view bindtap="tab" data-id="1" class="{{bg== 1 ? 'bg-' : ''}}">名片</view>
+		<view bindtap="tab" data-id="2" class="{{bg== 2 ? 'bg-' : ''}}">案例</view>
+		<view bindtap="tab" data-id="3" class="{{bg== 3 ? 'bg-' : ''}}">套餐</view>
+		<view bindtap="tab" data-id="4" class="{{bg== 4 ? 'bg-' : ''}}">活动</view>
+	</view> -->
+
+	<!-- 作品详情查看更多弹窗 -->
+	<view bindtap='hide' hidden='{{detail_}}' style='width:500rpx;min-height:100rpx;top:450rpx;left:125rpx;background-color:rgba(0,0,0,.7);position:fixed;z-index:9999;border-radius:20rpx;padding:20rpx 10rpx;box-sizing:border-box;color:#fff;text-align:center;'>{{detail_two}}</view>
+</scroll-view>
+<!-- 我的浏览名片记录 -->
+<view wx:if="{{browse}}" class="browsebg"></view>
+<view wx:if="{{browse}}" class="browselist">
+	<view>我的浏览记录</view>
+	<image class="close" bindtap="browse" src="/images1/del_icon.png"></image>
+	<scroll-view scroll-y>
+		<view class="b-item" wx:for="{{browsecar}}" wx:key="index" bindtap="goDetail" data-id="{{item.car_id}}" data-userid="{{item.user_id}}">
+			<image mode="aspectFill" src="{{item.avatarSrc}}"></image>
+			<text class="overflow-1" style="max-width:300rpx;">{{item.username}}</text>
+		</view>
+		<view style="text-align:center;margin-top:100rpx;" wx:if="{{browsecar.length==0}}">暂无数据</view>
+	</scroll-view>
+</view>

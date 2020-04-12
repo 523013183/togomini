@@ -1,0 +1,19 @@
+<view class="head">
+  <view class="saerch">
+    <image mode="aspectFill" src="/images1/search_icon.png"></image>
+    <input bindinput="keyword" placeholder="户型名称" bindconfirm="saerchbtn"></input>
+  </view>
+  <view class="saerchbtn" bindtap="saerchbtn">搜索</view>
+</view>
+<scroll-view scroll-y style="height:{{height}}px;">
+  <view wx:if="{{data.length!=0}}" class="item" wx:for="{{data}}" wx:key="index" bindtap="detail" data-id="{{item.id}}">
+    <image mode="aspectFill" class="left" src="{{item.pic}}"></image>
+    <view class="right">
+      <view class="title">{{item.name}}</view>
+      <view class="direction">{{item.direction}}</view>
+      <view class="acreage">{{item.area}}</view>
+    </view>
+    <view class="position">{{item.status?'在售':'停售'}}</view>
+  </view>
+  <view class="none" wx:if="{{data.length==0}}">暂无数据</view>
+</scroll-view>

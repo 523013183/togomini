@@ -1,0 +1,116 @@
+<scroll-view scroll-y="{{isScroll}}">
+	<view class="group_detail">
+		<view class="top">
+			<image mode="aspectFill" src="{{groupDetail.cover_img}}"></image>
+			<view class="title">{{groupDetail.name}}
+			</view>
+			<view class="detail" style="{{spread?'-webkit-line-clamp: 100;':''}}">{{groupDetail.description==''||groupDetail.description=='null'||groupDetail.description==null?'':groupDetail.description}}</view>
+			<view class="position" hidden="{{groupDetail.description==''||groupDetail.description=='null'||groupDetail.description==null}}" bindtap="spread">{{spread?'收起描述↑':'展开描述↓'}}</view>
+			<view class="pricea">
+				<text wx:if="{{hide_sever}}" bindlongtap="underline2">￥{{amount}}<text hidden="{{underline2}}" class="underline2">￥{{totalnum2}}</text>
+				<text class="underline">￥{{totalnum}}</text></text>
+				<text wx:else>￥{{amount}}<text hidden="{{underline2}}" class="underline2">￥{{totalnum2}}</text>
+				<text class="underline">￥{{totalnum}}</text></text>
+				<text class="total_num">共<text>{{legth}}</text>件商品</text>
+			</view>
+		</view>
+		<text class="redact" wx:if="{{myId==groupDetail.user_id && !options.roomtypeid}}" bindtap="modifyMsg" data-id="{{pro_id}}" data-name="{{projectName}}" data-remarks="{{projectRemark}}" data-pic="{{picArr}}">编辑</text>
+		<!-- 选择模板 -->
+		<import src="/template/choose/choose.wxml" />
+		<template is="package" data="{{goods}}" />
+		<!-- copy  opus_goods -->
+		<view class="copy" bindtap="copy" hidden="{{is_copy == 1 || shop != 1 || has_copy != 1 || card_id ==create_card_id}}">复制</view>
+		<!-- 返回设计师名片 -->
+		<view class="nav" bindtap='backindex' hidden='{{back && !options.idid}}'>
+			<image mode="aspectFill" style="width: 70rpx;height: 70rpx;" src='/images1/product_item_transac.png'></image>
+		</view>
+		<!-- 分享 -->
+		<view class="share_group" bindtap="show_mask" hidden='{{back && options.roomtypeid}}'>
+			<image mode="aspectFill" style="width: 94rpx;height: 94rpx;" src="/images1/share_group_btn.png"></image>
+		</view>
+		<view class="mask" hidden="{{hidden1}}" catchtouchmove="ture">
+			<view class="mask-1" catchtap='hideMask'></view>
+			<view class="mask-2 ">
+				<image mode="aspectFill" class="share_box" src='{{sharePic}}'>
+					<button class="save_pic" bindtap="hiddenAd">保存图片</button>
+				</image>
+			</view>
+		</view>
+		<view class='masking' hidden="{{hiddenShare}}" bindtap='hiddenMasking1'>
+			<view class="share_wrapper">
+				<view class="shareTo">
+					<view class="top_title">分享到</view>
+					<view class="cont">
+						<button id='1' class="create_ad tofriend" data-name="shareBtn" open-type="share">
+							<view>
+								<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="/images1/share_ad_icon.png"></image>
+							</view>
+							<text class="text">微信好友</text>
+						</button>
+						<view class="share_friend" bindtap="bg">
+							<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/fb5bc2da6e9e40a4d17fb02272e849a58beab216.png"></image>
+							<view class="text">分享卡片</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+	</view>
+	<view hidden='{{back && !options.idid}}' style="height:100rpx;"></view>
+	<view class="foot" hidden='{{back && !options.idid}}'>
+		<view class="itema" bindtap="show_mask">
+			<image mode="aspectFill" style="width:50rpx;height:50rpx;" src="/images/fenxiang.png"></image>
+		</view>
+		<view class="itema" bindtap="like">
+			<image mode="aspectFill" style="width:50rpx;height:50rpx;" src="{{like == false ? '/images/c2.png' : '/images/c1.png'}}"></image>
+		</view>
+		<view bindtap="yuyue" class="btn1" wx:if='{{myphone != ""}}'>预约TA</view>
+		<button wx:if="{{myphone == '' && access_token}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="btn1">预约TA</button>
+		<view bindtap="login" class="btn1" wx:if='{{!access_token}}'>预约TA</view>
+		<view class="btn2" bindtap="phone">联系TA</view>
+	</view>
+</scroll-view>
+
+<!-- 分享海报 -->
+<view id="canvas2" style="width:316px;height:461px;position: absolute;top: -999999999999rpx;;">
+	<canvas style="width:100%;height:100%;" canvas-id="canvas"></canvas>
+</view>
+<canvas id="myCanvas" canvas-id="myCanvas" style="height:{{height}}px;"></canvas>
+
+
+<!-- 替换项的显示 -->
+<view class="replace_zhe" hidden="{{replace}}">
+	<view class="replace_tan">
+		<view class="close" catchtap="replace_close">X</view>
+		<view class="title">替换商品</view>
+		<scroll-view scroll-y class="scroll-viewa">
+			<radio-group wx:if="{{replace_goods[replace_id]!=undefined}}" bindchange="radio_group">
+				<label data-checked="{{item.checked}}" data-index="{{index}}" wx:for="{{replace_goods[replace_id]}}" wx:key="index">
+					<view class="item">
+						<radio checked="{{item.checked}}" color="#f9e15c" value="{{index}}"></radio>
+						<image mode="aspectFill" class="bg" src="{{item.cover_pic}}"></image>
+						<view class="detail_">
+							<view class="overhidden">规格：{{item.attr[0]==''?'暂无':item.attr[0]}}</view>
+							<view class="overhidden">材质：{{item.material}}</view>
+							<!--  -->
+							<view class="price_">
+								<text>{{item.price_type==1?'+':'-'}}¥{{item.replace_price}}</text> / ¥{{item.original_price}}</view>
+						</view>
+					</view>
+				</label>
+			</radio-group>
+			<view wx:else style="text-align:center;line-height:800rpx;">暂无可替换项</view>
+		</scroll-view>
+		<view catchtap="replace_zhe" class="qrbtn">确定</view>
+	</view>
+</view>
+<view class="poster" wx:if="{{tempFilePath}}">
+	<scroll-view scroll-y>-
+		<image style="width:100%;" mode="widthFix" src="{{tempFilePath}}"></image>
+	</scroll-view>
+	<view class="posterbtn">
+		<view bindtap="saveposter">{{saveimg?'已保存':'保存'}}</view>
+		<view bindtap="closeposter">关闭</view>
+	</view>
+</view>

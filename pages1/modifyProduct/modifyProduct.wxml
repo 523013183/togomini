@@ -1,0 +1,55 @@
+<scroll-view scroll-y="{{scroll}}">
+  <view class="add_project">
+    <view class="title">
+      <input placeholder="请输入案例标题(限30字以内)" value="{{projectName}}" bindinput="input1" />
+    </view>
+    <textarea placeholder="分享您的案例简介,让用户更懂你(限500字以内)" value="{{projectRemark}}" bindinput="input2" maxlength="500"></textarea>
+    <view class='img-upload-box flex-col bg-white pd-box30 pic_wrapper'>
+      <view class="addsy">
+        <view>是否添加水印</view>
+        <switch bindchange="switcha"></switch>
+      </view>
+      <!-- <view class='label imgs-label'>相关图片（最多5张）</view> -->
+      <view class='upload-imgs-box flex-row-start pic_wrapper'>
+        <movable-area>
+          <view id="{{index}}" data-index='{{index}}' bindlongpress='_longtap' bindtouchstart='touchs' bindtouchend='touchend' bindtouchmove='touchm' data-img='{{item.url}}' class='upload-pic-2 item beforePic' wx:for="{{curPic}}" wx:item="{{item}}" wx:index="{{index}}"
+            wx:if='{{curPic.length > 0}}' wx:key='index'>
+            <image bindtap="previewImg" data-index='{{index}}' mode='aspectFill' src='{{item.url}}' class='pre-img'></image>
+            <image mode='aspectFit' src='/images1/del_icon.png' class='del-img' data-index='{{index}}' bindtap='delImg' data-type="noadd"></image>
+          </view>
+          <block wx:for='{{preImgsAbout}}' wx:key='index'>
+            <view class='upload-pic-2'>
+              <image mode='aspectFill' src='{{host}}{{item}}' class='pre-img'></image>
+              <image mode='aspectFit' src='/images1/del_icon.png' class='del-img' data-index='{{index}}' bindtap='delImg' data-type="add"></image>
+            </view>
+          </block>
+          <view class="pic_effect" bindtap="add_pic" wx:if='{{preImgsAbout.length < 9}}' data-num='9' data-flag='about' bindtap='uploadImg'>
+            <image mode='aspectFit' class="add_icon" style="width: 42rpx;height: 42rpx;" src="/images1/add_icon.png"></image>
+            <view>效果图</view>
+          </view>
+          <!-- //把长按图片时候的图片路径 传过来 -->
+          <movable-view x="{{x}}" y="{{y}}" direction="all" damping="{{5000}}" friction="{{1}}" disabled="{{disabled}}">
+            <view class='item-move' hidden='{{hidden}}'>
+              <image src="{{maskImg}}"></image>
+            </view>
+          </movable-view>
+        </movable-area>
+
+      </view>
+      <input type='text' name='active_imgs' value='{{preImgsAbout}}' hidden='true'></input>
+    </view>
+
+    <!-- 上传视频 -->
+    <view style="padding-left:20rpx;" class='upload-imgs-box flex-row-start pic_wrapper flex'>
+      <view class="video" wx:if="{{video || video2}}">
+        <video src="{{video2==''?video:video2}}"></video>
+        <image catchtap="delvideo" src="/images1/del_icon.png"></image>
+      </view>
+      <view wx:if="{{video2==''&&video==''}}" class="pic_effect" bindtap='uploadvideo'>
+        <image mode='aspectFit' class="add_icon" style="width: 42rpx;height: 42rpx;" src="/images1/add_icon.png"></image>
+        <view>上传视频</view>
+      </view>
+    </view>
+    <button class="sure_btn" bindtap="saveProjectMsg">确认发布</button>
+  </view>
+</scroll-view>

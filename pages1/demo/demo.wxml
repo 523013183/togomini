@@ -1,0 +1,29 @@
+<!--pages1/demo/demo.wxml-->
+<web-view src="https://yun.kujiale.com/design/3FO4L3602QMM/show?fromqrcode=true&kpm=9V8.Krk.8bbacd9.1529050922937&from=singlemessage&isappinstalled=0"></web-view>
+
+
+<!--九宫格抽奖  -->
+<!-- <view wx:if='{{ishowPrizesView}}' class='coverBg'>
+  <view class='prizesContainer'>
+
+<view class="{{animateType0}} prizesCell" style="opacity:1;border-width: {{prizesborderW0}}rpx;">{{prizesArray[0]}}</view>
+<view class="{{animateType1}} prizesCell" style="opacity:1;border-width: {{prizesborderW1}}rpx;">{{prizesArray[1]}}</view>
+<view class="{{animateType2}} prizesCell" style="opacity:1;border-width: {{prizesborderW2}}rpx;">{{prizesArray[2]}}</view>
+<view class="{{animateType3}} prizesCell" style="opacity:1;border-width: {{prizesborderW3}}rpx;">{{prizesArray[3]}}</view>
+<view class="{{animateType4}} prizesCell" style="opacity:1;border-width: {{prizesborderW4}}rpx;">{{prizesArray[4]}}</view>
+<view class="{{animateType5}} prizesCell" style="opacity:0;border-width: {{prizesborderW5}}rpx;">{{prizesArray[5]}}</view>
+<view class="{{animateType6}} prizesCell" style="opacity:0;border-width: {{prizesborderW6}}rpx;">{{prizesArray[6]}}</view>
+<view class="{{animateType7}} prizesCell" style="opacity:1;border-width: {{prizesborderW7}}rpx;">{{prizesArray[7]}}</view>
+<view class="{{animateType8}} prizesCell" style="opacity:1;border-width: {{prizesborderW8}}rpx;">{{prizesArray[8]}}</view>
+<view class="{{animateType9}} prizesCell" style="opacity:0;border-width: {{prizesborderW9}}rpx;">{{prizesArray[9]}}</view>
+<view class="{{animateType10}} prizesCell" style="opacity:0;border-width: {{prizesborderW10}}rpx;">{{prizesArray[10]}}</view>
+<view class="{{animateType11}} prizesCell" style="opacity:1;border-width: {{prizesborderW11}}rpx;">{{prizesArray[11]}}</view>
+<view class="{{animateType12}} prizesCell" style="opacity:1;border-width: {{prizesborderW12}}rpx;">{{prizesArray[12]}}</view>
+<view class="{{animateType13}} prizesCell" style="opacity:1;border-width: {{prizesborderW13}}rpx;">{{prizesArray[13]}}</view>
+<view class="{{animateType14}} prizesCell" style="opacity:1;border-width: {{prizesborderW14}}rpx;">{{prizesArray[14]}}</view>
+<view class="{{animateType15}} prizesCell" style="opacity:1;border-width: {{prizesborderW15}}rpx;">{{prizesArray[15]}}</view>
+
+<view class='prizesStartBtn' catchtap='clickPrizesStartBtn'>开始</view>
+
+  </view>
+</view> -->

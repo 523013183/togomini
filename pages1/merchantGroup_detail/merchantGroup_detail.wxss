@@ -1,0 +1,83 @@
+/* pages1/merchantGroup_detail/merchantGroup_detail.wxss */
+
+.copy {
+  position: fixed;
+  /* top: 740rpx; */
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-radius: 50rpx;
+  /* border-radius: 50%; */
+  background-color: #f9e15c;
+  text-align: center;
+  z-index: 99;
+  font-size: 30rpx;
+}
+
+.foot{
+  z-index: 99;
+  width: 100%;
+  height: 130rpx;
+  background-color: #fff;
+  /* box-shadow: 30rpx 10rpx 10rpx #ccc; */
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.item view{
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+.btn1{
+  width: 220rpx;
+  height: 80rpx;
+  background:#D9B300;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  border-radius: 10rpx;
+}
+.btn2{
+  width: 220rpx;
+  height: 80rpx;
+  background:#FF3366;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  border-radius: 10rpx;
+}
+button::after{
+border:none;
+}
+button{
+  margin: 0;
+  padding: 0;
+  border-radius: 10rpx;
+}
+
+.nav {
+  position: fixed;
+  top: 780rpx;
+  right: 40rpx;
+  width: 70rpx;
+  height: 70rpx;
+  background-color: #ffe252;
+  box-shadow: 0rpx 0rpx 7rpx 1rpx rgba(210, 210, 210, 0.39);
+  border-radius: 10rpx;
+}
+.share {
+  position: fixed;
+  top: 870rpx;
+  right: 30rpx;
+}

@@ -1,0 +1,48 @@
+<view class="product_list">
+  <view class="products_group {{open?'height':''}}" wx:for-item="father" wx:for="{{list}}" wx:key="index">
+    <view data-index="{{index}}" bindtap="open" class="title">
+      <view>{{father.name}}
+        <image mode="aspectFill" style="width:15rpx;height:15rpx;margin-left:10rpx;" src="/images1/arrow_down_b.png"></image>
+      </view>
+      <view class="price">
+        <view>产品数量：{{father.number}}</view>
+        <view>总价：￥{{father.price}}</view>
+      </view>
+    </view>
+    <view wx:if="{{father.open}}" class="part_wrapper {{open?'height':''}}" wx:for="{{father.list}}" wx:key="" wx:for-index="child">
+      <checkbox-group data-child="{{child}}" data-id="{{item.id}}" data-index="{{index}}" data-val="{{item.choose}}" bindchange="checkboxChange">
+        <checkbox hidden="{{imtype}}" checked="{{item.choose}}" />
+      </checkbox-group>
+      <image mode="aspectFill" src='/images1/ccc.png' class='close-icon' data-index2="{{index}}" data-index="{{child}}" catchtap='del' data-price="{{item.original_price}}" data-id="{{item.id}}"></image>
+      <view class="pro_pic" catchtap="linkGoods" data-item="{{item}}" data-id="{{item.id}}" data-userid="{{item.user_id}}">
+        <image mode="aspectFill" src="{{item.pic_url}}"></image>
+      </view>
+      <view class="part">
+        <view catchtap="linkGoods" data-item="{{item}}" data-id="{{item.id}}" data-userid="{{item.user_id}}" class="text_title">{{item.name}}</view>
+        <view class="style" wx:if="{{item.user_id=='0'}}">风格: {{item.styles}}</view>
+        <view class="sizes" wx:if="{{item.user_id=='0'}}">尺寸: {{item.size}}</view>
+        <view class="material" wx:if="{{item.user_id=='0'}}">材质: {{item.material}}</view>
+        <view class="descript" wx:if="{{item.user_id>'0'}}">{{item.detail}}</view>
+        <view class="price">¥{{item.original_price}}
+        </view>
+        <view wx:if="{{!imtype}}" class="number">
+          <view data-index="{{child}}" data-index2="{{index}}" data-num="{{item.number}}" data-id="{{item.id}}" data-father="{{father.number}}" catchtap="reduce">-</view>
+          <input disabled type="number" value="{{item.number}}"></input>
+          <view data-num="{{item.number}}" data-id="{{item.id}}" data-index="{{child}}" data-index2="{{index}}" data-father="{{father.number}}" catchtap="add">+</view>
+        </view>
+        <view data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.original_price}}" bindtap="send" data-pic="{{item.pic_url}}" style="padding:8rpx 35rpx;background-color:#f9e15c;border:none;" class="number" wx:else>发送</view>
+      </view>
+    </view>
+
+  </view>
+  <!-- 计算总价 -->
+  <view class="num" wx:if="{{list.length>0 && !imtype}}">
+    <checkbox-group data-val="{{choose}}" bindchange="checkboxall">
+      <label>
+        全选
+        <checkbox style="margin-left:10rpx;" checked="{{choose}}" />
+      </label>
+    </checkbox-group>
+  </view>
+  <button hidden="{{imtype}}" class="downloadBtn" bindtap='savebtn' wx:if="{{show}}">生成套餐</button>
+</view>

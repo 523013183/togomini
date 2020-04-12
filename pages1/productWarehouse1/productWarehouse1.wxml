@@ -1,0 +1,159 @@
+<!--pages/user/user.wxml-->
+<wxs src="a.wxs" module="tools" />
+
+<view class="warehouse">
+  <view class="title">
+		<navigator class="item" url="/pages1/addTemporaryProduct/addTemporaryProduct">临时商品</navigator>
+		<view class="search_box">
+			<image mode="aspectFill" style="width: 22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+			<input placeholder="请输入关键词搜索" confirm-type="search" bindinput='getKeyword' bindconfirm="searchGoods"/>
+		</view>
+	</view>
+	<view class="choose_wrapper">
+    
+		<view class="choose_item" catchtap='showStyle'>
+      <!--风格-->
+      <view class='choose-item-name' wx:for="{{styleList}}" wx:key="index"  
+            wx:if="{{index==styleIndex && styleIndex!=-1}}">{{styleList[styleIndex].name}}</view>
+      <view class='choose-item-name' wx:if="{{styleIndex==-1}}">风格</view>
+      <image mode="aspectFill" style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+      <view class='chosoe-all' wx:if="{{showStyle}}">
+          <view data-name="全部" data-index="-1" catchtap='chooseStyle'>全部</view>
+          <view wx:for="{{styleList}}" wx:key="index" data-name="{{item.name}}" 
+                data-index="{{index}}" catchtap='chooseStyle'>{{item.name}}</view>
+        </view>
+		</view>
+    <!--空间-->
+		<view class="choose_item" catchtap='showRoom'>
+      <view class='choose-item-name' wx:for="{{roomList}}" wx:key="index"  
+            wx:if="{{index==roomIndex&&roomIndex!=-1}}">{{roomList[roomIndex].name}}</view>
+       <view class='choose-item-name' wx:if="{{roomIndex==-1}}">{{roonname == ''?'空间':roonname}}</view>
+      <image mode="aspectFill" style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+      <view class='chosoe-all' wx:if="{{showRoom}}">
+        <view data-name="全部" data-index="-1" data-id="" catchtap='chooseRoom'>全部</view>
+        <view wx:for="{{roomList}}" wx:key="index" data-name="{{item.name}}" 
+              data-index="{{index}}" data-id="{{item.id}}" catchtap='chooseRoom'>{{item.name}}</view>
+      </view>
+		</view>
+    <!--类型-->
+		<view class="choose_item" catchtap='showCategory'>
+      <view class='choose-item-name'  wx:for="{{cateList}}" wx:key="index"  
+            wx:if="{{index==cateIndex}}">{{cateList[cateIndex].name}}</view>
+      <view class='choose-item-name' wx:if="{{cateIndex==-1}}">类型</view>
+      <image mode="aspectFill" style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+      <view class='chosoe-all' wx:if="{{showCategory}}">
+          <view data-name="全部" data-index="-1" catchtap='chooseCategory'>全部</view>
+          <view wx:for="{{cateList}}" wx:key="index" data-name="{{item.id}}" 
+                data-index="{{index}}" catchtap='chooseCategory'>{{item.name}}</view>
+        </view>
+		</view>
+    <!--价格-->
+		<view class="choose_item" bindtap='price'>
+      <view class='choose-item-name'>价格</view>
+        <image mode="aspectFill" wx:if="{{sort}}" style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+        <image mode="aspectFill" wx:else style="width: 18rpx;height: 25rpx;" src="/images1/topsj.png"></image>
+		</view>
+    <!--筛选-->
+		<view class="choose_item" bindtap="choose">
+      <view class='choose-item-name'>筛选</view>
+        <image mode="aspectFill" style="width: 20rpx;height: 25rpx;" src="/images1/shaixuan.png"></image>
+		</view>
+	</view>
+  <view style="height:180rpx;"></view>
+  <!-- 内容 -->
+	<view class="product" wx:if="{{cartList.length>0}}">
+		<view class="product_item" wx:for="{{cartList}}" wx:item="{{item}}" wx:key="index">
+			<view bindtap="linkGoods" data-index="{{index}}" data-item="{{item}}" data-id="{{item.id}}">
+				<image mode="aspectFill" class="product_img" style="width: 320rpx;height: 320rpx;" src="{{item.pic_url}}"></image>
+			</view>
+			<view class="pro_desc">
+				<view class="product_name">{{item.name}}</view>
+				<view class="product_price">
+					<text class="price">{{item.original_price=='0.00'?item.price:item.original_price}}</text> 
+					<text wx:if="{{replacenum == 2}}" class="add_list" bindtap='addlist' data-id="{{item.id}}" data-item="{{item}}" data-attr="{{item.attr[0].attr_list[0].attr_id}}">加入列表</text>
+          <text  wx:if="{{replacenum == 1}}" class="add_list" bindtap='addreplace' data-id="{{item.id}}" data-item="{{item}}">加入替换项</text>
+				</view>
+			</view>
+		</view>
+	</view>
+  <!-- 无更多数据 -->
+  <view wx:else class="none">
+			<image src="/images1/nomsg.png" style="width: 374rpx;height: 280rpx;"></image>
+  暂无该规格产品</view>
+	<navigator hidden="{{replacenum == 1}}" class="list_mune" url="/pages1/list/list?merchant={{merchant}}">
+		<image mode="aspectFill" style="width: 94rpx;height: 94rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/ca73e3b4f4c3e3d07587fb866f97fec62fd20485.png"></image>
+	</navigator>
+</view>
+<view style='color:#ccc;font-size:30rpx;text-align:center;padding:20rpx;' wx:if="{{cartList.length!=0}}">
+  {{motip}}
+</view>
+
+<!-- 修改价格的弹窗 -->
+<view class="zhe" hidden="{{zhe}}" bindtap="hide" catchtouchmove="myCatchTouch"> 
+</view>
+<view class="tan" hidden="{{zhe}}" catchtouchmove="myCatchTouch">
+    <view>请输入价格</view>
+    <view class="txt2"><text class="add" bindtap="jian">-</text><input value="{{change}}" bindinput="input" type="digit" placeholder="请输入价格"></input><text class="add" bindtap="add">+</text></view>
+    <text class="text" bindtap="save">加入列表</text>
+  </view>
+
+  <!-- 筛选 -->
+<view class="choose" hidden="{{show}}">
+<view bindtap="close" class="close">关闭</view>
+  <scroll-view scroll-y style="width:100%;height:85%;margin-top:60rpx;">
+    <view class="item">
+    <view class="title">价格区间</view>
+    <view class="pricea">
+      <input bindinput="min" type="number" value="{{min}}" placeholder="最低价"></input>
+      <view></view>
+      <input bindinput="max" type="number" value="{{max}}" placeholder="最高价"></input>
+    </view>
+    <view class="priceb">
+      <view bindtap="chooseprice" data-min="{{item.min}}" data-max="{{item.max}}" wx:for="{{price}}" wx:key="index">{{item.price}}</view>
+    </view>
+  </view>
+  <view class="gray"></view>
+  <!-- 风格 -->
+  <view class="style">
+    <view class="title">风格</view>
+    <view class="list">
+      <view class="{{styleIndex==index?'active':''}}" data-name="{{item.name}}" data-index="{{index}}" bindtap="style" wx:for="{{styleList}}" wx:key="index">{{item.name}}</view>
+    </view>
+  </view>
+  <!-- 空间 -->
+  <view class="style">
+    <view class="title">空间</view>
+    <view class="list">
+      <view class="{{roomIndex==index?'active':''}}" bindtap="room" data-name="{{item.name}}" data-index="{{index}}" wx:for="{{roomList}}" wx:key="index">{{item.name}}</view>
+    </view>
+  </view>
+  <!-- 类型 -->
+  <view class="style">
+    <view class="title">类型</view>
+    <view class="list">
+      <view class="{{cateIndex==index?'active':''}}" data-name="{{item.id}}" data-index="{{index}}" bindtap="type" wx:for="{{cateList}}" wx:key="index">{{item.name}}</view>
+    </view>
+  </view>
+  </scroll-view>
+  <view class="btn">
+    <view bindtap="reset" class="cz">重置</view>
+    <view bindtap="submit" class="qr">确定</view>
+  </view>
+</view>
+<view bindtap="rooma" style="width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1;position: fixed;top:0;" hidden="{{!showRoom}}"></view>
+<view bindtap="stylea" style="width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1;position: fixed;top:0;" hidden="{{!showStyle}}"></view>
+<view bindtap="typea" style="width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1;position: fixed;top:0;" hidden="{{!showCategory}}"></view>
+
+
+<!-- 差价 -->
+<view bindtap="plusprice_tan" class="plusprice_tan" hidden="{{plusprice_tan}}">
+  <view catchtap class="plusprice">
+    <view class="title">差价</view>
+    <view class="flex">
+      <view catchtap="subtract">-</view>
+      <input bindinput="input_val" value="{{plus_price}}"></input>
+      <view catchtap="plus">+</view>
+    </view>
+    <view bindtap="qr_plusprice" class="plusprice_btn">确认</view>
+  </view>
+</view>

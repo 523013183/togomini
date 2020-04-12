@@ -1,0 +1,84 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.8.3",
+	"appid": "wx119131c3aa6eb527",
+	"projectname": "togomini",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "pages1/postCard/postCard",
+					"pathName": "pages1/postCard/postCard",
+					"query": "id=19&user_id=67",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages1/login/login",
+					"pathName": "pages1/login/login",
+					"query": "id=574&type=3",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages1/commodityDetail/commodityDetail",
+					"pathName": "pages1/commodityDetail/commodityDetail",
+					"query": "id=1093&index2=5&index=1&collect=1&show=1",
+					"scene": null
+				}
+			]
+		}
+	}
+}

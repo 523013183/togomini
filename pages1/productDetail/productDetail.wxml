@@ -1,0 +1,118 @@
+<!-- <scroll-view scroll-y> -->
+<view class="project_detail">
+
+	<view class="top">
+		<image mode="aspectFill" class="bg_pic" src="{{picTitle}}"></image>
+		<view class="bg_mask"></view>
+		<view class="text">
+			<text>{{projectName}}</text>
+			<view class="project_desc" data-detail="{{projectRemark}}" bindtap='detail'>{{projectRemark=='null'?'':projectRemark}}</view>
+		</view>
+	</view>
+	<!-- 视频 -->
+	<view wx:if="{{video}}" class="search">
+		<view class="title">
+			<view>
+				<text>视频效果</text>
+			</view>
+		</view>
+		<video style="width:100%;height:200px;" src="{{video}}">
+		</video>
+	</view>
+	<!-- 效果图 -->
+	<view class="search">
+		<view class="title">
+			<view>
+				<text>效果图</text>
+				<text class="num"><text class="project_num">{{picArr.length}}</text>张</text>
+			</view>
+		</view>
+		<view class="pic_group" wx:for="{{picArr}}" wx:key="index" wx:index="{{item}}" data-index='{{index}}' catchtap='previewImg'>
+			<image class="image {{item.show ? 'active': ''}}" mode="aspectFill" mode="widthFix" src="{{item.show?item.url:'/images1/timg.gif'}}"></image>
+		</view>
+	</view>
+	<view class="share" bindtap="show_mask" hidden="{{!back}}">
+		<image mode="aspectFill" style="width: 94rpx;height: 94rpx;" src="/images1/share_project.png"></image>
+	</view>
+
+	<view class="mask" hidden="{{hidden}}">
+		<view class="mask-1" bindtap="hidden_mask"></view>
+		<view class="share_wrapper">
+			<view class="shareTo">
+				<view class="top_title">分享到</view>
+				<view class="cont">
+					<view class="create_ad" bindtap="showAd">
+						<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="/images1/share_ad_icon.png"></image>
+						<view class="text">生成分享海报</view>
+					</view>
+					<view class="share_friend">
+						<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/fb5bc2da6e9e40a4d17fb02272e849a58beab216.png"></image>
+						<view class="text">转发给好友</view>
+					</view>
+				</view>
+
+			</view>
+		</view>
+	</view>
+	<view class="mask" hidden="{{hidden1}}" catchtouchmove="ture">
+		<view class="mask-1" catchtap='hideMask'></view>
+		<view class="mask-2 ">
+			<image mode="aspectFill" class="share_box" src='{{sharePic}}'>
+				<button class="save_pic" bindtap="hiddenAd">保存图片</button>
+			</image>
+		</view>
+	</view>
+
+</view>
+<view hidden='{{back}}' style="height:100rpx;z-index:-1;"></view>
+
+<!-- </scroll-view> -->
+<!--  -->
+<view class="foot" hidden='{{back}}'>
+	<view class="item" bindtap="show_mask">
+		<image mode="aspectFill" style="width:50rpx;height:50rpx;" src="/images/fenxiang.png"></image>
+		<!-- <view>海报</view> -->
+	</view>
+	<view class="item" bindtap="like">
+		<image mode="aspectFill" style="width:50rpx;height:50rpx;" src="{{like == false ? '/images/c2.png' : '/images/c1.png'}}"></image>
+	</view>
+	<view bindtap="yuyue" class="btn1" wx:if='{{myphone != ""}}'>预约TA</view>
+	<button wx:if="{{access_token && myphone==''}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="btn1">预约TA</button>
+	<view bindtap="login" class="btn1" wx:if='{{!access_token}}'>预约TA</view>
+	<view class="btn2" bindtap="phone">联系TA</view>
+</view>
+<!--  -->
+<view class="nav" bindtap='backindex' hidden='{{back}}'>
+	<image mode="aspectFill" style="width: 70rpx;height: 70rpx;" src='/images1/product_item_transac.png'></image>
+</view>
+<!-- bianji -->
+<text wx:if="{{myId==userId}}" class="redact" style="font-size:24rpx;" bindtap="modifyMsg" data-id="{{pro_id}}" data-name="{{projectName}}" data-video="{{video}}" data-remarks="{{projectRemark}}" data-pic="{{picArr}}">编辑</text>
+<view class='masking' hidden="{{hiddenShare}}" bindtap='hiddenMasking1'>
+	<view class="share_wrapper">
+		<view class="shareTo">
+			<view class="top_title">分享到</view>
+			<view class="cont">
+				<button id='1' class="create_ad tofriend" data-name="shareBtn" open-type="share">
+					<view>
+						<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="/images1/share_ad_icon.png"></image>
+					</view>
+					<text class="text">微信好友</text>
+				</button>
+				<view class="share_friend" bindtap="cartShare">
+					<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/fb5bc2da6e9e40a4d17fb02272e849a58beab216.png"></image>
+					<view class="text">分享卡片</view>
+				</view>
+			</view>
+
+		</view>
+	</view>
+</view>
+
+
+<!-- 作品详情查看更多弹窗 -->
+<view bindtap='hide' hidden='{{detail_}}' style='width:500rpx;min-height:100rpx;top:450rpx;left:125rpx;background-color:rgba(0,0,0,.7);position:fixed;z-index:9999;border-radius:20rpx;padding:20rpx 10rpx;box-sizing:border-box;color:#fff;text-align:center;'>{{detail_two}}</view>
+
+<!-- 分享海报 -->
+<view id="canvas2" style="width:316px;height:461px;margin-top:-999999999rpx;">
+	<canvas style="width:100%;height:100%;" canvas-id="canvas"></canvas>
+</view>

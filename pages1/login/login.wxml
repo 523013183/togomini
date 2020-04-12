@@ -1,0 +1,6 @@
+<view class="login_wrapper" wx:if="{{can_getuserinfo==0}}">
+	<image class="weixin_icon" style="width: 205rpx;height: 205rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/7b9ffede6a5f96cd4d886fcb824d4160a5adc386.png"></image>
+	<view class="text1">微信登录</view>
+	<view>使用微信授权可快速登录</view>
+	<button bindgetuserinfo="getUserInfo" bindtap="myLogin" class="login-btn" openType="getUserInfo">授权登录</button>
+</view>

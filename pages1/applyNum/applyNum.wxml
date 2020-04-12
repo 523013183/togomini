@@ -1,0 +1,26 @@
+<view class="apply_num">
+    <!-- <view class="search">
+		<image class="search_icon" style="width:22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+		<input placeholder="输入姓名查找" />
+    </view> -->
+	<view style='line-height:80rpx;display: flex;display: -webkit-flex;align-items: center;-webkit-align-items: center;text-align:center;background:#F9E15C;'>
+  		<view style='flex-grow: 111;-webkit-flex-grow:111;' wx:for="{{navContent}}" wx:key="index" wx:if="{{item.value}}">
+        <view>{{item.key}}</view>
+        <view wx:for="{{enrollList}}" wx:key="index" wx:for-item="list" wx:for-index='nextIndex' style='height:100rpx;background:white;line-height:100rpx;'>
+          <view wx:if="{{item.key!='电话'}}">{{list.form_content[index].value}}</view>
+          <view wx:if="{{item.key=='电话'}}" class="tel nphone" data-mobile="{{list.form_content[index].value}}" catchtap='callDesigner'>
+            <image style="width:33rpx;height: 33rpx;" src="/images1/phone_icon.png"></image>
+            <text>{{list.form_content[index].value}}</text>
+          </view>
+        </view>
+        
+      </view>
+  </view>
+ 
+
+
+</view>
+
+
+
+

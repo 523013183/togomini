@@ -1,0 +1,93 @@
+<view class="create_card">
+	<view class="title">基本信息</view>
+	<view class="content">
+		<view class="item">
+			<text>头像</text>
+			<view class="right_part">
+				<image bindtap="change_avatar" style="width: 120rpx;height: 120rpx;border-radius: 1000rpx;" src="{{avatarSrc}}"></image>
+				<image style="width: 12rpx;height: 22rpx;" src="/images1/arrow_right.png"></image>				
+			</view>
+		</view>
+		<view class="item item_pen">
+			<text>姓名</text>
+			<view class="right_part">
+				<input placeholder="请输入姓名" value="{{userName}}" bindinput="bindInput1" maxlength="12"/>
+				<image style="width: 28rpx;height: 32rpx;" src="/images1/pencil_y.png"></image>				
+			</view>
+		</view>
+		<view class="item item_pen">
+			<text>手机</text>
+			<view class="right_part">
+				<input disabled placeholder="请输入手机号码" value="{{mobile}}" type="number" maxlength="11" bindinput="handleInput"/>
+				<image style="width: 28rpx;height: 32rpx;" src="/images1/pencil_y.png"></image>				
+			</view>
+		</view>	
+		<view class="item item_pen">
+			<text>微信号</text>
+			<view class="right_part">
+				<input placeholder="请输入微信号" value="{{weixin}}" bindinput="bindInput3" minlength="6" maxlength="20"/>
+				<image style="width: 28rpx;height: 32rpx;" src="/images1/pencil_y.png"></image>				
+			</view>
+		</view>	
+	</view>
+	<view class="title">职业信息</view>
+	<view class="content content2">
+		<view class="item">
+			<text>职业</text>
+			<picker mode='selector' class="input-layout" range='{{profession}}' range-key='name' value='{{professionIndex}}' bindchange='getProfession'>
+				<view class="right_part">
+					<view>{{professionIndex >= 0  ? profession[professionIndex].name : '选择职业'}}</view>
+					<image style="width: 12rpx;height: 22rpx;" src="/images1/arrow_right.png"></image>				
+				</view>
+			</picker>
+		</view>
+		<view class="item">
+			<text>从业年限</text>
+			<picker mode='selector' class="input-layout" range='{{years}}' value='{{yearsIndex}}' bindchange='getYears'>
+				<view class="right_part">
+					<view>{{yearsIndex >= 0  ? years[yearsIndex] : '请选择年限'}}</view>
+					<image style="width: 12rpx;height: 22rpx;" src="/images1/arrow_right.png"></image>				
+				</view>
+			</picker>
+		</view>
+		<view class="item">
+			<text>设计费用</text>
+			<navigator class="right_part" url="/pages1/designPrice/designPrice">
+				<view>{{designPrice}}</view>
+				<image style="width: 12rpx;height: 22rpx;" src="/images1/arrow_right.png"></image>				
+			</navigator>
+		</view>	
+		<view class="item">
+			<text>擅长风格</text>
+			<view class="right_part" bindtap="choosestyle">
+				<view>{{styleType.length >0  ? styleType : '请选择擅长的设计风格'}}</view>
+				<image style="width: 12rpx;height: 22rpx;" src="/images1/arrow_right.png"></image>				
+			</view>
+		</view>	
+		<view class="item personal">
+			<text>个人简介</text>
+			<view class="right_part" bindtap="linkPersonal" data-text="{{personaldesc}}">
+				<view class="text">{{personaldesc}}</view>
+				<image style="width: 12rpx;height: 22rpx;" src="/images1/arrow_right.png"></image>				
+			</view>
+		</view>	
+	</view>
+	<view class="bg_gray"></view>
+	<view class="bottom">
+		<button bindtap="saveCardMsg">保存</button>
+	</view>
+	<!-- 弹窗 -->
+	<view class="mask" hidden="{{hidden}}">
+		<view class="mask-1" bindtap="hidden_mask"></view>
+		<view class="share_wrapper">
+			<view class="shareTo">
+				<view class="top_title">
+					<text class="sure" bindtap="sure">确定</text>
+				</view>
+				<view class="cont">
+					<text class="{{item.check?'style_choose':''}}" wx:for="{{styles}}" wx:item="{{item}}" wx:key="index" data-index="{{index}}" bindtap="isChoose3">{{item.style}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

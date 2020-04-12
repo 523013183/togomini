@@ -1,0 +1,229 @@
+<!--pages/user/user.wxml-->
+<view class="head">
+  <view class="add_new">
+    <view class="search">
+      <image class="search_icon" style="width:22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+      <!-- 请输入关键词或手机号搜索 -->
+      <input placeholder="请输入关键词搜索" confirm-type="search" bindinput='getKeyword' bindconfirm='search' />
+    </view>
+    <!-- 邀请码 -->
+    <view hover-class="bg" class="share" bindtap="share">邀请码</view>
+  </view>
+  <!-- 筛选 -->
+  <view class="choose" wx:if="{{tabindex==1}}">
+    <view bindtap="v">是否认证
+      <switch checked="{{!v}}"></switch>
+    </view>
+    <view bindtap="date">{{datename}}
+      <image src="/images1/arrow_down_b.png"></image>
+    </view>
+    <view bindtap="role">{{rolename==''?'角色筛选':rolename}}
+      <image src="/images1/arrow_down_b.png"></image>
+    </view>
+  </view>
+  <!-- 套餐筛选 -->
+  <view class="choose" wx:if="{{tabindex==3 || tabindex==4}}">
+    <view bindtap="packges">是否样板间套餐
+      <switch checked="{{shareroom}}"></switch>
+    </view>
+  </view>
+</view>
+<view style="{{tabindex==2?'height:100rpx;':'height:180rpx;'}}"></view>
+<!-- 设计师 -->
+<view class="active_list" wx:if="{{tabindex==1}}">
+  <view class="active">
+    <view class="active_item" wx:for="{{cardCaseArr}}" wx:item="{{item}}"  wx:key="index">
+      <view class="content" data-index="{{index}}" data-id="{{item.id}}" data-userid="{{item.user_id}}" catchtap='goDetail'>
+        <image class="active_img" src="{{item.avatar_url}}"></image>
+        <view class="right_part">
+          <view class="detail">
+            <view class="name">{{item.user_name}}</view>
+            <view class="year">{{item.job}}-{{item.job_year}}年</view>
+            <view class="style">手机号-{{item.mobile}}</view>
+            <view hidden="{{item.job.indexOf('设计') != -1}}" class="price">设计费用-{{item.design_fees=='请选择设计费用'?'无':item.design_fees}}</view>
+          </view>
+        </view>
+        <view class="right" data-index="{{index}}">
+          <view catchtap="regulate" data-userid="{{item.user_id}}">
+            <image style="width: 40rpx;height: 40rpx;" src="/images/setting.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="buttom">
+        <view class="flex" catchtap="callWx" data-wechat="{{item.wechat}}">
+          <image style="width: 40rpx;height: 40rpx;" src="/images/wx2.png"></image>
+          <view>微信联系</view>
+        </view>
+        <view class="flex border" catchtap="callPhone" data-mobile="{{item.mobile}}">
+          <image style="width: 40rpx;height: 40rpx;" src="/images/iphone.png"></image>
+          <view>电话联系</view>
+        </view>
+        <!-- 动态 -->
+        <view class="dontai flex" catchtap="dontai" data-id="{{item.user_id}}">
+          <image style="width: 40rpx;height: 40rpx;" src="/images/he.png"></image>
+          <view>TA的动态</view>
+        </view>
+      </view>
+    </view>
+    <view style="text-align:center;margin-top:300rpx;" hidden="{{cardCaseArr.length>0}}">暂无数据</view>
+  </view>
+</view>
+<!-- 样板间 -->
+<view class="active_list" wx:if="{{tabindex==2}}">
+  <view class="active">
+    <view class="active_item" wx:for="{{shareroomdesignerlists}}" wx:item="{{item}}"  wx:key="index">
+      <view class="content" data-index="{{index}}" data-id2="{{item.id}}" data-id="{{item.card_id}}" data-userid="{{item.user_id}}" catchtap='goDetail'>
+        <image class="active_img" src="{{item.avatar_url}}"></image>
+        <view class="right_part">
+          <view class="detail">
+            <view class="name">{{item.user_name}}</view>
+            <view class="year">{{item.job}}-{{item.job_year}}年</view>
+            <view class="style">手机号-{{item.mobile}}</view>
+            <view hidden="{{item.job.indexOf('设计') != -1}}" class="price">设计费用-{{item.design_fees=='请选择设计费用'?'无':item.design_fees}}</view>
+          </view>
+        </view>
+        <view class="right" data-index="{{index}}">
+          <view catchtap="setshareroomdesigner" data-id2="{{item.id}}">
+            <image style="width: 40rpx;height: 40rpx;" src="/images/setting.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="buttom">
+        <view class="flex" catchtap="callWx" data-wechat="{{item.wechat}}">
+          <image style="width: 40rpx;height: 40rpx;" src="/images/wx2.png"></image>
+          <view>微信联系</view>
+        </view>
+        <view class="flex border" catchtap="callPhone" data-mobile="{{item.mobile}}">
+          <image style="width: 40rpx;height: 40rpx;" src="/images/iphone.png"></image>
+          <view>电话联系</view>
+        </view>
+        <!-- 动态 -->
+        <view class="dontai flex" data-id="{{item.user_id}}">
+          <image style="width: 40rpx;height: 40rpx;" src="/images/he.png"></image>
+          <view wx:if="{{item.status==1}}" style="color:green;">已通过</view>
+          <view wx:if="{{item.status==3}}" style="color:red;">已拒绝</view>
+          <view wx:if="{{item.status==0}}">待处理</view>
+        </view>
+      </view>
+    </view>
+    <view style="text-align:center;margin-top:300rpx;" hidden="{{shareroomdesignerlists.length>0}}">暂无数据</view>
+  </view>
+</view>
+<!-- 套餐 -->
+<view class="active_list" wx:if="{{tabindex==3}}">
+  <view class="active">
+    <view class="active_item" wx:for="{{shareroompackagelists}}" wx:if="{{item.amount!=null}}" wx:item="{{item}}"  wx:key="index">
+      <view class="content" data-index="{{index}}" data-id="{{item.package_id}}" catchtap='packagedetail'>
+        <image class="active_img" src="{{item.cover_img}}"></image>
+        <view class="right_part">
+          <view class="detail">
+            <view class="name">{{item.name}}</view>
+            <view class="year">价格：{{item.amount}}</view>
+            <view class="style">风格：{{item.style}}</view>
+            <view class="price">简介：{{item.description==''||item.description==null?'无':item.description}}</view>
+          </view>
+        </view>
+        <view class="right" data-index="{{index}}">
+          <view catchtap="setpackages" data-id="{{item.id}}">
+            <image style="width: 40rpx;height: 40rpx;" src="/images/setting.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="buttom">
+        <view class="dontai flex" data-id="{{item.user_id}}">
+          <image style="width: 40rpx;height: 40rpx;" src="/images/he.png"></image>
+          <view wx:if="{{item.status==1}}" style="color:green;">已通过</view>
+          <view wx:if="{{item.status==3}}" style="color:red;">已拒绝</view>
+          <view wx:if="{{item.status==0}}">待处理</view>
+        </view>
+      </view>
+    </view>
+    <view style="text-align:center;margin-top:300rpx;" hidden="{{shareroompackagelists.length>0}}">暂无数据</view>
+  </view>
+</view>
+<!-- 户型套餐 -->
+<view class="active_list" wx:if="{{tabindex==4}}">
+  <view class="active">
+    <view class="active_item" wx:for="{{roomtypepackagelists}}" wx:if="{{item.amount!=null}}" wx:item="{{item}}"  wx:key="index">
+      <view class="content" data-index="{{index}}" data-id="{{item.package_id}}" catchtap='packagedetail'>
+        <image class="active_img" src="{{item.cover_img}}"></image>
+        <view class="right_part">
+          <view class="detail">
+            <view class="name">{{item.name}}</view>
+            <view class="year">价格：{{item.amount}}</view>
+            <view class="style">风格：{{item.style}}</view>
+            <view class="price">简介：{{item.description==''?'无':item.description}}</view>
+          </view>
+        </view>
+        <view class="right" data-index="{{index}}">
+          <view catchtap="setshareroomdesigner" data-id="{{item.id}}">
+            <image style="width: 40rpx;height: 40rpx;" src="/images/setting.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="buttom">
+        <view class="dontai flex" data-id="{{item.user_id}}">
+          <image style="width: 40rpx;height: 40rpx;" src="/images/he.png"></image>
+          <view wx:if="{{item.status==1}}" style="color:green;">已通过</view>
+          <view wx:if="{{item.status==3}}" style="color:red;">已拒绝</view>
+          <view wx:if="{{item.status==0}}">待处理</view>
+        </view>
+      </view>
+    </view>
+    <view style="text-align:center;margin-top:300rpx;" hidden="{{roomtypepackagelists.length>0}}">暂无数据</view>
+  </view>
+</view>
+
+<!-- 底部 -->
+<view style="heihgt:100rpx;padding-bottom: calc(env(safe-area-inset-bottom));"></view>
+<view class="tab">
+  <view class="{{tabindex==1?'tabactive':''}}" data-index="1" bindtap="tabtop">设计师</view>
+  <view class="{{tabindex==2?'tabactive':''}}" data-index="2" bindtap="tabtop">样板间</view>
+  <view class="{{tabindex==3||tabindex==4?'tabactive':''}}" data-index="3" bindtap="tabtop">套餐</view>
+</view>
+
+<!-- 弹出窗（角色管理） -->
+<view catchtouchmove="touchHandler" bindtap="hidelist" hidden="{{!show}}" class="shade"></view>
+<view catchtouchmove="touchHandler" hidden="{{!show}}" class="list">
+  <view style="text-align:center;font-size:34rpx;line-height:80rpx;">分配角色</view>
+  <scroll-view scroll-y>
+    <view class="{{active==index?'activea':''}}" bindtap="allot" wx:for="{{levellist}}" data-id="{{item.id}}" data-level="{{item.level}}"  wx:key="index" data-index="{{index}}">{{item.name}}</view>
+  </scroll-view>
+  <view class="btn" bindtap="btn">确认</view>
+</view>
+<!-- 日期（筛选） -->
+<view catchtouchmove="touchHandler" hidden="{{!show2}}" class="shaixuan">
+  <scroll-view class="scroll-view" scroll-y style="background-color:#fff;">
+    <view bindtap="choosedate" data-name="{{item.name}}" wx:for="{{date}}"  wx:key="index" data-id="{{item.id}}">{{item.name}}</view>
+  </scroll-view>
+</view>
+<!-- 角色（筛选） -->
+<view catchtouchmove="touchHandler" hidden="{{!show3}}" class="shaixuan">
+  <scroll-view class="scroll-view" scroll-y style="background-color:#fff;">
+    <view bindtap="rolea" data-name="全部" data-id="-1" data-level="-1"  wx:key="index">全部</view>
+    <view bindtap="rolea" wx:for="{{levellist}}" data-name="{{item.name}}" data-id="{{item.id}}" data-level="{{item.level}}"  wx:key="index">{{item.name}}</view>
+  </scroll-view>
+</view>
+<view catchtouchmove="touchHandler" bindtap="hidechoose" hidden="{{!show2}}" class="shade" style="z-index:4;"></view>
+<view catchtouchmove="touchHandler" bindtap="hidechoose1" hidden="{{!show3}}" class="shade" style="z-index:4;"></view>
+
+
+<view class="bg2" wx:if="{{share}}" bindtap="hide">
+  <view class="code">
+    <!--  mode="widthFix" -->
+    <image src="{{mpimg}}"></image>
+  </view>
+  <view class="view">
+    <view>
+      <button open-type="share" hover-class="none">转发给好友</button>
+    </view>
+    <view catchtap="save">
+      <button hover-class="none">保存至相册</button>
+    </view>
+  </view>
+</view>
+
+<!-- 画布 -->
+<view id="canvas_" style="width:750px;height:1334px;position: absolute;top: -99999999999999999999rpx;">
+  <canvas canvas-id="canvas" style="width:750px;height:1334px;"></canvas>
+</view>

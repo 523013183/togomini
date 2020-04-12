@@ -1,0 +1,32 @@
+<view class="product_list">
+  <view class="products_group">
+    <view class="part_wrapper" wx:for="{{cartList}}" wx:item="{{item}}" wx:key="index">
+      <image mode="aspectFill" src='/images1/ccc.png' class='close-icon' catchtap='del' data-index="{{index}}" data-id="{{item.idid}}"></image>
+      <view class="pro_pic" catchtap="linkGoods" data-item="{{item}}" data-id="{{item.id}}" data-userid="{{item.user_id}}">
+        <image mode="aspectFill" src="{{item.pic_url}}"></image>
+      </view>
+      <view class="part">
+        <view catchtap="linkGoods" data-item="{{item}}" data-id="{{item.id}}" data-userid="{{item.user_id}}" class="text_title">{{item.name}}</view>
+        <view class="style" wx:if="{{item.user_id=='0'}}">风格: {{item.styles}}</view>
+        <view class="sizes" wx:if="{{item.user_id=='0'}}">尺寸: {{item.size}}</view>
+        <view class="material" wx:if="{{item.user_id=='0'}}">材质: {{item.material}}</view>
+        <view class="descript" wx:if="{{item.user_id>'0'}}">{{item.detail}}</view>
+        <view class="price">¥{{item.original_price}} </view>
+        <view class="number">
+          <view data-index="{{index}}" data-num="{{item.number}}" catchtap="reduce">-</view>
+          <input disabled type="number" value="{{item.number}}"></input>
+          <view data-num="{{item.number}}" data-index="{{index}}" catchtap="add">+</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <!-- 计算总价 -->
+  <view class="num">
+    <view>商品数量：{{num}}</view>
+    <view>商品总价：
+      <text>￥{{pricenum}}</text>
+    </view>
+  </view>
+  <button class="downloadBtn" bindtap='savebtn'>保存</button>
+</view>

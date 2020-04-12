@@ -1,0 +1,118 @@
+<view class="head">
+  <view class="logo1">
+    <image mode="aspectFill" class="logo" src="http://oss.diywoju.com/web/uploads/image/store_1/26da69061d3f1e5ea0bdd72e02ea7ef0d2711e4e.png"></image>设计知+</view>
+  <image mode="aspectFill" bindtap="login" wx:if="{{!login}}" class="me" src="/images/person.png"></image>
+  <view class="user_name" wx:else>{{user_name}}</view>
+</view>
+<view class="search">
+  <view class="input">
+    <view class="choose">商品
+    </view>
+    <input bindconfirm="searchGoods" bindinput="getKeyword" placeholder="输入关键词检索"></input>
+  </view>
+</view>
+<!-- 轮播 -->
+<swiper style="width: 750rpx;height: 400rpx;" circular autoplay interval="3000" duration="400">
+  <swiper-item wx:for="{{imgUrls}}" wx:key="index">
+    <image mode="aspectFill" style="width:100%;height:100%;" src="{{item.pic_url}}"></image>
+  </swiper-item>
+</swiper>
+<!-- 样板间 -->
+<view class="content">
+  <view class="c-title">
+    <text>样板间</text>
+    <view bindtap="shareroom">
+      <text class="{{opuslistactive==0?'active':''}}">更多</text>
+    </view>
+  </view>
+  <view class="c-list">
+    <view bindtap="prototyperoomdetail" data-id="{{item.id}}" wx:for="{{sharproomlist}}" wx:key="index" class="a-item" wx:if="{{index<3}}">
+      <image mode="aspectFill" class="a-img" src="{{item.pic[0]}}"></image>
+      <view class="bottom2">
+        <view style="color:red;">{{item.price}}</view>
+        <view>{{item.style_name}}</view>
+        <view>{{item.room_no}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 产品 -->
+<view class="content">
+  <view class="c-title">
+    <text>产品</text>
+    <text bindtap="moreproduct">
+    <text>更多</text></text>
+  </view>
+  <view class="c-list">
+    <view bindtap="linkGoods" data-id="{{item.id}}" wx:for="{{itemlist}}" wx:if="{{index<6}}" wx:key="index" class="c-item">
+      <image mode="aspectFill" src="{{item.pic_url}}"></image>
+      <view class="buttom">
+        <text>￥{{item.original_price}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 设计师 -->
+<view class="content">
+  <view class="c-title">
+    <text>设计师</text>
+    <view>
+      <text data-index='0' bindtap="bindstylist" class="{{stylistactive==0?'active':''}}" style="margin-right:50rpx;">最新</text>
+      <text data-index='1' bindtap="bindstylist" class="{{stylistactive==1?'active':''}}">推荐</text>
+    </view>
+  </view>
+  <scroll-view style="height:300rpx;padding-top:20rpx;box-sizing:border-box;" scroll-x scroll-left="{{scroll_left}}">
+    <view bindtap="goDetail" data-id="{{item.id}}" data-userid="{{item.user_id}}" wx:for="{{stylist}}" wx:key="index" wx:if="{{index<6}}" class="stylist">
+      <image mode="aspectFill" class="avater" src="{{item.avatar_url}}"></image>
+      <view class="right">
+        <view class="name">{{item.user_name}}</view>
+        <view class="label" style="margin-bottom:10rpx;">
+          <text style="color:#f9e15c;font-weight: bold;">已认证</text>
+          <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;|&nbsp;&nbsp;</text>
+          <text>{{item.click}} 浏览</text>
+        </view>
+        <view class="label" style="margin-bottom:10rpx;">简介：{{item.introduction==''?'暂无':item.introduction}}</view>
+        <view class="label">标签：{{item.style}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>
+<!-- 案例 -->
+<view class="content">
+  <view class="c-title">
+    <text>案例</text>
+    <view>
+      <text bindtap="bindopus" data-index="1" class="{{opuslistactive==1?'active':''}}" style="margin-right:50rpx;">最新</text>
+      <text bindtap="bindopus" data-index="0" class="{{opuslistactive==0?'active':''}}">推荐</text>
+    </view>
+  </view>
+  <view class="c-list" style="{{auto?'max-height:4000rpx;':'max-height:1740rpx;'}}">
+    <view bindtap="link_project" data-id="{{item.id}}" wx:for="{{opuslist}}" wx:key="index" class="a-item">
+      <image mode="aspectFill" class="a-img" src="{{item.pic}}"></image>
+      <view class="bottom">
+        <view class="a-title">{{item.name}}</view>
+        <view class="a-detail">{{item.remarks==''?'暂无介绍':item.remarks}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--  -->
+<view bindtap="auto" wx:if="{{opuslist.length>3}}" class="auto">
+  <image mode="aspectFill" src="{{!auto?'/images1/xiala.png':'/images1/shangla.png'}}"></image>
+</view>
+<!-- 套餐 -->
+<view class="content">
+  <view class="c-title">
+    <text>套餐</text>
+    <view>
+      <text bindtap="bingpackage" data-index='1' class="{{packagelistactive==1?'active':''}}" style="margin-right:50rpx;">最新</text>
+      <text bindtap="bingpackage" data-index='0' class="{{packagelistactive==0?'active':''}}">推荐</text>
+    </view>
+  </view>
+  <scroll-view scroll-x bindscroll="bindscroll" scroll-left="{{scroll_left}}">
+    <!-- 选择模板 -->
+    <import src="/template/choose/choose.wxml" />
+    <template is="packagelist" data="{{packagelist}}" />
+  </scroll-view>
+</view>

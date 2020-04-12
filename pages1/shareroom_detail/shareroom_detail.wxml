@@ -1,0 +1,103 @@
+<view class='ceshi_swiper'>
+  <swiper class='read_swiper' indicator-dots='{{swiper.indicatorDots}}' autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" current="{{swiper.current}}">
+    <block wx:for="{{swiper.imgUrls}}" wx:key="index">
+      <swiper-item>
+        <image mode="scaleToFill" src="{{item}}" class="slide-image"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!--  -->
+<!-- <view class="tab">
+  <view>高清图片</view>
+  <view>全景漫游</view>
+</view> -->
+<!-- 样板间信息 -->
+<view class="roomdate">
+  <view class="roomname">
+    <text>{{data.room_no}}</text>
+    <text class="blue" bindtap="otherhouse">其他户型</text>
+  </view>
+  <!--  -->
+  <view class="itemnum">
+    <view class="roomitem">
+      <view>户型：</view>
+      <view>{{data.apartment}}</view>
+    </view>
+    <view class="roomitem">
+      <view>装修风格：</view>
+      <view>{{data.style}}</view>
+    </view>
+    <view class="roomitem">
+      <view>装修总价：</view>
+      <view class="red">￥{{data.price}}</view>
+    </view>
+    <view class="roomitem">
+      <view>备注：</view>
+      <view>{{data.remark}}</view>
+    </view>
+    <view class="roomitem" style="width:100%;">
+      <view>样板间地址：</view>
+      <view>{{data.address}}</view>
+    </view>
+  </view>
+</view>
+<!-- 样板间套餐 -->
+<view class="content">
+  <view class="c-title">
+    <view>样板间套餐</view>
+  </view>
+  <!-- 选择模板 -->
+  <import src="/template/choose/choose.wxml" />
+  <template is="package" data="{{goods}}" />
+</view>
+<!-- 设计师套餐 -->
+<view class="content">
+  <view class="c-title">
+    <view>其他设计师套餐</view>
+    <view bindtap="otherpackages">更多</view>
+  </view>
+  <!-- -->
+  <view style="margin-top:15rpx;" wx:for="{{data.designer}}" wx:key="index" wx:for-item="designer">
+    <view class="stlylistitem" bindtap="gotopostcar" data-userid="{{designer.user_id}}" data-carid="{{designer.card_id}}">
+      <image mode="aspectFill" class="avater" src="{{designer.avatar_url}}"></image>
+      <view class="stlylistdate">
+        <text class="font">{{designer.user_name}}</text>
+        <text>{{designer.job}}</text>
+        <text>风格标签：{{designer.style}}</text>
+        <text>设计费用：{{designer.design_fees}}</text>
+      </view>
+      <!--  -->
+      <image mode="aspectFill" catchtap="phone" class="phone" src="/images1/tel_y.png" data-id="{{designer.mobile}}"></image>
+      <image mode="aspectFill" catchtap="wechat" class="wechat" src="/images1/weixin_y.png" data-id="{{designer.wechat}}"></image>
+    </view>
+    <scroll-view scroll-x class="scroll-view2">
+      <view class="s-item" wx:for="{{data.package[designer.user_id]}}" wx:key="index" bindtap="packagedetail" data-id="{{item.id}}">
+        <image mode="aspectFill" mode="scaleToFill" class="s-img" src="{{item.cover_img}}"></image>
+        <view class="s-bottom">
+          <view class="sb-img" wx:for="{{item.goods}}" wx:for-item="item2" wx:for-index="index2" wx:if="{{index2<4}}" wx:key="index">
+            <image mode="aspectFill" src="{{item2.cover_pic}}"></image>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view style="text-align:center;height:100rpx;line-height:100rpx;" wx:if="{{data.designer.length==0||data.package.length==0}}">暂无设计师套餐</view>
+</view>
+<!-- 底部按钮 -->
+<view style="height:150rpx;"></view>
+<view class="foota" wx:if="{{login}}">
+  <view wx:if="{{data.join_status==-1&&level_name!='普通用户'}}" class="join" catchtap="joinroom">申请加入</view>
+  <view wx:if="{{data.join_status==0}}" class="join" catchtap="joinroom">申请审核中</view>
+  <view wx:if="{{data.join_status==3}}" class="join">已被拒绝申请</view>
+  <view wx:if="{{data.join_status==1}}" class="join" catchtap="popularize">专属页</view>
+  <!-- <view wx:if="{{data.join_status==1}}" class="exclusive" catchtap="popularize">专属</view> -->
+  <view wx:if="{{data.join_status==-1&&level_name=='普通用户'}}" class="join" catchtap="look">申请参观</view>
+</view>
+<view class="foota" wx:if="{{!login}}">
+  <view class="join" catchtap="login">登录</view>
+</view>
+
+<!-- 填写申请信息 -->
+<import src="/template/choose/choose.wxml" />
+<template is="submitdata" data="{{date}}" />

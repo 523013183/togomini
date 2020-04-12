@@ -1,0 +1,70 @@
+
+<form reportSubmit bindsubmit="onFormId">
+    <view class="create-card-layout" style="box-sizing: border-box;">
+        <view catch:tap="choosePhoto" style="display: flex; justify-content: space-between; align-items: center; height: 176rpx; ">
+            <text class="top_text">选择头像</text>
+            <view style="position: relative; width: 96rpx; height: 96rpx; margin-right: 40rpx;">
+                <image class="avatar" mode="aspectFill" src="{{userInfo.avatar ? userInfo.avatar : '/images/avatar_default_new.png'}}"></image>
+                <view class="camera-layout">
+                    <image src="/images/camera.png" style="width: 25rpx; height: 25rpx;"></image>
+                </view>
+            </view>
+        </view>
+        <view class="seperator"></view>
+        <view class="input-container">
+            <text class="input-name">姓名</text>
+            <input bindinput="getName" class="input-layout" maxlength="10" placeholder="请输入姓名" placeholderStyle="color: #bbb; font-size: 32rpx;" value="{{userInfo.name}}"></input>
+        </view>
+        <view class="seperator"></view>
+        <view class="input-container">
+            <text class="input-name">微信</text>
+            <input bindinput="getWeixinId" class="input-layout" maxlength="20" placeholder="请输入微信" placeholderStyle="color: #bbb; font-size: 32rpx;" value="{{userInfo.weixinId}}"></input>
+        </view>
+        <view class="seperator"></view>
+        <detail-cell bind:tap="onPhoneNumberLayoutTapped" title="手机" titleStyle="color: #666; font-size: 28rpx;">
+            <view class="slot">{{userInfo.tel}}</view>
+        </detail-cell>
+        <view style="height: 20rpx; width: 100%; background: #eee;"></view>
+        <!-- <detail-cell bind:tap="onPositionTapped" title="职业" titleStyle="color: #666; font-size: 28rpx;">
+            <view class="slot">{{userInfo.workExperience.jobName}}</view>
+        </detail-cell> -->
+        <view class="input-container">
+            <text class="input-name">职业</text>
+            <picker mode='selector' class="input-layout" range='{{profession}}' range-key='name' value='{{professionIndex}}' bindchange='getProfession'>
+              <view class='picker-inner'>
+                <view class='picker-content' style="color: {{professionIndex >= 0  ? '#333' : '#bbb'}}; font-size: 28rpx;">{{professionIndex >= 0  ? profession[professionIndex].name : '选择职业'}}</view>
+                <image class='arrow' src='/images/arrow_right.png' mode='aspectFit'></image>
+              </view>
+            </picker>
+        </view>
+        <view class="input-container">
+            <text class="input-name">公司</text>
+            <input bindinput="getCompanyName" class="input-layout" maxlength="50" placeholder="输入公司名称" placeholderStyle="color: #bbb; font-size: 32rpx;" value="{{userInfo.company}}"></input>
+        </view>
+        <view class="input-container long-tit">
+          <text class="input-name">公司地址</text>
+          <input bindinput="getCompanyAddress" class="input-layout" maxlength="100" placeholder="输入公司地址" placeholderStyle="color: #bbb; font-size: 32rpx;" value="{{userInfo.companyAddress}}"></input>
+        </view>
+        <view style="height: 20rpx; width: 100%; background: #eee;"></view>
+        <view class="input-container long-tit">
+            <text class="input-name">擅长风格</text>
+            <picker mode='selector' class="input-layout" range='{{styles}}' value='{{stylesIndex}}' bindchange='getStyles'>
+              <view class='picker-inner'>
+                <view class='picker-content' style="color: {{stylesIndex >= 0  ? '#333' : '#bbb'}}; font-size: 28rpx;">{{stylesIndex >= 0  ? styles[stylesIndex] : '选择擅长风格'}}</view>
+                <image class='arrow' src='/images/arrow_right.png' mode='aspectFit'></image>
+              </view>
+            </picker>
+        </view>
+        <!-- <detail-cell bind:tap="onStylesLayoutTapped" title="擅长风格" titleStyle="color: #666;font-size: 28rpx;">
+            <view class="slot">{{styles}}</view>
+        </detail-cell> -->
+        <view class="seperator"></view>
+        <detail-cell bind:tap="onProfileLayoutTapped" title="个人简介" titleStyle="color: #666; font-size: 28rpx;">
+            <view class="slot single-line-text" wx:if="{{userInfo.profile}}">{{userInfo.profile}}</view>
+        </detail-cell>
+        <view class="bottom-line" style="position: relative; margin-bottom: 16rpx;"></view>
+        <button bind:tap="confirm" class="btn btn-done-bg" disabled="{{confirming}}" formType="submit" hoverStayTime="80">
+      保存
+    </button>
+    </view>
+</form>

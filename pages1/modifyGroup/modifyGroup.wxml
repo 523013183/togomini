@@ -1,0 +1,163 @@
+<!---返回图片的数量-->
+<view class="add_group">
+
+	<view class="group_item title">
+		<text>套餐名称</text>
+		<input placeholder="请输入套餐标题(限30字以内)" value="{{groupTitle}}" bindinput="input1" />
+	</view>
+	<view class="group_item price">
+		<text>套餐总价</text>
+		<view class="price_wrapper">
+			<text class="money_icon">￥</text>
+			<input type="digit" class="whole_price" placeholder="请输入套餐总价" placeholder-style="color:#000000;font-weight:100;" value="{{totalPrice}}" bindinput="input2" />
+		</view>
+	</view>
+	<view class="style_wrapper">
+		<text>所属风格</text>
+		<view class="style">
+			<text wx:for="{{styleArr}}" class="{{item.checked?'style_choose':''}}" wx:key="index" data-index="{{index}}" bindtap="isChoose1">{{item.name}}</text>
+		</view>
+	</view>
+	<view class="room_wrapper">
+		<text>装载空间</text>
+		<view class="room_style">
+			<view wx:for="{{roomArr}}" class="curText item {{item.check?'room_choose':''}}" wx:key="index" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="isChoose3">
+				<image hidden="{{item.user_id<1 || item.check}}" data-id="{{item.id}}" class="del" catchtap="del" src="/images1/del_icon.png"></image>{{item.name}}
+			</view>
+
+			<view class="make_self" bindtap="make_self">
+				<image style="width: 22rpx;height: 22rpx;" src="/images1/add2.png"></image>
+				<text>自定义</text>
+			</view>
+		</view>
+	</view>
+	<!-- 描述 -->
+	<view class="room_wrapper">
+		<text>套餐描述</text>
+		<view class="room_style">
+			<textarea wx:if="{{textarea}}" bindinput="textarea" value="{{description}}" placeholder="请输入对套餐的描述.."></textarea>
+		</view>
+	</view>
+	<!-- 居室 -->
+	<view class="room_wrapper" wx:if="{{is_merchant}}">
+		<text>是否可复制</text>
+		<view class="room_style">
+			<!-- <text wx:for="{{jvshi}}" class="curText {{index_jvshi == item.id?'room_choose':''}}" wx:key="index" data-index="{{index}}" data-id="{{item.id}}" bindtap="isChoose4">{{item.name}}</text> -->
+			<switch checked="{{copy==1?true:false}}" bindchange="switch2Change" />
+		</view>
+	</view>
+	<!--  -->
+	<view class="room_pic">
+		<view class="room_title">空间图片</view>
+		<!-- <view class="desc">长按图片可对图片进行排序</view> -->
+		<view class="pic_area">
+			<view class="left_mune">
+				<view class="mune_item {{num==index ? 'active': ''}}" wx:key="index" wx:for="{{roomType}}" wx:item="{{item}}" data-user_id="{{item.user_id}}" data-item="{{item}}" data-id="{{index}}" bindtap="chooseRoom" data-roomid="{{item.id}}">
+					<image catchtap="del_room" data-roomid="{{item.id}}" data-index="{{index}}" src="/images1/del_icon.png"></image>
+					<view class="pic_title">{{item.room}}</view>
+				</view>
+				<view class="mune_item {{num=='-1' ? 'active': ''}}" bindtap="chooseFirst">
+					<view class="pic_title">封面图</view>
+				</view>
+			</view>
+			<view class="right_content">
+				<view class="part" wx:if="{{num=='-1'}}">
+					<view class="right_title">封面图</view>
+					<view class="avatar_pic load_area" data-num='1' data-flag='cover' bindtap='showzhe'>
+						<image mode='aspectFit' src='{{coverImg}}' class='pre-pic' wx:if='{{coverImg}}'></image>
+						<image class="add_icon" style="width: 42rpx;height: 42rpx;" src="/images1/add_icon.png"></image>
+						<view>封面图</view>
+					</view>
+				</view>
+				<view class="part" wx:if="{{num==curIndex}}">
+
+					<view class='img-upload-box flex-col bg-white'>
+						<view class='label imgs-label'>{{roomItem}}产品 </view>
+						<view class="imgs-label" style="line-height:60rpx;">
+							<text>商品数量：{{numa}}</text>
+							<text>商品总价：<text>￥{{pricenum}}</text></text>
+						</view>
+						<view class="productbox">
+
+							<view class="productItem" wx:for="{{goodsImgtopfileds[roomId]}}" wx:key="index">
+								<view class="cancel" data-id="{{item.id}}" bindtap='goodsImgcancel' data-index="{{index}}"></view>
+								<view class="name">
+									<image src="{{item.cover_pic || item.pic_url}}" data-id="{{item.id}}" catchtap='linkGoods'></image>
+									<view style="margin-left:20rpx;">
+										<view class="itemprice">¥{{item.original_price}}</view>
+										<view class="goodsnum">x{{item.number}}</view>
+									</view>
+								</view>
+								<view class="replace" data-cat_id="{{item.cat_id}}" data-index="{{index}}" bindtap="replace" data-id="{{item.id}}">替换></view>
+							</view>
+
+						</view>
+						<!--  -->
+						<view class='upload-imgs-box flex-row-start pic_wrapper'>
+							<block wx:for='{{preImgsAbout}}' wx:key="index">
+								<view class='upload-pic-2'>
+									<image mode='aspectFill' src='{{host}}{{item}}' class='pre-img'></image>
+									<image mode='aspectFit' src='/images1/close_btn_y.png' class='del-img' data-index='{{index}}' bindtap='delImg'></image>
+								</view>
+							</block>
+							<view class="pic_effect" wx:if='{{preImgsAbout.length < 9}}' data-num='9' data-flag='about' catchtap='linkWarehouse'>
+								<image mode='aspectFit' class="add_icon" style="width: 42rpx;height: 42rpx;" src="/images1/add_icon.png"></image>
+								<view>商品</view>
+							</view>
+						</view>
+						<input type='text' name='active_imgs' value='{{preImgsAbout}}' hidden='true'></input>
+					</view>
+					<view class="right_title">{{roomItem}}效果图</view>
+					<view class="roomItemContainer">
+						<view class="roomItem" data-id="{{roomId}}" data-imgid="{{item.preImgtopId}}" wx:for="{{preImgtopfileds[roomId]}}" wx:key="index">
+							<view class="cancel" bindtap='preImgcancel' data-index="{{index}}"></view>
+							<image src="{{item.preImgtop}}"></image>
+						</view>
+					</view>
+
+					<bottomframe bind:workspic="workspic" bind:shopspic="shop" bind:albumpic="albumpic" num='{{albumpnum}}' flag='top'></bottomframe>
+				</view>
+			</view>
+		</view>
+		<view class="btn_area">
+			<button class="sure_btn" bindtap="saveGroupMsg">确认发布</button>
+		</view>
+	</view>
+</view>
+<view bindtap="shopzhe" class="shopzhe" hidden="{{shopimg}}" catchtouchmove="myCatchTouch">
+	<view class="shopimg" catchtap>
+		<scroll-view wx:if="{{imgarr.length > 0}}" class="scroll-view" scroll-y>
+			<image data-img="{{item}}" bindtap="chooseimg" wx:for="{{imgarr}}" wx:key="index" src="{{item}}"></image>
+		</scroll-view>
+		<view wx:else style="text-align:center;line-height:600rpx;font-size:30rpx;">还未选择商品...</view>
+	</view>
+</view>
+<!-- 选择模板 -->
+<import src="/template/choose/choose.wxml" />
+<template is="choose" data="{{zhe}}" />
+
+
+<!-- 替换的列表弹窗 -->
+<view class="replace_tan" wx:if="{{replace}}">
+	<view class="title">替换商品</view>
+	<view bindtap="replace_zhe" class="close">x</view>
+	<scroll-view scroll-y class="scroll-viewa">
+		<view class="productItem replaceItem" wx:for="{{goodsImgtopfileds[roomId][replace_index].replace_goods}}" wx:key="index">
+			<view class="cancel" bindtap='replace_del' data-index="{{index}}"></view>
+			<image src="{{item.cover_pic || item.pic_url}}" data-id="{{item.id}}" catchtap='linkGoods'></image>
+			<view class="style_big">
+				<view class="overhidden">材质：{{item.material}}</view>
+				<view class="overhidden">尺寸：{{item.size==""?'暂无':item.size}}</view>
+			</view>
+			<view class="itempricea">
+				<text>{{item.price_type==1?'+':'-'}}¥{{item.replace_price}}</text> / ¥{{item.original_price}}</view>
+		</view>
+		<!-- 添加按钮 -->
+		<view class='addreplace' catchtap="linkWarehouse2">
+			<image mode='aspectFit' class="add_icon" style="width: 42rpx;height: 42rpx;" src="/images1/add_icon.png"></image>
+			<view>商品</view>
+		</view>
+	</scroll-view>
+	<view bindtap="replace_zhe" class="qrbtn">确定</view>
+</view>
+<view wx:if="{{replace}}" bindtap="replace_zhe" class="replace_zhe"></view>

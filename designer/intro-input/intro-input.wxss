@@ -1,0 +1,47 @@
+.input {
+    font-family: Penrose;
+    font-size: 28rpx;
+    width: 100%;
+    height: 20vh;
+    box-sizing: border-box;
+    line-height: 48rpx;
+    color: #6A7380;
+    white-space: pre-wrap;
+}
+
+.input-placeholder {
+    font-family: Penrose;
+    line-height: 48rpx;
+    color: #C2C9D1;
+    letter-spacing: 0;
+}
+
+.container {
+    position: relative;
+    padding: 32rpx 36rpx 0 36rpx;
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-text {
+    font-family: Penrose;
+    font-weight: 600;
+    font-size: 28rpx;
+    text-align: right;
+    margin-right: 10rpx;
+}
+
+.confirm-button {
+    width: 142rpx;
+    height: 64rpx;
+    align-self: flex-end;
+    font-weight: 600;
+    margin-top: 20rpx;
+    background: linear-gradient(135deg,#33ABFF 0%,#1A7AF8 100%);
+    border-radius: 50rpx;
+    font-size: 26rpx;
+    color: #fff;
+    text-align: center;
+    line-height: 64rpx;
+    margin-right: 0rpx;
+}

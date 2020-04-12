@@ -1,0 +1,60 @@
+<wxs module="fn">
+	module.exports = {
+		decrease: function(a, b) {
+			return parseInt(a - b);
+		}
+	}
+</wxs>
+<view class="section_title">
+	<view class="active_type" bindtap="changeFlag">
+		<view class="main_type"><text>{{titleTitle}}</text>
+			<image style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+		</view>
+		<view class="other_type" hidden="{{hiddenFlag}}">
+			<view bindtap="change_type" data-index="0" data-name="全部活动">全部活动</view>
+			<view bindtap="change_type" data-index="1" data-name="我的">我的</view>
+			<view bindtap="change_type" data-index="2" data-name="商家">商家</view>
+			<view bindtap="change_type" data-index="3" data-name="我参与的">我参与的</view>
+		</view>
+	</view>
+	<view class="search">
+		<image class="search_icon" style="width:22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+		<input placeholder="输入活动关键字查找" confirm-type="search" bindinput='getKeyword' bindconfirm="getList" />
+	</view>
+</view>
+<view style="height:110rpx;"></view>
+<!-- 列表 -->
+	<view class="active_part" wx:for="{{activityList}}" wx:item="{{item}}" wx:if="{{activityList.length!==0}}" wx:key="index">
+		<view class="part">
+			<view class="pic_wrapper" bindtap="linkActiviteDetail" data-id="{{item.id}}">
+				<image src="{{item.head_pic}}"></image>
+				<view class="msg_cont">
+					<view>
+						<image style="width: 33rpx;height: 25rpx;" src="/images1/eye_icon_w.png"></image>
+						<text>{{item.show_times}}</text>
+					</view>
+					<view>
+						<image style="width: 28rpx;height: 27rpx;" src="/images1/num_icon_w.png"></image>
+						<text>{{item.enroll}}</text>
+					</view>
+				</view>
+			</view>
+			<view class="active_title">{{item.title}}</view>
+			<view class="person">
+				<view class="name">
+					<image style="width: 40rpx;height: 40rpx;" src="{{item.avatar_url}}"></image>
+					<text>{{item.author_name}}</text>
+				</view>
+				<view class="rest" wx:if="{{item.max_number!=='0'}}">剩余{{fn.decrease(item.max_number,item.enroll)}}份</view>
+				<view class="rest" wx:if="{{item.max_number=='0'}}">无数量限制</view>
+			</view>
+		</view>
+	</view>
+	<view class="nonedata" hidden="{{activityList.length>0}}">
+		<image src="/images1/nomsg.png" style="width: 374rpx;height: 280rpx;"></image>
+		暂无数据
+	</view>
+<!-- 发起活动 -->
+<view class="start_active" bindtap="addactive">
+	<image style="width: 113rpx;height: 113rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/d6e8a7bfd50fa4be10197da955e049c6764df9c5.png"></image>
+</view>

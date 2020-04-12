@@ -1,0 +1,7 @@
+<view class="make_selfText">
+	<view>
+		<text>字段名称</text>
+		<input placeholder-style="font-size='30rpx';color='#cccccc'" bindinput='desclimit' value="{{textvalue}}" placeholder="请输入要设置的字段名称"/>
+	</view>
+	<button bindtap="setText">保存</button>
+</view>

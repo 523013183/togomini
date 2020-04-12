@@ -1,0 +1,47 @@
+page{
+	background-color: #fafafa;
+}
+.make_selfText > view{
+	display: flex;
+	align-items: center;
+	height: 100rpx;
+	line-height: 100rpx;
+	padding: 0 40rpx;
+	font-size: 30rpx;
+	border-top: 1px solid #fafafa;
+	background-color: #FFFFFF;
+}
+.make_selfText .text_type{
+	display: flex;
+	align-items: center;
+	margin-bottom: 60rpx;
+}
+.make_selfText .text_type > view{
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.make_selfText .text_type > view >input{
+	margin-left: 30rpx;
+  width:100%;
+}
+.make_selfText > view >text{
+	width: 200rpx;
+	font-size: 30rpx;
+}
+.make_selfText > view >input{
+	margin-left: 50rpx;
+  width: 100%;
+}
+.make_selfText > button{
+	width: 90%;
+	height: 90rpx;
+	line-height: 90rpx;
+	background-color: #f9e15c;
+}
+
+
+
+
+

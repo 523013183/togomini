@@ -1,0 +1,20 @@
+<view class="head">
+  <image mode="aspectFill" src="{{data.cover_pic}}"></image>
+  <view class="right">
+    <view class="title">{{data.name}}</view>
+    <view class="point">兑换积分：
+      <text>{{data.integral}}分</text>
+    </view>
+    <view class="num">剩余{{data.goods_num}}件</view>
+  </view>
+</view>
+<!-- 详情 -->
+<view class="detail">
+  <view class="title-">商品详情</view>
+  <rich-text nodes="{{data.detail}}"></rich-text>
+  <image bindtap="preview" data-index="{{index}}" style="margin-top:20rpx;" mode="widthFix" class="detail-img" wx:for="{{data.goods_pic_list}}" wx:key="index" src="{{item}}"></image>
+</view>
+<!-- 兑换按钮 -->
+<view class="btn ios">
+  <view bindtap="buy">立即兑换</view>
+</view>

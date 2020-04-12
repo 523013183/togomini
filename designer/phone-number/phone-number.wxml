@@ -1,0 +1,8 @@
+<view class="container">
+    <view class="phone-layout">
+        <input bindinput="bindPhoneInput" class="input-layout" maxlength="11" placeholder="手机号" placeholderClass="hint" type="number"></input>
+        <view catch:tap="sendMessage" class="code-button {{btnDisabled?'request-vcode-disable':''}}">{{btnText}}</view>
+    </view>
+    <input bindinput="getCode" class="input-layout" placeholder="验证码" placeholderClass="hint" style="margin-top:0.5rpx;"></input>
+    <view bind:tap="verify" class="login-button">立即验证</view>
+</view>

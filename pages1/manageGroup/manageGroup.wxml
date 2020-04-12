@@ -1,0 +1,75 @@
+<!--pages1/user/user.wxml-->
+<view class="manage_products">
+	<view class="add_new" wx:if="{{!imid && !shangjia}}">
+		<view wx:if="{{!imtype && idArr==''}}" bindtap="addgroup" class="add">新增</view>
+		<view class="style" style='position:relative' catchtap='showStyle'>
+			<!--风格-->
+			<text wx:for="{{styleList}}" wx:if="{{styleIndex==index&&styleIndex!=-1}}" wx:key="index">{{item.name}}</text>
+			<text wx:if="{{styleIndex==-1}}">{{style}}</text>
+			<image mode="aspectFill" style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+		</view>
+		<view class="search">
+			<image mode="aspectFill" class="search_icon" style="width:22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+			<input placeholder="请输入关键词搜索" bindinput='getkeyword' bindconfirm='search' confirm-type='search' value="{{keyword}}" />
+		</view>
+	</view>
+	<view wx:if="{{!imid && !shangjia}}" style="height:80rpx;"></view>
+	<view wx:if="{{!imid && !shangjia}}" style="{{imid?'top:0;':''}}" class="chosea">
+		<view bindtap="avtive" data-id="1" class="c-one {{active == 1 ? 'active' : ''}}">普通套餐</view>
+		<view bindtap="avtive" data-id="2" class="c-two {{active == 2 ? 'active' : ''}}">海报套餐</view>
+	</view>
+	<view wx:if="{{!imid && !shangjia}}" style="height:110rpx;"></view>
+	<view wx:if="{{!shangjia}}" class="products_group">
+		<view class="part_wrapper" wx:key="index" wx:for="{{groupList}}" wx:item="{{item}}" wx:index="{{index}}" wx:if="{{groupList.length > 0}}">
+			<image mode="aspectFill" data-type="{{item.type}}" bindtap="link_group" data-id="{{item.id}}" src="{{item.cover_img}}" data-userId="{{item.user_id}}"></image>
+			<view class="part">
+				<view data-type="{{item.type}}" bindtap="link_group" data-id="{{item.id}}" class="text_title">{{item.name}}</view>
+				<view class="price">¥{{item.amount}}</view>
+				<view class="style">风格：{{item.style}}</view>
+				<view class="btn" wx:if="{{!imtype && idArr==''}}">
+					<button wx:if="{{item.type == 2}}" data-name="{{item.name}}" data-src="{{item.cover_img}}" data-id="{{item.id}}" open-type="share">分享</button>
+					<text wx:if="{{item.is_show==1}}" catchtap="setShow" data-show="{{item.is_show}}" data-id="{{item.id}}" class="show">展示中</text>
+					<text wx:if="{{item.is_show==0}}" catchtap="setShow" data-show="{{item.is_show}}" data-id="{{item.id}}">展示</text>
+					<text catchtap="cancleGroup" data-id="{{item.id}}">删除</text>
+					<text data-type="{{item.type}}" wx:if="{{item.type == 1}}" catchtap="modifyMsg" data-id="{{item.id}}" data-name="{{item.name}}" data-price="{{item.amount}}" data-userid="{{item.user_id}}" data-style="{{item.style}}" data-room="{{item.room}}" data-pic="{{item.images}}">编辑</text>
+					<text wx:if="{{is_merchant==1}}" data-index="{{index}}" data-is_recommend="{{item.is_recommend}}" style="background-color: #f9e15c;margin: 10rpx 0;" catchtap="is_recommend" data-id="{{item.id}}">{{item.is_recommend==1?'已推荐':'推荐'}}</text>
+				</view>
+				<!-- 添加套餐 -->
+				<view wx:if="{{idArr!=''}}" class="btn">
+					<button wx:if="{{!item.read}}" class="show" data-type="{{item.type}}" data-id="{{item.id}}" bindtap="addpackage">添加</button>
+					<button data-index="{{index}}" bindtap="removepackage" style='background-color:#f2f2f2;border:none;' wx:else class="show" data-type="{{item.type}}" data-id="{{item.id}}">移除</button>
+				</view>
+				<!-- 发送 -->
+				<view wx:if="{{imtype}}" class="btn">
+					<button class="show" data-name="{{item.name}}" data-src="{{item.cover_img}}" data-id="{{item.id}}" data-type="{{item.type}}" data-num="{{item.goods.length}}" data-price="{{item.amount}}" bindtap="send">发送</button>
+				</view>
+			</view>
+		</view>
+		<view wx:if="{{groupList==''}}" style="text-align:center;margin-top:300rpx;">暂无该规格套餐</view>
+		<view class="gotocopy" bindtap="gotocopy">不知套餐怎么添加？请去<text>参考套餐</text>复制</view>
+	</view>
+	<!-- 用户查看的列表 -->
+	<view data-name="用户" wx:else class="products_group">
+		<view class="part_wrapper" wx:key="index" wx:for="{{groupList}}" wx:item="{{item}}" wx:index="{{index}}" wx:if="{{groupList.length > 0 && item.is_show==1}}">
+			<image mode="aspectFill" data-type="{{item.type}}" bindtap="link_group" data-id="{{item.id}}" src="{{item.cover_img}}" data-userId="{{item.user_id}}"></image>
+			<view class="part">
+				<view data-type="{{item.type}}" bindtap="link_group" data-id="{{item.id}}" class="text_title">{{item.name}}</view>
+				<view class="price">¥{{item.amount}}</view>
+				<view class="style">风格：{{item.style}}</view>
+				<view class="btn" wx:if="{{!imtype}}">
+					<text wx:if="{{is_merchant==1}}" data-index="{{index}}" data-is_recommend="{{item.is_recommend}}" catchtap="is_recommend" data-id="{{item.id}}" class="show">{{item.is_recommend==1?'已推荐':'推荐'}}</text>
+				</view>
+				<!-- 发送 -->
+				<view wx:else class="btn">
+					<button class="show" data-name="{{item.name}}" data-src="{{item.cover_img}}" data-id="{{item.id}}" data-type="{{item.type}}" data-num="{{item.goods.length}}" data-price="{{item.amount}}" bindtap="send">发送</button>
+				</view>
+			</view>
+		</view>
+		<view wx:if="{{groupList==''}}" style="text-align:center;margin-top:300rpx;">暂无该规格套餐</view>
+	</view>
+	<view class='chosoe-all' wx:if="{{showStyle}}">
+		<view data-name="全部" data-id="" data-index="-1" catchtap='chooseStyle'>全部</view>
+		<view wx:for="{{styleList}}" wx:key="index" data-name="{{item.name}}" data-id="{{item.id}}" data-index="{{index}}" catchtap='chooseStyle'>{{item.name}}</view>
+	</view>
+	<view bindtap="hide" wx:if="{{showStyle}}" style="background-color:rgba(0,0,0,.6);position:fixed;top:0;z-index:5;width:100%;height:100%;"></view>
+</view>

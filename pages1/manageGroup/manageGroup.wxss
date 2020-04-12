@@ -1,0 +1,220 @@
+page {
+  background-color: #f6f6f6;
+}
+
+.manage_products .add_new {
+  display: flex;
+  align-items: center;
+  height: 110rpx;
+  line-height: 110rpx;
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+.gotocopy{
+  text-align: center;
+  font-size: 22rpx;
+  margin-top: 20rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.gotocopy text{
+  text-decoration: underline;
+  color: blue;
+}
+
+.manage_products .add_new .add {
+  width: 140rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  background-color: #f9e15c;
+  border-radius: 32.5rpx;
+}
+
+.manage_products .add_new .style {
+  width: 140rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  background-color: #f9e15c;
+  border-radius: 32.5rpx;
+  white-space: nowrap;
+}
+
+.manage_products .add_new .style > image {
+  vertical-align: top;
+  margin: 32rpx 0 0 5rpx;
+}
+
+.manage_products .add_new .search {
+  display: flex;
+  align-items: center;
+  width: 520rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #999;
+  font-size: 28rpx;
+  border-radius: 35rpx;
+  background-color: #f3f6fb;
+}
+
+.manage_products .add_new .search .search_icon {
+  margin: 0 6rpx 0 35rpx;
+}
+
+.manage_products .products_group .part_wrapper {
+  display: flex;
+  /* justify-content: space-between; *//* align-items: center; *//* height: 230rpx; */
+  padding: 40rpx 40rpx 30rpx;
+  margin-top: 10rpx;
+  background-color: #fff;
+}
+
+.manage_products .products_group .part_wrapper > image {
+  width: 370rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+  margin-right: 40rpx;
+}
+
+.manage_products .products_group .part {
+  width: 100%;
+  /* height: 160rpx; */
+  font-size: 0;
+}
+
+.manage_products .products_group .part .text_title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.manage_products .products_group .part .price {
+  font-size: 28rpx;
+  color: #e93323;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.manage_products .products_group .part .style {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 20rpx;
+}
+
+.manage_products .products_group .part .btn {
+  font-size: 26rpx;
+}
+
+.manage_products .products_group .part .btn .show {
+  background-color: #f9e15c;
+  border: 1px solid #f9e15c;
+}
+
+.manage_products .products_group .part .btn > text {
+  display: inline-block;
+  width: 115rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border: 1px solid #d2d2d2;
+  border-radius: 6rpx;
+  margin-right: 10rpx;
+}
+
+.manage_products .products_group .part .price_desc.choose {
+  background-color: #008edd;
+  color: #fff;
+}
+
+.chosoe-all {
+  z-index: 99999999999;
+  width: 100%;
+  height: 300rpx;
+  position: fixed;
+  display: block;
+  background: white;
+  top: 95rpx;
+  line-height: 80rpx;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  font-size: 28rpx;
+  padding: 20rpx 50rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.shop {
+  width: 85rpx;
+  height: 85rpx;
+  position: fixed;
+  right: 30rpx;
+  top: 730rpx;
+}
+
+button {
+  width: 115rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border: 1px solid #d2d2d2;
+  border-radius: 6rpx;
+  margin-right: 10rpx;
+  background-color: #fff;
+  padding: 0;
+  display: inline-block;
+  margin-bottom: -17rpx;
+}
+
+button::after {
+  border: none;
+}
+.chosea{
+  z-index: 1;
+  width: 100%;
+  height: 80rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 110rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.c-one{
+  width: 50%;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+.c-two{
+  width: 50%;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+.active{
+  /* background-color: #f9e15c;
+  color: #fff; */
+  position: relative;
+}
+.active::after{
+  content: "";
+  width:15%;
+  height: 10rpx;
+  border-radius: 10rpx;
+  background-color: #f9e15c;
+  position: absolute;
+  bottom: 5rpx;
+  left: 42.5%;
+}

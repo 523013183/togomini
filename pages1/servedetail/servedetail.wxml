@@ -1,0 +1,2 @@
+<!--pages1/servedetail/servedetail.wxml-->
+<rich-text nodes="{{detail}}"></rich-text>

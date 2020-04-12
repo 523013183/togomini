@@ -1,0 +1,21 @@
+<view class="head-bg"></view>
+<!-- 签到 -->
+<view class="sign-btn" bindtap="sign">{{is_sign?'已签到':'签到'}}</view>
+<view class="txt-">本月已签到{{sign_day}}天，当前积分{{data.user.integral}}分！</view>
+<view class="data-">
+<view class="data-title">{{year}}-{{month+1}}</view>
+<!-- 日期 -->
+<view class="hebdomad">
+<text wx:for="{{hebdomad}}" wx:key="index">{{item}}</text>
+</view>
+<!-- 天数 -->
+<view class="hebdomad">
+  <text class="day-text" wx:for="{{week}}" wx:key="index"></text>
+  <text class="day-text {{item.sign?'color':''}}" wx:for="{{datanum}}" wx:key="index">{{index+1}}</text>
+</view>
+</view>
+<!-- 规则 -->
+<view class="rule">
+  <view class="rule-title">积分规则</view>
+  <view class="list-item" wx:for="{{register_rule}}" wx:key="index">{{item}}</view>
+</view>

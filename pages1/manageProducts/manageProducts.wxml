@@ -1,0 +1,58 @@
+<!--pages1/user/user.wxml-->
+<view class="manage_products">
+	<view class="add_new">
+		<navigator hidden="{{user_id || imtype}}" class="add" url="/pages1/addProduct/addProduct">新增</navigator>
+		<view class="search">
+			<image mode="aspectFill" class="search_icon" style="width:22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+			<input placeholder="请输入关键词搜索" confirm-type="search" bindinput='getKeyword' bindconfirm='search' />
+		</view>
+	</view>
+	<scroll-view scroll-y style="height:{{height}}px;">
+		<!-- 用户进入查看 -->
+		<view class="products_group" wx:if="{{user_id || imtype=='聊天' || imtype=='我的聊天'}}">
+			<view class="part_wrapper" wx:if="{{!imtype}}" wx:for="{{productList2}}" wx:item="{{item}}" wx:index="{{index}}" wx:key ="index">
+				<view class="pro_img" bindtap="link_project" data-id="{{item.id}}" data-userid='{{item.user_id}}'>
+					<image mode="aspectFill" src="{{item.pic}}"></image>
+				</view>
+				<view class="part">
+					<view class="text_title overflow-1" bindtap="link_project" data-id="{{item.id}}" data-userid='{{item.user_id}}'>{{item.name}}</view>
+					<view class="btn" wx:if="{{is_merchant == 1}}">
+						<text data-index="{{index}}" data-is_recommend="{{item.is_recommend}}" data-id="{{item.id}}" class="top" bindtap="recommend">{{item.is_recommend==1?'已推荐':'推荐'}}</text>
+					</view>
+				</view>
+			</view>
+			<!-- 聊天 -->
+			<view class="part_wrapper" wx:if="{{imtype}}" wx:for="{{imtype=='我的聊天'?productList:productList2}}" wx:item="{{item}}" wx:index="{{index}}" wx:key ="index">
+				<view class="pro_img" bindtap="link_project" data-id="{{item.id}}" data-userid='{{item.user_id}}'>
+					<image mode="aspectFill" src="{{item.pic}}"></image>
+				</view>
+				<view class="part">
+					<view class="text_title overflow-1" bindtap="link_project" data-id="{{item.id}}" data-userid='{{item.user_id}}'>{{item.name}}</view>
+					<view class="btn">
+						<text data-pic="{{item.pic}}" data-name="{{item.name}}" data-id="{{item.id}}" class="top" data-detail="{{item.remarks}}" bindtap="sendproduct">发送</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 正常进入 -->
+		<view class="products_group" wx:else>
+			<view class="part_wrapper" wx:for="{{productList}}" wx:key="index" wx:item="{{item}}" wx:index="{{index}}">
+				<view class="pro_img" bindtap="link_project" data-id="{{item.id}}" data-userid='{{item.user_id}}'>
+					<image mode="aspectFill" src="{{item.pic}}"></image>
+				</view>
+				<view class="part">
+					<view class="text_title overflow-1" bindtap="link_project" data-id="{{item.id}}" data-userid='{{item.user_id}}'>{{item.name}}</view>
+					<view class="btn">
+						<text wx:if="{{item.is_top==1&&user_id == undefined}}" bindtap="setTop" data-top="{{item.is_top}}" data-show="{{item.is_show}}" data-id="{{item.id}}" class="top">置顶</text>
+						<text wx:if="{{item.is_top==0&&user_id == undefined}}" bindtap="setTop" data-top="{{item.is_top}}" data-show="{{item.is_show}}" data-id="{{item.id}}">不置顶</text>
+						<text wx:if="{{item.is_show==1&&user_id == undefined}}" bindtap="setShow" data-top="{{item.is_top}}" data-show="{{item.is_show}}" data-id="{{item.id}}" class="show">展示中</text>
+						<text wx:if="{{item.is_show==0&&user_id == undefined}}" bindtap="setShow" data-top="{{item.is_top}}" data-show="{{item.is_show}}" data-id="{{item.id}}">展示</text>
+						<text wx:if="{{user_id == undefined}}" bindtap="modifyMsg" data-id="{{item.id}}" data-userid="{{item.user_id}}" data-name="{{item.name}}" data-remarks="{{item.remarks}}" data-pic="{{item.pic}}">编辑</text>
+						<text style="background-color: #f9e15c;" wx:if="{{is_merchant==1}}" data-index="{{index}}" bindtap="recommend" data-is_recommend="{{item.is_recommend}}" data-id="{{item.id}}">{{item.is_recommend==1?'已推荐':'推荐'}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+	<view class="none" wx:if="{{productList.length==0}}">暂无案例</view>
+</view>

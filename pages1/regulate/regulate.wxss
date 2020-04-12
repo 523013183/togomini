@@ -1,0 +1,392 @@
+/* pages/user/user.wxss */
+
+page {
+  background-color: #f2f2f2;
+}
+.active_list{
+  padding-bottom: 100rpx; 
+}
+.active_list .active {
+  margin: 0 40rpx;
+}
+
+.active_list .active .active_item {
+  position: relative;
+  /* display: flex;
+  justify-content: space-between; */
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  background-color: #fff;
+}
+
+.active_list .active .active_item .content {
+  position: relative;
+  flex: 1;
+  display: flex;
+  padding: 20rpx 20rpx 30rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+
+.active_list .active .active_item .cancleBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 150rpx;
+  height: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+  background-color: #e93323;
+}
+
+.active_list .active .active_item .active_img {
+  /* flex: 2; */
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 1000rpx;
+}
+
+.active_list .active .active_item .right_part {
+  flex: 8;
+  margin-left: 20rpx;
+}
+
+.active_list .active .active_item .right_part .detail {
+  line-height: 35rpx;
+  color: #999;
+}
+
+.active_list .active .active_item .right_part .detail > view:nth-child(1) {
+  font-size: 32rpx;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.active_list .active .active_item .right {
+  display: flex;
+}
+
+.active_list .active .active_item .right >view {
+  width: 56rpx;
+  height: 56rpx;
+  margin-left: 10rpx;
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+}
+
+.inner.txt {
+  background-color: #fff;
+  width: 100%;
+  z-index: 5;
+  padding: 0 10rpx;
+  transition: left 0.2s ease-in-out;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inner.del {
+  background-color: #e64340;
+  width: 180rpx;
+  text-align: center;
+  z-index: 4;
+  right: 0;
+  color: #fff;
+}
+
+.head {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+  background-color: #fff;
+}
+
+.add_new {
+  display: flex;
+  align-items: center;
+  min-height: 110rpx;
+  line-height: 110rpx;
+  padding: 0 40rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+  justify-content: space-around;
+}
+
+.add_new .add {
+  width: 130rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  background-color: #f9e15c;
+  border-radius: 35rpx;
+}
+
+.add_new .search {
+  display: flex;
+  align-items: center;
+  width: 450rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #999;
+  font-size: 28rpx;
+  border-radius: 35rpx;
+  background-color: #f3f6fb;
+}
+
+.add_new .search input {
+  width: 100%;
+}
+
+.add_new .search .search_icon {
+  margin-left: 35rpx;
+}
+
+.shade {
+  filter: blur(5rpx);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.list {
+  width: 75%;
+  height: 700rpx;
+  position: fixed;
+  top: 200rpx;
+  left: 12.5%;
+  z-index: 15;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 0 30rpx 30rpx;
+  box-sizing: border-box;
+}
+
+scroll-view {
+  width: 100%;
+  height: 75%;
+  background-color: #f2f2f2;
+}
+
+scroll-view view {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1rpx solid #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 30rpx;
+}
+
+.share {
+  width: 150rpx;
+  background-color: #f9e15c;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}
+
+.activea {
+  background-color: #f9e15c;
+}
+
+.btn {
+  background-color: #f9e15c;
+  width: 50%;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  margin: 20rpx auto;
+  border-radius: 20rpx;
+}
+
+.choose {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: 80rpx;
+}
+
+.choose view {
+  font-size: 24rpx;
+  line-height: 80rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+}
+
+.choose view image {
+  width: 12rpx;
+  height: 12rpx;
+  margin-left: 10rpx;
+}
+
+.shaixuan {
+  position: fixed;
+  top: 180rpx;
+  left: 0;
+  width: 100%;
+  height: 360rpx;
+  background-color: #f2f2f2;
+  z-index: 5;
+}
+
+.scroll-view {
+  /* padding: 0 65rpx; */
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-top: 14rpx;
+  height: 95%;
+}
+
+.scroll-view view {
+  text-align: left;
+  font-size: 24rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 20rpx;
+}
+
+.v {
+  background-color: #f9e15c;
+  height: 50rpx;
+  line-height: 50rx;
+  margin: 15rpx 0;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+  border-radius: 50rpx;
+  font-weight: bolder;
+}
+
+
+.bg {
+  font-weight: bolder;
+}
+
+.bg2 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.code {
+  width: 600rpx;
+  height: 900rpx;
+  margin: 100rpx auto 50rpx auto;
+}
+
+.code image {
+  width: 100%;
+  height: 100%;
+}
+
+.view {
+  width: 550rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.view view {
+  /* padding: 15rpx 20rpx; */
+  background-color: #f9e15c;
+  border-radius: 20rpx;
+  color: #000;
+}
+
+button:after {
+  border: none;
+}
+
+button {
+  background-color: #f9e15c;
+}
+
+.wx-switch-input {
+  width: 40px !important;
+  height: 20px !important;
+}
+
+.wx-switch-input::before {
+  width: 39px !important;
+  height: 20px !important;
+}
+
+.wx-switch-input::after {
+  width: 18px !important;
+  height: 18px !important;
+}
+.buttom{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.flex{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 22rpx;
+}
+.flex view{
+  margin-left: 10rpx;
+}
+.border{
+  border-left: 1rpx solid #f1f1f1;
+  border-right: 1rpx solid #f1f1f1;
+  padding: 0 40rpx;
+}
+.tab{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 100rpx;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #fff;
+  padding-bottom:calc(env(safe-area-inset-bottom));
+}
+.tab>view{
+  font-size: 26rpx;
+  position: relative;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.tabactive{
+  color: #f9e15c;
+}
+/* .tabactive::after{
+  content: '';
+  width: 50%;
+  height: 8rpx;
+  border-radius: 10rpx;
+  background-color: #f9e15c;
+  position: absolute;
+  bottom: -15rpx;
+  left: 25%;
+} */

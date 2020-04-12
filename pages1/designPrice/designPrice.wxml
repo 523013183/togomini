@@ -1,0 +1,19 @@
+<view class="design_price">
+    <view class="price">
+	   <text>最低价</text>
+	   <view>
+		   <input focus type="number" bindinput="handleInput1" value="{{lowValue}}"/>
+		   <view class="unit">元/㎡</view>
+	   </view>
+    </view>
+	<view class="price">
+	   <text>最高价</text>
+	   <view>
+		   <input type="number" bindinput="handleInput2"  value="{{heightValue}}"/>
+		   <view class="unit">元/㎡</view>
+	   </view>
+	</view>
+	<view class="sure_btn">
+		<button bindtap="setPrice">确认选择</button>
+	</view>
+</view>

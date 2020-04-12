@@ -1,0 +1,145 @@
+<import src="../../wxParse/wxParse.wxml" />
+<scroll-view scroll-y="true" style="height:100%;" scroll-into-view="{{box_id}}">
+	<view class="g_product_detail">
+		<view>
+			<image mode="aspectFill" style="width: 750rpx;height: 750rpx;" src="{{imgimg==''?goodsDetail.cover_pic:imgimg}}"></image>
+		</view>
+		<view class="product_data">
+			<view class="product_name">{{goodsDetail.name}}</view>
+			<view class="product_center">
+				<block wx:if="{{level_name=='普通用户' || level_name==''}}">
+					<text wx:if="{{user_id<1}}">¥ {{curPrice3 == '0.00'?goodsDetail.original_price:curPrice3}}</text>
+					<text wx:else>¥ {{goodsDetail.price}}</text>
+				</block>
+				<block wx:else>
+					<text wx:if="{{goodsDetail.user_id>0}}">￥{{goodsDetail.price}}</text>
+					<text bindlongtap="priceclick" wx:if="{{hide_sever && goodsDetail.user_id==0}}">¥ {{curPrice3 == '0.00'?goodsDetail.original_price:curPrice3}}</text>
+					<text wx:if="{{!hide_sever && goodsDetail.user_id==0}}">¥ {{curPrice3 == '0.00'?goodsDetail.original_price:curPrice3}}</text>
+					<text class="showprice" hidden="{{priceshow}}">¥ {{priceprice==null?'暂无录入':priceprice}}</text>
+				</block>
+				<view class="style">
+					<text>{{goodsDetail.styles==''?goodsDetail.from_url==''?'临时商品':goodsDetail.from_url:goodsDetail.styles}}</text>
+				</view>
+			</view>
+			<view wx:if="{{user_id==0}}">
+				<view class="size" hidden="{{attr[0].attr_list[0].attr_name!='默认'}}">
+					<text><text class="title">尺寸：</text>{{goodsDetail.size}}</text>
+				</view>
+			</view>
+
+			<view class="material" hidden="{{user_id>0}}">
+				<text><text class="title">材质：</text>{{goodsDetail.material}}</text>
+			</view>
+			<!-- 组合 -->
+			<view wx:if="{{user_id==0}}">
+				<view class="item" hidden="{{attr[0].attr_list[0].attr_name=='默认'}}">
+					<text class="title">尺寸:</text>
+					<view class="cont">
+						<view bindtap="group" class="{{group_index == index?'bg-':''}}" wx:for="{{attr}}" wx:key="index" data-imgimg="{{item.pic}}" data-price2="{{item.price}}" data-id="{{item.attr_list[0].attr_id}}" data-name="{{item.attr_list[0].attr_name}}" data-price="{{item.original_price==undefined?item.price:item.original_price}}" data-attrid="{{item.attr_list[0].attr_id}}" data-index="{{index}}">{{item.attr_list[0].attr_name=='默认'?goodsDetail.size:item.attr_list[0].attr_name}}</view>
+					</view>
+				</view>
+			</view>
+			<!-- 加入列表 -->
+			<view class="tan" wx:if="{{addlist==1}}">
+				<text class="title">销售价:</text>
+				<view class="txt2">
+					<text class="add" bindtap="decrease">-</text>
+					<input placeholder="" type='number' value="{{curPrice}}" bindinput="inputprice"></input>
+					<text class="add" bindtap="add">+</text>
+				</view>
+			</view>
+			<view wx:if="{{addlist==1 && replacenum==2}}" class="bind" bindtap='addlist1'>加入列表</view>
+			<view wx:if="{{replacenum==1}}" class="bind" bindtap='replace'>加入可替换项</view>
+			<view class="renzheng" hidden="{{goodsDetail.user_id>0}}">
+				<view class="logoa">
+					<image mode="aspectFill" src="/images/ren.png"></image>模型
+				</view>
+				<view class="logoa">
+					<image mode="aspectFill" src="/images/ren.png"></image>高清图
+				</view>
+			</view>
+			<text wx:if="{{index == 1 && !imtype && goodsDetail.user_id==0}}" data-id="{{goodsDetail.room_ids}}" data-name="{{goodsDetail.rooms}}" data-item="{{item}}" bindtap="collect" class="collect">收藏</text>
+			<text hidden="{{!imtype}}" wx:else data-id="{{goodsDetail.id}}" data-name="{{goodsDetail.name}}" data-pic="{{goodsDetail.cover_pic}}" data-price="{{goodsDetail.original_price}}" bindtap="send" class="collect">发送</text>
+		</view>
+		<view class="bg_gray"></view>
+		<view class="product_detail">
+			<view class="title">
+				<text>商品详情</text>
+				<text class="del" bindtap="del" data-id="{{goodsDetail.id}}" wx:if="{{user_id>0}}">删除商品</text>
+			</view>
+			<template is="wxParse" data="{{wxParseData:detailPic.nodes}}" />
+		</view>
+		<view id="boxid"></view>
+	</view>
+
+</scroll-view>
+<!-- 客服 -->
+<button class="kefu" bindtap="send" data-id="{{goodsDetail.id}}" data-name="{{goodsDetail.name}}" data-pic="{{goodsDetail.cover_pic}}" data-price="{{goodsDetail.original_price}}" wx:if="{{designer_id}}">
+	<image mode="aspectFill" src="/images/kefu.png"></image>
+	<text>在线联系</text>
+</button>
+
+<button class="kefu" open-type="contact" wx:else>
+	<image mode="aspectFill" src="/images/kefu.png"></image>
+	<text>客服</text>
+</button>
+<!-- <button open-type="share" class="share">
+	<image mode="aspectFill" src="/images/fenxiang.png"></image>
+</button> -->
+<image mode="aspectFill" wx:if="{{user_ida}}" bindtap="backme" class="backme" src="/images1/product_item_transac.png"></image>
+
+
+<!-- 收藏列表 -->
+<view bindtap="collectlist" class="collecta" wx:if="{{collect == 1 && !imtype}}">收藏夹</view>
+
+<!-- 分享 -->
+<image bindtap="sharebtn" class="sharebtn" src="/images1/share_group_btn.png"></image>
+
+<!-- 差价 -->
+<view bindtap="plusprice_tan" class="plusprice_tan" hidden="{{plusprice_tan}}">
+	<view catchtap class="plusprice">
+		<view class="title">差价</view>
+		<view class="flex">
+			<view catchtap="subtract">-</view>
+			<input bindinput="input_val" value="{{plus_price}}"></input>
+			<view catchtap="plus">+</view>
+		</view>
+		<view bindtap="qr_plusprice" class="plusprice_btn">确认</view>
+	</view>
+</view>
+
+<!-- 分享弹窗 -->
+<view class="mask" hidden="{{share_box}}">
+	<view class="mask-1" bindtap="sharebtn"></view>
+	<view class="share_wrapper" bindtap="sharebtn">
+		<view class="shareTo">
+			<view class="top_title">分享到</view>
+			<view class="cont2">
+				<button class="create_ad tofriend" data-name="shareBtn" open-type="share" bindtap="hidden_mask">
+					<view>
+						<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="/images1/share_ad_icon.png"></image>
+					</view>
+					<view class="text">微信好友</view>
+				</button>
+				<view class="share_friend" bindtap="downloadimg">
+					<image mode="aspectFill" style="width: 110rpx;height: 110rpx;" src="http://oss.diywoju.com/web/uploads/image/store_1/fb5bc2da6e9e40a4d17fb02272e849a58beab216.png"></image>
+					<view class="text">分享卡片</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 分享海报 -->
+<view id="canvas2" style="width:316px;height:461px;margin-top:-999999999rpx;">
+	<canvas style="width:100%;height:100%;" canvas-id="canvas"></canvas>
+</view>
+
+<view class="sharea" wx:if="{{sharePic}}">
+	<scroll-view style="width:100%;height:1000rpx;" scroll-y>
+		<image mode="widthFix" class="imim" src="{{sharePic}}"></image>
+	</scroll-view>
+	<view class="btnbtn">
+		<view bindtap="saveposter">保存</view>
+		<view bindtap="close">关闭</view>
+	</view>
+</view>

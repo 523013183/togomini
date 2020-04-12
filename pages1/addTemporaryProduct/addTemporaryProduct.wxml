@@ -1,0 +1,38 @@
+<view class="add_temporary">
+	<view class="msg">
+		<text>商品名称</text>
+		<input placeholder="请输入套餐标题(限30字以内)" maxlength='30' bindinput='titlelimit' value="{{titleText}}"/>
+	</view>
+	<view class="msg msg2">
+		<text>商品价格</text>
+		<view>
+			<text class="money_icon">¥</text>
+			<input placeholder="请输入价格" type="number" value="{{price}}" bindinput="input1"/>
+		</view>
+	</view>
+	<view class="left_msg">
+		<text>商品描述</text>
+		<textarea placeholder="请输入商品详情介绍" value="{{description}}" bindinput="input2" ></textarea>
+	</view>
+	<view class="msg_pic">
+		<text class="title">商品图片</text>
+		<view class='upload-imgs-box flex-row-start pic_wrapper' bindtap="linkWarehouse">
+			<block wx:for='{{preImgsAbout}}' wx:key='{{index}}'>
+				<view class='upload-pic-2'>
+					<image mode='aspectFill' src='{{host}}{{item}}' class='pre-img'></image>
+					<image mode='aspectFit' src='/images1/close_btn_y.png' class='del-img' data-index='{{index}}' bindtap='delImg'></image>
+				</view>
+			</block>
+			<view class="pic_effect" bindtap="add_pic" wx:if='{{preImgsAbout.length < 9}}'  data-num='9' data-flag='about' bindtap='uploadImg'>
+				<image mode='aspectFit' class="add_icon" style="width: 42rpx;height: 42rpx;" src="/images1/add_icon.png"></image>
+				<view>商品</view>
+			</view>
+		</view> 
+		<input type='text' name='active_imgs' value='{{preImgsAbout}}' hidden='true'></input>
+	</view>
+	<view class="msg">
+		<text>商品来源</text>
+		<input placeholder="请输入商品来源" value="{{from_url}}" bindinput="input3"/>
+	</view>
+	<button bindtap="saveTemporary">确认发布</button>
+</view>

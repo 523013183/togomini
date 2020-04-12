@@ -1,0 +1,36 @@
+<!--pages1/merchantGroup_detail/merchantGroup_detail.wxml-->
+<image mode="widthFix" src="{{img}}" style="width:100%;height:100%;display:block;;"></image>
+<view wx:if="{{shop==1}}" style="height:100rpx;"></view>
+<button open-type="share">
+  <view class="share" hidden="{{type == 1}}">
+    <image style="width: 94rpx;height: 94rpx;" src="/images1/share_project.png"></image>
+  </view>
+</button>
+<!-- copy -->
+<view class="copy" bindtap="copy" hidden="{{shop != 1 || is_copy == 1}}">生成推广套餐</view>
+<view class="nav" bindtap='backindex' hidden='{{type != 1}}'>
+  <image style="width: 70rpx;height: 70rpx;" src='/images1/product_item_transac.png'></image>
+</view>
+<view style="height:135rpx;" hidden='{{type !=1}}'></view>
+<view class="foot" hidden='{{type != 1}}'>
+  <button style="background-color:#fff;" open-type="share">
+    <view class="item" bindtap="show_mask">
+      <image style="width:50rpx;height:50rpx;" src="/images/fenxiang.png"></image>
+      <!-- <view>海报</view> -->
+    </view>
+  </button>
+  <view class="item" bindtap="like">
+    <image style="width:50rpx;height:50rpx;" src="{{like == false ? '/images/c2.png' : '/images/c1.png'}}"></image>
+  </view>
+  <!-- <view class="item">
+    <image style="width:40rpx;height:40rpx;" src="/images/qianyue.png"></image>
+    <view>签约</view>
+    </view> -->
+  <view bindtap="yuyue" class="btn1" wx:if='{{myphone != ""}}'>预约TA</view>
+  <button wx:if='{{myphone == "" && access_token}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class="btn1">预约TA</button>
+  <view bindtap="login" class="btn1" wx:if='{{!access_token}}'>预约TA</view>
+  <view class="btn2" bindtap="phone">联系TA</view>
+</view>
+<view bindtap="saveShareImg" style="width:{{imgwidth}}rpx; height:{{imgheight}}rpx;position: fixed;z-index:-99;top:-999999999999rpx;" id='canvas-container'>
+  <canvas class="img" canvas-id="myCanvas" style="width:100%; height:100%;" />
+</view>

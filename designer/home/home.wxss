@@ -1,0 +1,221 @@
+/* card/home/home.wxss */
+page {
+  background-color: #f8f8f8;
+}
+.container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+.form-button {
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 0 0;
+}
+.create-card {
+    min-height: 400rpx;
+    max-height: 400rpx;
+    margin-top: 25.6rpx;
+    width: 678rpx;
+    border-radius: 16rpx;
+}
+
+button::after {
+    border: none;
+}
+.card {
+  width: 678rpx;
+  height: 400rpx;
+  margin: 24rpx auto;
+  position: relative;
+  overflow: hidden;
+}
+.bg {
+  background-color: #2089FC;
+  width: 100%;
+  height: 100%;
+  border-radius: 16rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.card-info {
+  width: 100%;
+  height: 100%;
+  padding: 30rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: inherit;
+  color: #fff;
+  font-size: 28rpx;
+  overflow: hidden;
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-head .name {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.card-head .avatar {
+  width: 116rpx;
+  height: 116rpx;
+  background-color: #fff;
+}
+.edit-btn {
+  width: 180rpx;
+  height: 72rpx;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: inherit;
+  font-size: 24rpx;
+  color: #fff;
+  border-radius: 0;
+}
+.edit-btn image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0
+}
+.edit-btn .btn-text{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 16rpx;
+  text-align: right;
+  line-height: 72rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+.card-data {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 36rpx;
+  font-size: 28rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.share-btn {
+  width: 180rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(135deg,#1A7AF8 0%,#33ABFF 100%);
+  border-radius: 36rpx;
+  color: #fff;
+}
+.share-btn  .btn-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+.card-more {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 30rpx 36rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+.card-more .intro {
+  line-height: 43rpx;
+}
+.num-label {
+  margin-top: 30rpx;
+  font-size: 22rpx;
+  font-weight: 200;
+}
+.accout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #333;
+}
+.accout .a-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #1A7AF8;
+}
+.accout .a-btn image{
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 6rpx;
+}
+.line {
+  width: 100%;
+  height: 1rpx;
+  background-color: #eee;
+  margin: 30rpx 0;
+}
+
+.designer-product {
+  width: 100%;
+  height: auto;
+  padding: 30rpx 36rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin: 30rpx 0;
+  font-size: 28rpx;
+}
+.wrap-tit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrap-tit .tit-name{
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #555;
+}
+.wrap-tit  .manage-btn {
+  width: 180rpx;
+  height: 72rpx;
+  background-color: #f1f1f1;
+  border-radius: 36rpx;
+  font-size: 26rpx;
+  color: #444;
+  margin: 0;
+}
+.designer-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #999;
+}
+.designer-empty image {
+  width: 320rpx;
+  height: 320rpx;
+}
+.add-btn {
+  width: 240rpx;
+  height: 78rpx;
+  color: #fff;
+  font-size: 30rpx;
+  margin-top: 30rpx;
+}
+.btn-done-bg {
+  background-image: linear-gradient(135deg,#33ABFF 0%,#1A7AF8 100%);
+  border-radius: 40rpx;
+}

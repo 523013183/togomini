@@ -1,0 +1,4 @@
+/* pages1/servedetail/servedetail.wxss */
+page{
+  background-color: #fff;
+}

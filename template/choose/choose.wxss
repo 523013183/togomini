@@ -1,0 +1,118 @@
+/* template/choose/choose.wxss */
+.zhea{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.bottoma{
+  background-color: #fff;
+  width: 100%;
+  height: 240rpx;
+  position: fixed;
+  bottom: 0;
+}
+.itema{
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  font-weight: bold;
+}
+.itema:nth-child(1){
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.mask{
+     animation: animate 0.4s ease;
+}
+@keyframes animate {
+  from {
+    height: 0rpx;
+  }
+  to {
+    height: 240rpx;
+  }
+}
+
+.shade {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content2 {
+  width: 500rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 15rpx;
+}
+
+.itemitem {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.shade-title {
+  text-align: center;
+  font-size: 26rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+input {
+  border: 1rpx solid #f2f2f2;
+  width: 250rpx;
+  height: 40rpx;
+}
+
+label {
+  display: inline-block;
+  width: 130rpx;
+  font-weight: bold;
+  font-size: 24rpx;
+  text-align: right;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: row-reverse;
+  margin: 10rpx 0;
+}
+
+.btn>view {
+  width: 120rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  border: 1rpx solid #f2f2f2;
+  margin: 0 15rpx;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+}
+
+.faderight {
+  background-color: #ccc;
+}
+
+.fadeleft {
+  background-color: #ffe252;
+}

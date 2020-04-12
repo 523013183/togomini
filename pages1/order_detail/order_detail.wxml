@@ -1,0 +1,94 @@
+<image class="bg_" src="http://oss.diywoju.com/web/uploads/image/store_1/10ef900f6eb4b2c2f9915a8ead27a1c014bbed47.png"></image>
+<!--  -->
+<view class="topdata">
+	<view class="top-title">
+		<image src="/images/text.png"></image>
+		<text>基本信息</text>
+	</view>
+	<!-- item -->
+	<view class="top-item">
+		<text>项目名称</text>
+		<text>{{data.info.project_name}}</text>
+	</view>
+	<view class="top-item">
+		<text>项目地址</text>
+		<text>{{data.info.project_address}}</text>
+	</view>
+	<view class="top-item">
+		<text>项目总价</text>
+		<text class="price">￥{{data.info.total_price}}</text>
+	</view>
+	<view class="top-item" wx:if="{{data.info.package_id!=0}}">
+		<text>订单套餐</text>
+		<view data-id="{{data.info.package_id}}" bindtap="packagedetail">查看
+			<image src="/images/more3.png"></image>
+		</view>
+	</view>
+	<view class="top-item2">
+		<text>订单状态</text>
+		<view>
+			<text bindtap="choosestatus" data-id="1" class="{{index==1?'black':''}}">已下单</text>
+			<view class="border"></view>
+			<text bindtap="choosestatus" data-id="2" class="{{index==2?'black':''}}">订单生产</text>
+			<view class="border"></view>
+			<text bindtap="choosestatus" data-id="3" class="{{index==3?'black':''}}">已发货</text>
+			<view class="border"></view>
+			<text bindtap="choosestatus" data-id="4" class="{{index==4?'black':''}}">已到货</text>
+			<view class="border"></view>
+			<text bindtap="choosestatus" data-id="5" class="{{index==5?'black':''}}">配送安装中</text>
+			<view class="border"></view>
+			<text bindtap="choosestatus" data-id="6" class="{{index==6?'black':''}}">已完成</text>
+		</view>
+	</view>
+	<view class="top-item">
+		<text>创建时间</text>
+		<view>{{data.info.status_list[index].addtime==undefined?'无记录':data.info.status_list[index].addtime}}</view>
+	</view>
+	<view class="top-item">
+		<text>订单备注</text>
+		<view>{{data.info.status_list[index].remark==undefined?'无记录':data.info.status_list[index].remark}}</view>
+	</view>
+	<view class="bottom">
+		<button open-type="contact" class="contact">
+			<image src="/images/customerService.png"></image>
+			<text>在线联系</text>
+		</button>
+		<button bindtap="call_phone" class="contact">
+			<image src="/images/customerService.png"></image>
+			<text>电话联系</text>
+		</button>
+		<button bindtap="sever" wx:if="{{data.info.status==4}}" class="contact">安配服务</button>
+	</view>
+</view>
+<!--  -->
+<view class="item-down" wx:for="{{data.log}}" wx:key="index">
+	<view class="down-title" bindtap="open" data-index="{{index}}">
+		<view class="left">
+			<image src="/images/current.png"></image>
+			<text data-boo="{{item.open}}">{{item.pay_status}}</text>
+		</view>
+		<image class="right" src="{{item.open?'/images/under.png':'/images/more3.png'}}"></image>
+	</view>
+	<!--  -->
+	<view class="content" wx:if="{{item.open}}">
+		<view class="item">
+			<text>付款状态</text>
+			<view>{{item.pay_status}}</view>
+		</view>
+		<view class="item">
+			<text>付款金额</text>
+			<view class="price">￥{{item.price}}</view>
+		</view>
+		<view class="item" wx:if="{{item.attachment!=''}}">
+			<text>订单附件</text>
+			<view data-pdf="{{item.attachment}}" bindtap="pdf">
+				<text>查看</text>
+				<image src="/images/more3.png"></image>
+			</view>
+		</view>
+		<view class="top-item2">
+			<text>付款截图</text>
+			<image bindtap="previewImage" data-img="{{item.pay_img}}" mode="aspectFill" src="{{item.pay_img}}"></image>
+		</view>
+	</view>
+</view>

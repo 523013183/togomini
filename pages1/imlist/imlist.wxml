@@ -1,0 +1,28 @@
+<view class="system" wx:if="{{list.length!=0}}">用户消息</view>
+<view class="content" wx:for="{{list}}"  wx:key="index">
+  <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" bindtap="msg" data-userid="{{item.userProfile.userID}}" data-avater="{{item.userProfile.avatar}}" data-name="{{item.userProfile.nick}}" data-id="{{item.conversationID}}" data-index="{{index}}"
+    style="{{item.txtStyle}}" class="item">
+    <image mode="aspectFill" src="{{item.userProfile.avatar==''?'http://oss.diywoju.com/web/uploads/image/store_1/7b9ffede6a5f96cd4d886fcb824d4160a5adc386.png':item.userProfile.avatar}}"></image>
+    <view>
+      <view class="name">{{item.userProfile.nick ==''?'设计师':item.userProfile.nick}}</view>
+      <view class="msg">{{item.lastMessage.messageForShow=='[其他]'?'[自定义消息]':item.lastMessage.messageForShow}}</view>
+    </view>
+    <text wx:if="{{item.unreadCount!=0}}" class="icon">{{item.unreadCount}}</text>
+    <view data-userid="{{item.userProfile.userID}}" data-id="{{item.conversationID}}" data-name="{{item.userProfile.nick}}" catchtap="del" style="{{item.btnWidth}}" class="del">删除</view>
+  </view>
+</view>
+<!-- 系统消息 -->
+<view class="system" wx:if="{{activityArr.length!=0}}">系统消息</view>
+<view class="content" wx:for="{{activityArr}}"  wx:key="index" wx:if="{{item.mobile!=''}}" bindtap="isread" data-id="{{item.id}}">
+  <view class="item">
+    <image mode="aspectFill" src="{{item.avatar_url}}"></image>
+    <view>
+      <view class="name">{{item.nickname}}</view>
+      <view class="msg" bindtap="callphone" data-phone="{{item.mobile}}">{{item.type==120?'申请参观样板间：':'预约了您：'}}<text>{{item.mobile}}</text></view>
+    <text class="read" style="{{item.is_read==0?'color:red;':''}}">{{item.is_read==0?'消息未读':'消息已读'}}</text>
+    </view>
+  </view>
+</view>
+<view wx:if="{{list.length==0 && activityArr.length==0}}" class="nonedata">
+<image style="width: 374rpx;height: 280rpx;" src="/images1/nomsg.png"></image>
+暂无消息~</view>

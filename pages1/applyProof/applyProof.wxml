@@ -1,0 +1,19 @@
+<view class="apply_proof">
+	<!-- <view class="proof_part">
+		<view class="title">最佳方案设计评选活动，邀请您一起来！</view>
+		<view class="activity_time">活动时间：<text>02/21 00:00～02/29 00:00</text></view>
+		<image class="activity_pic" src="/images1/activity_pic.png"></image>
+		<view class="erwei_code">
+			<image style="width: 290rpx;height: 202rpx;" src="/images1/erwei_code.png"></image>
+			<view>扫码了解更多</view>
+		</view>
+		<view class="apply_person">
+			<view class="name">参与者：<text>吴永雨</text></view>
+			<view>报名时间：<text>02/21 06:32</text></view>
+		</view>
+	</view> -->
+
+  <image src='{{url}}'mode="widthFix" style='width:640rpx;display:block;margin:auto'></image>
+	<button style='margin-top:40rpx;' catchtap='hidden_mask'>保存图片</button>
+</view>
+

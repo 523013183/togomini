@@ -1,0 +1,195 @@
+{
+  "pages": [
+    "pages1/homePage/homePage",
+    "pages1/indexone/indexone",
+    "pages1/collectlist/collectlist",
+    "pages1/regulate/regulate",
+    "pages1/login/login",
+    "pages1/makeSelfText2/makeSelfText2",
+    "pages1/postCard/postCard",
+    "pages1/manageProducts/manageProducts",
+    "pages1/productDetail/productDetail",
+    "pages/bangding/bangding",
+    "pages1/createCard/createCard",
+    "pages1/activity2/activity2",
+    "pages1/cardActivity/cardActivity",
+    "pages1/cardCase/cardCase",
+    "pages1/activity/activity",
+    "pages1/sponsorActivity/sponsorActivity",
+    "pages1/activityDetail/activityDetail",
+    "pages1/modifyActivity/modifyActivity",
+    "pages1/applyMessage/applyMessage",
+    "pages1/applyProof/applyProof",
+    "pages1/applyNum/applyNum",
+    "pages1/manageGroup/manageGroup",
+    "pages1/groupDetail/groupDetail",
+    "pages1/addGroup/addGroup",
+    "pages1/modifyGroup/modifyGroup",
+    "pages1/chooseProduct/chooseProduct",
+    "pages1/productPic/productPic",
+    "pages1/merchantGroup/merchantGroup",
+    "pages1/merchantGroup_detail/merchantGroup_detail",
+    "pages1/add_merchantGroup/add_merchantGroup",
+    "pages1/productWarehouse/productWarehouse",
+    "pages1/productWarehouse1/productWarehouse1",
+    "pages1/productindex/productindex",
+    "pages1/list/list",
+    "pages1/temporaryDetail/temporaryDetail",
+    "pages1/modifyCard/modifyCard",
+    "pages1/designPrice/designPrice",
+    "pages1/personalDesc/personalDesc",
+    "pages1/addProduct/addProduct",
+    "pages1/modifyProduct/modifyProduct",
+    "pages1/productList/productList",
+    "pages1/commodityDetail/commodityDetail",
+    "pages1/addTemporaryProduct/addTemporaryProduct",
+    "pages1/temporaryProduct/temporaryProduct",
+    "pages1/makeSelfText/makeSelfText",
+    "pages1/downList/downList",
+    "pages1/sort/sort",
+    "pages/index/index",
+    "template/choose/choose",
+    "pages1/serve/serve",
+    "pages1/servedetail/servedetail",
+    "pages1/im/im",
+    "pages1/imlist/imlist",
+    "pages1/shareroom/shareroom",
+    "pages1/shareroom_detail/shareroom_detail",
+    "pages1/popularize/popularize",
+    "pages1/otherpackage/otherpackage",
+    "pages1/otherhousetype/otherhousetype",
+    "pages1/housetypedetail/housetypedetail",
+    "pages1/order_list/order_list",
+    "pages1/order_detail/order_detail",
+    "pages1/sign/sign",
+    "pages1/integral/integral",
+    "pages1/integral_list/integral_list",
+    "pages1/my_prize/my_prize",
+    "pages1/shop_detail/shop_detail",
+    "pages1/demo/demo"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "subPackages": [
+    {
+      "root": "mch/",
+      "pages": [
+        "m/myshop/myshop",
+        "m/setting/setting",
+        "m/goods/goods",
+        "m/order/order",
+        "m/order-detail/order-detail",
+        "m/order-send/order-send",
+        "m/shop-qrcode/shop-qrcode",
+        "m/account/account",
+        "m/account-rest/account-rest",
+        "m/account-log/account-log",
+        "m/cash-log/cash-log",
+        "m/tongji/tongji",
+        "m/order-refund/order-refund",
+        "apply/apply",
+        "shop/shop",
+        "shop-list/shop-list",
+        "shop-cat/shop-cat",
+        "m/cash/cash",
+        "m/settle_detail/settle_detail"
+      ]
+    },
+    {
+      "root": "pond/",
+      "pages": [
+        "pond/pond",
+        "prize/prize",
+        "rule/rule"
+      ]
+    },
+    {
+      "root": "bargain/",
+      "pages": [
+        "goods/goods",
+        "list/list",
+        "activity/activity",
+        "order-list/order-list",
+        "rule/rule"
+      ]
+    },
+    {
+      "root": "scratch/",
+      "pages": [
+        "index/index",
+        "prize/prize",
+        "rule/rule"
+      ]
+    },
+    {
+      "root": "lottery/",
+      "pages": [
+        "index/index",
+        "detail/detail",
+        "goods/goods",
+        "prize/prize"
+      ]
+    },
+    {
+      "root": "designer/",
+      "pages": [
+        "home/home",
+        "create-card/create-card",
+        "phone-number/phone-number",
+        "intro-input/intro-input"
+      ]
+    },
+    {
+      "root": "activity/",
+      "pages": [
+        "home/home",
+        "a-manager/manager",
+        "a-create/create",
+        "a-detail/a-detail",
+        "a-entry/entry"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Mall",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#EFEFF4"
+  },
+  "tabBar": {
+    "selectedColor": "#000",
+    "color": "#000",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages1/homePage/homePage",
+        "text": "我的",
+        "iconPath": "/images/geren2.png",
+        "selectedIconPath": "/images/geren.png"
+      },
+      {
+        "pagePath": "pages1/imlist/imlist",
+        "text": "消息",
+        "iconPath": "/images/xiaoxi2.png", 
+        "selectedIconPath": "/images/xiaoxi.png"
+      },{
+        "pagePath": "pages1/integral/integral",
+        "text": "积分",
+        "iconPath": "/images/xiaoxi2.png",
+        "selectedIconPath": "/images/xiaoxi.png"
+      },
+      {
+        "pagePath": "pages1/order_list/order_list",
+        "text": "订单",
+        "iconPath": "/images/order2.png",
+        "selectedIconPath": "/images/order1.png"
+      }
+    ]
+  },
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,56 @@
+<!--pages/user/user.wxml-->
+<view class="active_list">
+	<view class="active">
+		<view wx:if="{{shili == 3}}" class="active_item" wx:for="{{cardCaseArr}}" wx:item="{{item}}" wx:key="index" data-id="{{item.id}}" data-userid="{{item.user_id}}" catchtap='goDetail'>
+			<view class="content" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="{{item.txtStyle}}" data-index="{{index}}">
+				<image mode="aspectFill" class="active_img" src="{{item.avatar_url}}"></image>
+				<view class="right_part">
+					<view class="detail">
+						<view class="name">{{item.user_name}}</view>
+						<view class="year">{{item.job}}-{{item.job_year}}年</view>
+						<view class="style">擅长风格-{{item.style}}</view>
+						<view class="price">设计费用-{{item.design_fees}}</view>
+					</view>
+				</view>
+				<view class="right" data-index="{{index}}">
+					<view catchtap="callDesigner" data-mobile="{{item.mobile}}">
+						<image mode="aspectFill" style="width: 56rpx;height: 56rpx;" src="/images1/tel_y.png"></image>
+					</view>
+					<view catchtap="addWechat" data-wechat="{{item.wechat}}">
+						<image mode="aspectFill" style="width: 56rpx;height: 56rpx;" src="/images1/weixin_y.png"></image>
+					</view>
+				</view>
+			</view>
+			<view class="cancleBtn" catchtap="delCard" data-index='{{index}}' data-id="{{item.id}}" style="{{item.btnWidth}}" wx:if="{{item.btnWidth=='width:150rpx'}}">
+				<text>删除</text>
+			</view>
+		</view>
+
+		<view wx:if="{{shili == 1}}" class="active_item" wx:for="{{cardCaseArr}}" wx:item="{{item}}" wx:key="index" data-id="{{item.id}}" data-userid="{{item.user_id}}" catchtap='goDetail'>
+			<view class="content" data-index="{{index}}">
+				<image mode="aspectFill" class="active_img" src="{{item.avatar_url}}"></image>
+				<view class="right_part">
+					<view class="detail">
+						<view class="name">{{item.user_name}}</view>
+						<view class="year">{{item.job}}-{{item.job_year}}年</view>
+						<view class="style">擅长风格-{{item.style}}</view>
+						<view class="price">设计费用-{{item.design_fees}}</view>
+					</view>
+				</view>
+				<view class="right" data-index="{{index}}">
+					<view catchtap="callDesigner" data-mobile="{{item.mobile}}">
+						<image mode="aspectFill" style="width: 56rpx;height: 56rpx;" src="/images1/tel_y.png"></image>
+					</view>
+					<view catchtap="addWechat" data-wechat="{{item.wechat}}">
+						<image mode="aspectFill" style="width: 56rpx;height: 56rpx;" src="/images1/weixin_y.png"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="nonedata" hidden="{{cardCaseArr.length>0}}">
+			<image src="/images1/nomsg.png" style="width: 374rpx;height: 280rpx;"></image>
+			暂无数据
+		</view>
+	</view>
+</view>

@@ -1,0 +1,22 @@
+<view class="g_product_detail">
+	<view>
+		<image style="width: 750rpx;height: 750rpx;" src="/images1/product_detail_pic.png"></image>
+	</view>
+	<view class="product_data">
+		<view class="product_name">弗利休闲椅</view>
+		<view class="product_center">
+			<text>¥ 5999</text>
+		</view>
+	</view>
+	<view class="bg_gray"></view>
+	<view class="product_detail">
+		<view class="title">商品详情</view>
+		<view class="desc">
+			<view>椅子是一种日常生活家具，一种有靠背、还有扶手的坐具。 [1]  古代席地而坐，原没有椅子。据文籍记载，椅子的名称始见于唐代，而</view>
+		</view>
+	</view>
+	<view class="from">
+		来源：<text>http://baidu.com.cn</text>
+	</view>
+	<view class="bg_gray2"></view>
+</view>

@@ -1,0 +1,110 @@
+<!--template/choose/choose.wxml-->
+<!-- <text>template/choose/choose.wxml</text> -->
+<template name="choose">
+  <view class="zhea" hidden="{{zhe}}" bindtap="zhe" catchtouchmove="myCatchTouch"></view>
+  <view class="bottoma {{zhe?'':'mask'}}" hidden="{{zhe}}">
+    <view class="itema" bindtap="shop">
+      商品图选择
+    </view>
+    <view class="itema" bindtap="uploadImg" data-num='1' data-flag='cover'>
+      相册选择
+    </view>
+  </view>
+</template>
+
+<!-- 套餐详情 -->
+<template name="package">
+  <view class="item_group" wx:for-index="father" wx:for="{{goods}}"  wx:key="index">
+    <view wx:if="{{item.opus.length > 0}}" class="item_title">{{item.name}}效果图</view>
+    <swiper wx:if="{{item.opus.length > 0}}" indicator-dots='{{true}}'>
+      <block wx:for="{{item.opus}}" wx:for-item="item2" wx:for-index="index2"  wx:key="index">
+        <swiper-item bindtap="preview" data-index2="{{father}}" data-index="{{index2}}">
+          <image mode="aspectFill" src="{{item2.file_url}}" class="slide-image" width="355" height="150" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="match_product">
+      <text hidden="{{item.opus.length > 0}}">{{item.name}}</text>搭配商品
+      <text class="products_num">{{!item.goods.length?'0':item.goods.length}}款</text>
+    </view>
+    <view wx:if="{{item.goods != ''}}" class="product_wrapper">
+      <view class="product_item">
+        <view class="left">
+          <image mode="aspectFill" data-id="{{item.goods[item.currentIndex].goods_id}}" src="{{item.goods[item.currentIndex].cover_pic}}" catchtap='goToDetail' mode="aspectFit"></image>
+          <scroll-view scroll-x class="scroll-view3">
+            <image mode="aspectFill" class="{{item.currentIndex==index2?'picpic':''}}" bindtap="choosePic" data-father="{{father}}" data-id2="{{item2.id2}}" data-index="{{index2}}" data-item="{{item2}}" src="{{item2.cover_pic}}" wx:for="{{item.goods}}" wx:for-index="index2" wx:for-item="item2"
+               wx:key="index"></image>
+          </scroll-view>
+          <view wx-if="{{item.check}}" data-check="{{item.check}}" class="repace" bindtap="replace">替换</view>
+        </view>
+        <view class="product_detail" style='position:relative;'>
+          <view wx:if="{{item.goods[item.currentIndex].material != ''}}">
+            <view class='icona'>尺寸</view>
+            <text class="ellipse-4" style='background-color:#fff;max-width:300rpx;'>{{item.goods[item.currentIndex].attr == ''?item.goods[item.currentIndex].size:item.goods[item.currentIndex].attr}}</text>
+          </view>
+          <view wx:if="{{item.goods[item.currentIndex].material != ''}}">
+            <view class='icona'>材质</view>
+            <text style='background-color:#fff;'>{{item.goods[item.currentIndex].material}}</text>
+          </view>
+          <view wx:if="{{item.goods[item.currentIndex].material == ''}}">
+            <view class='icona'>简介</view>
+            <view class='txt' style='background-color:#fff;max-width:200rpx;'>{{item.goods[item.currentIndex].detail}}</view>
+          </view>
+          <view style='position:absolute;bottom:0;'>
+            <view class='icona'>价格</view>
+            <text style='background-color:#fff;'>￥{{item.goods[item.currentIndex].original_price}}x{{item.goods[item.currentIndex].number}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else style="margin:100rpx auto 0 auto;text-align:center;">无搭配商品..</view>
+  </view>
+</template>
+
+<!-- 套餐列表 -->
+<template name="packagelist">
+  <view wx:for="{{packagelist}}" wx:if="{{index<6}}"  wx:key="index" class="t-item">
+    <view class="priceq" hidden="{{item.type==2}}">
+      <view>{{item.name}}</view>
+      <view>￥{{item.amount}}</view>
+    </view>
+    <image mode="aspectFill" bindtap="link_groupDetail" data-type="{{item.type}}" data-id="{{item.id}}" src="{{item.cover_img}}"></image>
+    <view class="foot">
+      <view style="{{item.goods.length==0?'background-color:#fff  ;':''}}" bindtap="linkGoods" data-id="{{itema.id}}" wx:for="{{item.goods.length==0?'3':item.goods}}" wx:if="{{child<4}}" wx:for-index="child" wx:for-item="itema"  wx:key="child" class="foot-img">
+        <image mode="aspectFill" src="{{itema.cover_pic}}"></image>
+      </view>
+    </view>
+  </view>
+</template>
+
+
+<!-- 填写申请信息 -->
+<template name="submitdata">
+  <view class="shade" wx:if="{{date}}">
+    <view class="content2">
+      <view class="shade-title">录入信息</view>
+      <view class="itemitem">
+        <view class="item">
+          <label>楼盘：</label>
+          <input bindinput="lou_pan"></input>
+        </view>
+        <view class="item">
+          <label>房号：</label>
+          <input bindinput="fang_hao"></input>
+        </view>
+        <view class="item">
+          <label>联系人：</label>
+          <input bindinput="lx_name"></input>
+        </view>
+        <view class="item">
+          <label>联系电话：</label>
+          <input bindinput="lx_phone" type="number"></input>
+        </view>
+        <view class="btn">
+          <view class="fadeleft" bindtap="submit">提交</view>
+          <view class="faderight" bindtap="look">取消</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,23 @@
+<view class="card_part" id="cardPart">
+  <image class="avatar" src="{{imgSrc}}"></image>
+  <view class="card_top">
+    <view class="text_desc">
+      <view>创建设计师名片</view>
+      <view>让需要的人看到你</view>
+    </view>
+    <button class="create_card" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+      创建名片
+    </button>
+    <view class="other_btn">
+      <navigator class="other_item" url="/pages1/cardCase/cardCase?shili=1">
+        <image style="width:28px;height: 22px;" src="/images1/card_case.png"></image>
+        <text style="font-weight: bold;">示例名片</text>
+      </navigator>
+      <!--  bindtap="connect_service" -->
+      <button hover-class="none" class="other_item" open-type="contact">
+        <image style="width: 20px;height: 22px;" src="/images1/service.png"></image>
+        <text style="font-weight: bold;">联系客服</text>
+      </button>
+    </view>
+  </view>
+</view>

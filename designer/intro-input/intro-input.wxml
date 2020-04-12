@@ -1,0 +1,5 @@
+<form reportSubmit bindsubmit="onFormId" class="container" style="margin-top: {{topBarInfo.topBarHeight}}px;">
+    <textarea autoFocus bindconfirm="onConfirm" bindinput="onInput" class="input" placeholder="{{selfPlaceholder}}" placeholderClass="input input-placeholder" value="{{profile}}"></textarea>
+    <view class="bottom-text" style="{{inputedSize>100?'color: #FF2B00':'color: #C2C9D1;'}}">{{inputedSize}}/120</view>
+    <button bind:tap="onConfirm" class="confirm-button" formType="submit">确认</button>
+</form>

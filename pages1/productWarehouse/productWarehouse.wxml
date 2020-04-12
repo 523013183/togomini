@@ -1,0 +1,129 @@
+<!--pages/user/user.wxml-->
+<view class="warehouse">
+	<view class="title">
+		<view class="search_box">
+			<image mode="aspectFill" style="width: 22rpx;height: 22rpx;" src="/images1/search_icon.png"></image>
+			<input placeholder="请输入关键词搜索" value="{{keyWord}}" confirm-type="search" bindinput='getKeyword' bindconfirm="searchGoods" />
+		</view>
+		<view class="choose_wrapper">
+			<!--风格-->
+			<view class="choose_item" catchtap='showStyle'>
+				<view class='choose-item-name' wx:for="{{styleList}}" wx:key="index" wx:if="{{styleIndex!=-1&&index==styleIndex}}">{{styleList[styleIndex].name}}</view>
+				<view class='choose-item-name' wx:if="{{styleIndex==-1}}">{{stylenamea==''?'风格':stylenamea}}</view>
+				<image mode="aspectFill" style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+				<view class='chosoe-all' wx:if="{{showStyle}}">
+					<view data-name="全部" data-index="-1" catchtap='chooseStyle'>全部</view>
+					<view wx:for="{{styleList}}" wx:key="index" data-name="{{item.name}}" data-index="{{index}}" catchtap='chooseStyle'>{{item.name}}</view>
+				</view>
+			</view>
+			<!--空间-->
+			<view class="choose_item" catchtap='showRoom'>
+				<view class='choose-item-name' wx:for="{{roomList}}" wx:key="index" wx:if="{{roomIndex!=-1&&index==roomIndex}}">{{roomList[roomIndex].name}}</view>
+				<view class='choose-item-name' wx:if="{{roomIndex==-1}}">{{roonname==''?'空间':roonname}}</view>
+				<image mode="aspectFill" style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+				<view class='chosoe-all' wx:if="{{showRoom}}">
+					<view data-name="全部" data-id="" data-index="-1" catchtap='chooseRoom'>全部</view>
+					<view wx:for="{{roomList}}" wx:key="index" data-name="{{item.name}}" data-index="{{index}}" catchtap='chooseRoom' data-id="{{item.id}}">{{item.name}}</view>
+				</view>
+			</view>
+			<!--类型-->
+			<view class="choose_item" catchtap='showCategory'>
+				<view class='choose-item-name' wx:for="{{cateList}}" wx:key="index" wx:if="{{cateIndex!=-1&&index==cateIndex}}">{{cateList[cateIndex].name}}</view>
+				<view class='choose-item-name' wx:if="{{cateIndex==-1}}">类型</view>
+				<image mode="aspectFill" style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+				<view class='chosoe-all' wx:if="{{showCategory}}">
+					<view data-name="全部" data-index="-1" catchtap='chooseCategory'>全部</view>
+					<view wx:for="{{cateList}}" wx:key="index" data-name="{{item.id}}" data-index="{{index}}" catchtap='chooseCategory'>{{item.name}}</view>
+				</view>
+
+			</view>
+			<!-- 价格 -->
+			<view class="choose_item" bindtap="price">
+				<view class='choose-item-name'>价格</view>
+				<image mode="aspectFill" wx:if="{{sort}}" style="width: 16rpx;height: 11rpx;" src="/images1/arrow_down_b.png"></image>
+				<image mode="aspectFill" wx:else style="width: 18rpx;height: 25rpx;" src="/images1/topsj.png"></image>
+			</view>
+			<!-- 筛选 -->
+			<view class="choose_item" bindtap="choose">
+				<view class='choose-item-name'>筛选</view>
+				<image mode="aspectFill" style="width: 20rpx;height: 25rpx;" src="/images1/shaixuan.png"></image>
+			</view>
+		</view>
+	</view>
+	<view style="height:170rpx;"></view>
+	<!-- 内容 -->
+	<view class="product">
+		<view class="product_item" wx:for="{{cartList}}" wx:key="index" wx:item="{{item}}">
+			<view bindtap="linkGoods" data-item="{{item}}" data-index="{{index}}" data-id="{{item.id}}">
+				<image mode="aspectFill" class="product_img" style="width: 320rpx;height: 320rpx;" src="{{item.pic_url}}"></image>
+			</view>
+			<view class="pro_desc">
+				<view class="product_name">{{item.name}}</view>
+				<view class="product_price">
+					<text class="price">{{item.original_price == "0.00"?item.price:item.original_price}}</text>
+					<view wx:if="{{!imtype}}" bindtap="collect" data-id="{{item.room_ids}}" data-name="{{item.rooms}}" data-item="{{item}}">收藏</view>
+					<view wx:else bindtap="send" data-id="{{item.id}}" data-name="{{item.name}}" data-pic_url="{{item.pic_url}}" data-price="{{item.original_price}}">发送</view>
+				</view>
+			</view>
+		</view>
+		<view wx:if="{{cartList.length==0}}" class="none">
+			<image src="/images1/nomsg.png" style="width: 374rpx;height: 280rpx;"></image>
+			暂无数据
+		</view>
+	</view>
+</view>
+
+<view style='color:#ccc;font-size:30rpx;text-align:center;padding:20rpx;' wx:if="{{cartList.length!=0}}">
+	{{motip}}
+</view>
+
+<!-- 筛选 -->
+<view class="choose" hidden="{{show}}">
+	<view bindtap="close" class="close">关闭</view>
+	<scroll-view scroll-y style="width:100%;height:85%;margin-top:60rpx;">
+		<view class="item">
+			<view class="title">价格区间</view>
+			<view class="pricea">
+				<input bindinput="min" type="number" value="{{min}}" placeholder="最低价"></input>
+				<view></view>
+				<input bindinput="max" type="number" value="{{max}}" placeholder="最高价"></input>
+			</view>
+			<view class="priceb">
+				<view bindtap="chooseprice" data-min="{{item.min}}" data-max="{{item.max}}" wx:for="{{price}}" wx:key="index">{{item.price}}</view>
+			</view>
+		</view>
+		<view class="gray"></view>
+		<!-- 风格 -->
+		<view class="style">
+			<view class="title">风格</view>
+			<view class="list">
+				<view class="{{styleIndex==index?'active':''}}" data-name="{{item.name}}" data-index="{{index}}" bindtap="style" wx:for="{{styleList}}" wx:key="index">{{item.name}}</view>
+			</view>
+		</view>
+		<!-- 空间 -->
+		<view class="style">
+			<view class="title">空间</view>
+			<view class="list">
+				<view class="{{roomIndex==index?'active':''}}" bindtap="room" data-name="{{item.name}}" data-index="{{index}}" wx:for="{{roomList}}" wx:key="index">{{item.name}}</view>
+			</view>
+		</view>
+		<!-- 类型 -->
+		<view class="style">
+			<view class="title">类型</view>
+			<view class="list">
+				<view class="{{cateIndex==index?'active':''}}" data-name="{{item.id}}" data-index="{{index}}" bindtap="type" wx:for="{{cateList}}" wx:key="index">{{item.name}}</view>
+			</view>
+		</view>
+	</scroll-view>
+	<view class="btn">
+		<view bindtap="reset" class="cz">重置</view>
+		<view bindtap="submit" class="qr">确定</view>
+	</view>
+</view>
+
+<view bindtap="rooma" style="width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1;position: fixed;top:0;" hidden="{{!showRoom}}"></view>
+<view bindtap="stylea" style="width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1;position: fixed;top:0;" hidden="{{!showStyle}}"></view>
+<view bindtap="typea" style="width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1;position: fixed;top:0;" hidden="{{!showCategory}}"></view>
+
+<!-- 收藏列表 -->
+<view wx:if="{{!imtype}}" bindtap="collectlist" class="collect">收藏夹</view>

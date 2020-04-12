@@ -1,0 +1,65 @@
+<view class='ceshi_swiper'>
+  <image mode="aspectFill" mode="scaleToFill" src="{{data.pic}}"></image>
+  <view class="position">{{data.status==1?'在售':'停售'}}</view>
+</view>
+<!-- 样板间信息 -->
+<view class="roomdate">
+  <view class="roomname">
+    <text>{{data.name}}</text>
+    <!-- <text class="blue" bindtap="otherhouse">关联套餐</text> -->
+  </view>
+  <!--  -->
+  <view class="itemnum">
+    <view class="roomitem">
+      <view>户型：</view>
+      <view>{{data.name}}</view>
+    </view>
+    <view class="roomitem">
+      <view>装修面积：</view>
+      <view>{{data.area}}</view>
+    </view>
+    <view class="roomitem">
+      <view>户型朝向：</view>
+      <view>{{data.direction}}</view>
+    </view>
+    <view class="roomitem">
+      <view>户型分布：</view>
+      <view>{{data.distribute}}</view>
+    </view>
+    <view class="roomitem">
+      <view>备注：</view>
+      <view>{{data.remark}}</view>
+    </view>
+  </view>
+</view>
+<!-- 样板间套餐 -->
+<view class="content">
+  <view class="c-title">
+    <view>已上传套餐</view>
+    <view bindtap="morepackage">更多</view>
+  </view>
+  <!-- -->
+  <scroll-view scroll-x class="scroll-view2">
+    <view class="s-item" wx:for="{{data.package}}" wx:key="index">
+      <image mode="aspectFill" bindtap="packagedetail" data-id="{{item.id}}" class="s-img" src="{{item.cover_img}}"></image>
+      <view class="s-bottom">
+        <view class="sb-img" wx:if="{{index2<4}}" wx:for-index="index2" wx:for-item="item2" wx:for="{{item.goods}}" wx:key="index">
+          <image mode="aspectFill" src="{{item2.cover_pic}}"></image>
+        </view>
+      </view>
+    </view>
+    <view style="text-align:center;height:100rpx;line-height:100rpx;" wx:if="{{data.package.length==0}}">暂无套餐</view>
+  </scroll-view>
+</view>
+<!-- 底部按钮 -->
+<view style="height:100rpx;"></view>
+<view class="foota" wx:if="{{login}}">
+  <view class="join" bindtap="joinroom">申请成为样板间</view>
+  <view class="addpackage" bindtap="addpackage" wx:if="{{level_name!='普通用户'}}">上传套餐</view>
+</view>
+<view class="foota" wx:else>
+  <view class="join" bindtap="login">登录</view>
+</view>
+<!-- 填写申请信息 -->
+<import src="/template/choose/choose.wxml" />
+<template is="submitdata" data="{{date}}" />

@@ -1,0 +1,19 @@
+<view class="product_list">
+	<view class="products_group">
+		<view class="part_wrapper" wx:for="{{cartList}}" wx:item="{{item}}" bindtap="linkGoods" data-id="{{item.id}}"
+          wx:if="{{item.show}}">
+      <image src='/images1/ccc.png' class='close-icon' data-id="{{item.id}}" catchtap='clsoe'></image>
+			<view class="pro_pic">
+				<image src="{{item.pic_url}}"></image>
+			</view>
+			<view class="part">
+				<text class="text_title">{{item.name}}</text>
+				<view class="style">风格：{{item.styles}}</view>
+				<view class="size">尺寸：{{item.size}}</view>
+				<view class="material">材质：{{item.material}}</view>
+				<view class="price">{{item.price}}</view>
+			</view>
+		</view>
+	</view>
+	<button class="downloadBtn">共<text>{{cartList.length}}</text>个商品 | 下载列表 </button>
+</view>
